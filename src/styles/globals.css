@@ -1,5 +1,9 @@
 :root {
-  
+  --dark: #090909;
+  --red: #690500;
+  --blue: #2274A5;
+  --yellow: #EE881B;
+  --grey: #ebebeb;
 }
 
 * {
@@ -9,8 +13,34 @@
 }
 
 html, body {
+  font-family: 'Inter', sans-serif;
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: var(--grey);
+}
+
+@keyframes navLinkFadeIn {
+  from {
+    width: auto;
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    width: auto;
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes navLinkFadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 a {
