@@ -1,8 +1,12 @@
 import { Container, HeadNav, Logo, Ul, Button } from '../../styles/headerStyles';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import IDV from './logo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/fontawesome-free-regular';
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
-const Header = () => {
+const Header = ({setActiveForm} : any) => {
+
     var ul = useRef(null);
     var menuResponsive = useRef(null);
     var li1 = useRef(null);
@@ -44,7 +48,7 @@ const Header = () => {
             }
         });
     };
-
+   
     return (  
         <Container>
             <Logo>
@@ -61,8 +65,7 @@ const Header = () => {
                 <div className="line-3"></div>
             </HeadNav>
             <Button>
-                <button className='cadastrar' >Cadastrar</button>
-                <button className='login' >Login</button>
+                <button onClick={() => setActiveForm(true)}><FontAwesomeIcon className='icon' icon={faUser as IconProp} />Cadastrar</button>
             </Button>
         </Container>
     );

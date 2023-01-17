@@ -12,11 +12,7 @@ export const Logo = styled.div`
 
     p {
         text-align: center;
-        color: #fff;
-    }
-
-    @media (max-width: 768px) {
-        width: 25%;
+        color: var(--grey);
     }
 `;
 
@@ -31,7 +27,7 @@ export const HeadNav = styled.div`
     div {
         width: 20px;
         height: 2px;
-        background: #fff;
+        background: var(--grey);
         margin: 5px;
         transition: all 0.2s ease;
     }
@@ -63,14 +59,14 @@ export const Ul = styled.ul`
     a {
         text-decoration: none;
         transition: 0.4s all;
-        color: #fff;
+        color: var(--grey);
         font-size: 18px;
     }
 
     .li a:after {
         display:block;
         content: '';
-        border-bottom: solid 2px #fff;
+        border-bottom: solid 2px var(--grey);
         margin-right: 2px;
         transform: scaleX(0);
         transition: transform 320ms ease-in-out;
@@ -115,28 +111,40 @@ export const Button = styled.div`
 
     button {
         outline: none;
+        display: flex;
+        justify-content: center;
+        width: 120px;
         border: none;
         background-color: transparent;
-        color: #fff;
+        color: var(--grey);
         font-family: 'Inter', sans-serif;
-        margin: 0px 10px;
-        border: 1px solid #fff;
+        margin: 0px auto;
+        border: 1px solid var(--grey);
         padding: 10px;
         transition: 0.4s all;
         cursor: pointer;
     }
 
-    .login:hover {
-        box-shadow: inset 0 -3.95em 0 0 var(--blue);
-        border: 1px solid var(--blue);
+    .icon {
+        width: 14px;
+        height: 14px;
+        margin-right: 5px;
     }
 
-    .login:focus {
-        background-color: var(--blue);
+    .icon path {
+        width: 14px;
+        height: 14px;
     }
 
-    .cadastrar:hover {
-        box-shadow: inset 0 -3.95em 0 0 #fff;
+    button:hover {
+        box-shadow: inset 0 -3.95em 0 0 var(--grey);
+        border: 1px solid var(--grey);
+        color: #000;
+    }
+
+    button:focus {
+        background-color: var(--grey);
+        border: 1px solid var(--grey);
         color: #000;
     }
 
@@ -145,6 +153,6 @@ export const Button = styled.div`
     }
 
     @media (max-width: 768px) {
-        width: 70%;
+        width: 45%;
     }
 `;
