@@ -18,10 +18,8 @@ export default function Home() {
       </Head>
       <Header setActiveForm={setActiveForm}/>
       {
-        activeForm ?
+        activeForm &&
         <Cadastro setActiveForm={setActiveForm} />
-        :
-        ""
       }
     </>
   )

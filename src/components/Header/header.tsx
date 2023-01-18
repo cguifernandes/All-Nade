@@ -1,9 +1,7 @@
 import { Container, HeadNav, Logo, Ul, Button } from '../../styles/headerStyles';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import IDV from './logo';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/fontawesome-free-regular';
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { User } from "phosphor-react";
 
 const Header = ({setActiveForm} : any) => {
 
@@ -65,7 +63,7 @@ const Header = ({setActiveForm} : any) => {
                 <div className="line-3"></div>
             </HeadNav>
             <Button>
-                <button onClick={() => setActiveForm(true)}><FontAwesomeIcon className='icon' icon={faUser as IconProp} />Cadastrar</button>
+                <button onClick={() => setActiveForm(true)}><User className='icon' />Cadastrar</button>
             </Button>
         </Container>
     );

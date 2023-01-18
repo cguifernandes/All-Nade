@@ -111,9 +111,10 @@ export const Button = styled.div`
 
     button {
         outline: none;
-        display: flex;
-        justify-content: center;
         width: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border: none;
         background-color: transparent;
         color: var(--grey);
@@ -126,26 +127,13 @@ export const Button = styled.div`
     }
 
     .icon {
-        width: 14px;
-        height: 14px;
+        font-size: 18px;
         margin-right: 5px;
     }
 
-    .icon path {
-        width: 14px;
-        height: 14px;
-    }
-
     button:hover {
-        box-shadow: inset 0 -3.95em 0 0 var(--grey);
-        border: 1px solid var(--grey);
-        color: #000;
-    }
-
-    button:focus {
-        background-color: var(--grey);
-        border: 1px solid var(--grey);
-        color: #000;
+        box-shadow: inset 0 -3.95em 0 0 var(--blue);
+        border: 1px solid var(--blue);
     }
 
     @media (max-width: 1220px) {
