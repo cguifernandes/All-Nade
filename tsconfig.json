@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Header/logo.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Header/logo.js", "src/services/db.js", "src/services/api.js"],
   "exclude": ["node_modules"]
 }

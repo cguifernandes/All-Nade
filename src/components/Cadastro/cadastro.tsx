@@ -1,17 +1,28 @@
 import { Container, Email, Footer, Header, Form, Overlay, Senha, Nome, Button, Text } from "@/styles/cadastroStyles";
 import IDV from "../Header/logo";
 import { HashStraight, Eye, IdentificationCard, EyeSlash } from "phosphor-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast, Toaster } from 'react-hot-toast';
+import api from "@/services/api";
+
+export type typeClients = {
+    _id: string;
+    email: string;
+    senha: string;
+    nome: string;
+    createdAt: Date
+}
 
 const Cadastro = ({setActiveForm} : any) => {
     const [email, setEmail] = useState('');
     const [nome, setNome] = useState('');  
     const [senha, setSenha] = useState('');
     const [show, setShow] = useState(false);
+    const [clients, setClients] = useState<typeClients[]>();
 
-    const handleSubmit = (e : any) => {
+    const handleSubmit = async (e : any) => {
         e.preventDefault();
+        var clientsCards : any = [];
 
         const alert = (error : any) => 
         toast.error(error, {
@@ -26,6 +37,8 @@ const Cadastro = ({setActiveForm} : any) => {
                 secondary: '#FFFAEE',
             },
         });
+
+        console.log(clients)
 
         if (!email && !nome && !senha) {
             alert('Preencha todos os campos!')
@@ -42,7 +55,25 @@ const Cadastro = ({setActiveForm} : any) => {
         } else if (!nome) {
             alert('Preencha o campo Nome!')
         }
+
+        try {
+            const {data} = await api.post('/clients', {nome, email, senha})
+            clientsCards.push(data.data)
+            setClients(clientsCards)
+            setNome('');
+            setEmail('');
+            setSenha('');
+
+        } catch (error) {
+            console.log(error)
+        }
     }
+
+    useEffect(() => {
+        api.get('/clients').then(({data}) => {
+            setClients(data.data)
+        })
+    }, [])
 
     const handleShow = () => {
         setShow(!show);  
@@ -67,7 +98,7 @@ const Cadastro = ({setActiveForm} : any) => {
                         <IdentificationCard className="icon" />
                     </Nome>
                     <Senha>
-                        <input placeholder="Senha" maxLength={8} type={show ? "text" : "password"} onChange={(e) => setSenha(e.target.value)} value={senha} />
+                        <input placeholder="Senha" maxLength={9} type={show ? "text" : "password"} onChange={(e) => setSenha(e.target.value)} value={senha} />
                         {
                             show ?
                             <EyeSlash onClick={() => handleShow()} className="icon" />
