@@ -14,6 +14,10 @@ export const Logo = styled.div`
     text-align: center;
     color: var(--grey);
   }
+
+  @media (max-width: 570px) {
+    padding-left: 3%;
+  }
 `;
 
 export const HeadNav = styled.div`

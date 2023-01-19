@@ -182,6 +182,12 @@ export const Button = styled.div`
     box-shadow: inset 0 -3.95em 0 0 var(--blue);
     border: 1px solid var(--blue);
   }
+
+  @media (max-width: 768px) {
+    button {
+        width: 65%;
+    }
+  }
 `;
 
 export const Text = styled.div`

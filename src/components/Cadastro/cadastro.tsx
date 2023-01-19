@@ -79,14 +79,13 @@ const Cadastro = ({setActiveForm} : any) => {
                         }   
                     </Senha>
                     <Button>
-                        <button type='submit'>Login</button>
-                        <button>Logar com google</button>
+                        <button type='submit'>Registrar</button>
+                        <button>Registrar com google</button>
                     </Button>
                 </Form>
                 <Footer>
                     <Text>
-                        <a className="senha">Esqueceu a senha?</a>
-                        <p>Não tem uma conta?<a href="https://dribbble.com/shots/17408454-Login-Form-Prototype"> Crie uma!</a></p>
+                        <p>Já tem uma conta?<a href="https://dribbble.com/shots/17408454-Login-Form-Prototype"> Logar!</a></p>
                     </Text>
                 </Footer>
             </Container>
