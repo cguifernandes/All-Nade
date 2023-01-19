@@ -118,7 +118,7 @@ export const Button = styled.div`
         border: none;
         background-color: transparent;
         color: var(--grey);
-        font-family: 'Inter', sans-serif;
+        font-family: 'Poppins', sans-serif;
         margin: 0px auto;
         border: 1px solid var(--grey);
         padding: 10px;

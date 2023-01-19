@@ -4,12 +4,12 @@ export const Container = styled.div`
     width: 750px;
     height: 700px;
     position: absolute;
-    display: block;
-    margin: 0 auto;
+    transform: translate(-50%, 0);
+    left: 50%;
     top: 120px;
     background-color: var(--dark);
+    animation: overlayAnimation 0.2s ease;
     border-radius: 10px;
-    animation: overlayAnimation ease-out .5s; 
     z-index: 32;
 `;
 export const Overlay = styled.div`
@@ -19,16 +19,8 @@ export const Overlay = styled.div`
     top: 0px;
     position: absolute;
     z-index: 30;
-
-    @keyframes overlayAnimation {
-        from {
-            transform: scale(0.);
-        }
-
-        to {
-            transform: scale(1);
-        }
-    }
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+    animation: overlayAnimation 0.8s ease;
 `;
 
 export const Header = styled.div`
@@ -53,7 +45,7 @@ export const Form = styled.form`
     input {
         outline: none;
         border: none;
-        font-family: 'Inter', sans-serif;
+        font-family: 'Poppins', sans-serif;
         padding: 15px;
         display: block;
         width: 80%;
@@ -69,7 +61,7 @@ export const Form = styled.form`
         color: #fff;
         position: absolute;
         right: 95px;
-        top: 14px;
+        top: 17px;
         width: 24px;
         height: 24px;
         transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -154,7 +146,7 @@ export const Button = styled.div`
         border: none;
         background-color: transparent;
         color: var(--grey);
-        font-family: 'Inter', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: 14px;
         border: 1px solid var(--grey);
         padding: 15px;
@@ -179,3 +171,4 @@ export const Text = styled.div`
     }
 `;
 
+ 

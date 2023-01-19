@@ -1,6 +1,6 @@
 import { Container, Email, Footer, Header, Form, Overlay, Senha, Nome, Button, Text } from "@/styles/cadastroStyles";
 import IDV from "../Header/logo";
-import { HashStraight, Lock, IdentificationCard } from "phosphor-react";
+import { HashStraight, Eye, IdentificationCard, EyeSlash } from "phosphor-react";
 import { useState } from "react";
 import { toast, Toaster } from 'react-hot-toast';
 
@@ -8,7 +8,8 @@ const Cadastro = ({setActiveForm} : any) => {
     const [email, setEmail] = useState('');
     const [nome, setNome] = useState('');  
     const [senha, setSenha] = useState('');
-    
+    const [show, setShow] = useState(false);
+
     const handleSubmit = (e : any) => {
         e.preventDefault();
 
@@ -28,32 +29,23 @@ const Cadastro = ({setActiveForm} : any) => {
 
         if (!email && !nome && !senha) {
             alert('Preencha todos os campos!')
-        }
-
-        else if (!email && !nome) {
+        } else if (!email && !nome) {
             alert('Preencha os campos E-mail e Nome!')
-        }
-
-        else if (!email && !senha) {
+        } else if (!email && !senha) {
             alert('Preencha os campos E-mail e Senha!')
-        }
-
-        else if (!email) {
+        } else if (!email) {
             alert('Preencha o campo E-mail!')
-        }
-
-        else if (!nome && !senha) {
+        } else if (!nome && !senha) {
             alert('Preencha os campos Nome e Senha!')
-        }
-
-        else if (!senha) {
+        } else if (!senha) {
             alert('Preencha o campo Senha!')
-        }
-
-        else if (!nome) {
+        } else if (!nome) {
             alert('Preencha o campo Nome!')
         }
+    }
 
+    const handleShow = () => {
+        setShow(!show);
     }
 
     return (  
@@ -77,9 +69,14 @@ const Cadastro = ({setActiveForm} : any) => {
                         <IdentificationCard className="icon" />
                     </Nome>
                     <Senha>
-                        <input placeholder="" type="password" onChange={(e) => setSenha(e.target.value)} value={senha} />
+                        <input placeholder="" maxLength={8} type={show ? "text" : "password"} onChange={(e) => setSenha(e.target.value)} value={senha} />
                         <label>Senha</label>
-                        <Lock className="icon" />
+                        {
+                            show ?
+                            <EyeSlash onClick={() => handleShow()} className="icon" />
+                            :
+                            <Eye onClick={() => handleShow()} className="icon" />
+                        }   
                     </Senha>
                     <Button>
                         <button type='submit'>Login</button>
