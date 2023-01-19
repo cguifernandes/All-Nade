@@ -11,6 +11,10 @@ export const Container = styled.div`
   animation: overlayAnimation 0.2s ease;
   border-radius: 10px;
   z-index: 32;
+
+  @media (max-width: 768px) {
+    width: 95%;
+  }
 `;
 export const Overlay = styled.div`
   width: 100%;
@@ -61,7 +65,7 @@ export const Form = styled.form`
   .icon {
     color: #fff;
     position: absolute;
-    right: 95px;
+    right: 12%;
     top: 17px;
     width: 24px;
     height: 24px;
@@ -73,7 +77,7 @@ export const Form = styled.form`
     position: absolute;
     font-size: 16px;
     top: 16px;
-    left: 93px;
+    left: 12%;
     pointer-events: none;
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -107,6 +111,16 @@ export const Form = styled.form`
   input:invalid ~ .icon,
   input:invalid ~ label {
     color: red;
+  }
+
+  @media (max-width: 570px) {
+    .icon {
+        right: 13%;
+    }
+
+    label {
+        left: 13%;
+    }
   }
 `;
 

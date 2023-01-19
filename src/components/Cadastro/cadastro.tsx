@@ -45,7 +45,7 @@ const Cadastro = ({setActiveForm} : any) => {
     }
 
     const handleShow = () => {
-        setShow(!show);
+        setShow(!show);  
     }
 
     return (  
