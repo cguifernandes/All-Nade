@@ -72,16 +72,6 @@ export const Form = styled.form`
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  label {
-    color: rgba(235, 235, 235, 0.7);
-    position: absolute;
-    font-size: 16px;
-    top: 16px;
-    left: 12%;
-    pointer-events: none;
-    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
   input:focus {
     border-color: var(--blue);
   }
