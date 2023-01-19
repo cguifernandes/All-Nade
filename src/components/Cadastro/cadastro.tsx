@@ -59,18 +59,15 @@ const Cadastro = ({setActiveForm} : any) => {
                 </Header>
                 <Form onSubmit={handleSubmit}>
                     <Email>
-                        <input placeholder="" autoComplete='on' type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
-                        <label>E-mail</label>
+                        <input placeholder="E-mail" autoComplete='on' type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
                         <HashStraight className="icon" />
                     </Email>
                     <Nome>
-                        <input placeholder="" autoComplete='on' type="name" onChange={(e) => setNome(e.target.value)} value={nome} />
-                        <label>Nome</label>
+                        <input placeholder="Nome" autoComplete='on' type="name" onChange={(e) => setNome(e.target.value)} value={nome} />
                         <IdentificationCard className="icon" />
                     </Nome>
                     <Senha>
-                        <input placeholder="" maxLength={8} type={show ? "text" : "password"} onChange={(e) => setSenha(e.target.value)} value={senha} />
-                        <label>Senha</label>
+                        <input placeholder="Senha" maxLength={8} type={show ? "text" : "password"} onChange={(e) => setSenha(e.target.value)} value={senha} />
                         {
                             show ?
                             <EyeSlash onClick={() => handleShow()} className="icon" />

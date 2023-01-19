@@ -86,22 +86,8 @@ export const Form = styled.form`
     border-color: var(--blue);
   }
 
-  input:focus ~ label,
-  input:not(:placeholder-shown) ~ label {
-    transform: translateX(6px) translateY(-25px);
-    font-size: 14px;
-    padding: 0 10px;
-    background: var(--dark);
+  input:focus ~ .icon {
     color: var(--blue);
-  }
-
-  input:focus ~ .icon,
-  input:not(:placeholder-shown) ~ .icon {
-    color: var(--blue);
-  }
-
-  input:not(:placeholder-shown) {
-    border-color: var(--blue);
   }
 
   input:invalid {
