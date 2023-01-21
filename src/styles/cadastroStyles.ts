@@ -19,7 +19,7 @@ export const Container = styled.div`
 export const Overlay = styled.div`
   width: 100%;
   height: 100%;
-  background-color: rgb(0 0 0/0.3);
+  background-color: rgb(0 0 0/0.5);
   top: 0px;
   position: absolute;
   z-index: 30;

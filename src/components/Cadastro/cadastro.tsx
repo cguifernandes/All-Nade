@@ -18,16 +18,16 @@ const Cadastro = ({setActiveForm} : any) => {
     const [nome, setNome] = useState('');  
     const [senha, setSenha] = useState('');
     const [show, setShow] = useState(false);
-    const [clients, setClients] = useState<typeClients[]>();
+    const [clients, setClients] = useState<typeClients[]>([]);
 
     const handleSubmit = async (e : any) => {
         e.preventDefault();
         var clientsCards : any = [];
 
-        const alert = (error : any) => 
-        toast.error(error, {
+        const errorAlert = (message : any) => 
+        toast.error(message, {
             position: 'top-right',
-            duration: 4200,
+            duration: 2200,
             style: {
                 padding: '16px',
                 color: '#090909',
@@ -38,42 +38,78 @@ const Cadastro = ({setActiveForm} : any) => {
             },
         });
 
-        console.log(clients)
+        const successfulAlert = (message : any) => 
+        toast.success(message, {
+            position: 'top-right',
+            duration: 2200,
+            style: {
+                padding: '16px',
+                width: '500px',
+                color: '#090909',
+            },
+            iconTheme: {
+                primary: '#00a000',
+                secondary: '#FFFAEE',
+            },
+        });
 
         if (!email && !nome && !senha) {
-            alert('Preencha todos os campos!')
+            errorAlert('Preencha todos os campos.');
         } else if (!email && !nome) {
-            alert('Preencha os campos E-mail e Nome!')
+            errorAlert('Preencha os campos E-mail e Nome.');
         } else if (!email && !senha) {
-            alert('Preencha os campos E-mail e Senha!')
+            errorAlert('Preencha os campos E-mail e Senha.');
         } else if (!email) {
-            alert('Preencha o campo E-mail!')
+            errorAlert('Preencha o campo E-mail.');
         } else if (!nome && !senha) {
-            alert('Preencha os campos Nome e Senha!')
+            errorAlert('Preencha os campos Nome e Senha.');
         } else if (!senha) {
-            alert('Preencha o campo Senha!')
+            errorAlert('Preencha o campo Senha.');
         } else if (!nome) {
-            alert('Preencha o campo Nome!')
+            errorAlert('Preencha o campo Nome.');
         }
 
-        try {
-            const {data} = await api.post('/clients', {nome, email, senha})
-            clientsCards.push(data.data)
-            setClients(clientsCards)
-            setNome('');
-            setEmail('');
-            setSenha('');
+        else {
+            if (await verifyEmail()) {
+                try {
+                    const {data} = await api.post('/clients', {nome, email, senha})
+                    clientsCards.push(data.data)
+                    setClients(clientsCards)
+                    setNome('');
+                    setEmail('');
+                    setSenha('');
+                    successfulAlert('Cadastro feito, seja bem-vindo(a)');
+        
+                } catch (error) {
+                    console.log(error)
+                }
+            }
 
-        } catch (error) {
-            console.log(error)
+            else {
+                errorAlert('Este e-mail já está sendo usado.');
+            }
         }
+    }
+
+    const verifyEmail = async () => {
+        for (let i = 0; i < clients.length; i++) {
+            if (clients[i].email == email) {
+                return false
+            }
+        }
+        return true
     }
 
     useEffect(() => {
         api.get('/clients').then(({data}) => {
-            setClients(data.data)
+            var clientCards : any = []
+
+            for (let i = 0; i < data.data.length; i++) {
+                clientCards.push(data.data[i])
+            }
+            setClients(clientCards)
         })
-    }, [])
+    }, [clients])
 
     const handleShow = () => {
         setShow(!show);  
