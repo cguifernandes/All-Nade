@@ -21,6 +21,7 @@ const Cadastro = ({setActiveForm} : any) => {
     const [clients, setClients] = useState<typeClients[]>([]);
 
     const handleSubmit = async (e : any) => {
+
         e.preventDefault();
         var clientsCards : any = [];
 
@@ -70,7 +71,7 @@ const Cadastro = ({setActiveForm} : any) => {
         }
 
         else {
-            if (await verifyEmail()) {
+            if (await verifyEmail() == true) {
                 try {
                     const {data} = await api.post('/clients', {nome, email, senha})
                     clientsCards.push(data.data)
@@ -92,19 +93,16 @@ const Cadastro = ({setActiveForm} : any) => {
     }
 
     const verifyEmail = async () => {
-        for (let i = 0; i < clients.length; i++) {
-            if (clients[i].email == email) {
-                return false
+        const Clients = await api.get('/clients');
+        for (let i = 0; i < Clients.data.data.length; i++) {
+            if (Clients.data.data[i].email === email) {
+                return false;
             }
         }
-        return true
+        return true;
     }
 
-    useEffect(() => {
-        api.get('/clients').then(({data}) => {
-            setClients(data.data)
-        })
-    }, [])
+
 
     const handleShow = () => {
         setShow(!show);  
