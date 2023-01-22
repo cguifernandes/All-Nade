@@ -1,9 +1,9 @@
 import { Container, Email, Footer, Header, Form, Overlay, Senha, Nome, Button, Text } from "@/styles/cadastroStyles";
 import IDV from "../Header/logo";
-import { HashStraight, Eye, IdentificationCard, EyeSlash } from "phosphor-react";
+import { HashStraight, Eye, IdentificationCard, EyeSlash, X } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { toast, Toaster } from 'react-hot-toast';
-import api from "@/services/api";
+import api from "../../services/api";
 
 export type typeClients = {
     _id: string;
@@ -102,14 +102,9 @@ const Cadastro = ({setActiveForm} : any) => {
 
     useEffect(() => {
         api.get('/clients').then(({data}) => {
-            var clientCards : any = []
-
-            for (let i = 0; i < data.data.length; i++) {
-                clientCards.push(data.data[i])
-            }
-            setClients(clientCards)
+            setClients(data.data)
         })
-    }, [clients])
+    }, [])
 
     const handleShow = () => {
         setShow(!show);  
@@ -123,6 +118,9 @@ const Cadastro = ({setActiveForm} : any) => {
                 <Header>
                     <IDV />
                     <p>Faça o login ou crie uma conta!</p>
+                    <button onClick={() => setActiveForm(false)}>
+                        <X className="icon" />
+                    </button>
                 </Header>
                 <Form onSubmit={handleSubmit}>
                     <Email>

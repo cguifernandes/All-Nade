@@ -1,4 +1,4 @@
-import { Container, HeadNav, Logo, Ul, Button } from '../../styles/headerStyles';
+import { Container, Menu, Logo, Ul, Button } from '../../styles/headerStyles';
 import { useEffect, useRef } from 'react';
 import IDV from './logo';
 import { User } from "phosphor-react";
@@ -57,11 +57,11 @@ const Header = ({setActiveForm} : any) => {
                 <li ref={li2} className='li'><a href='#produtos'>Produtos</a></li>
                 <li ref={li3} className='li'><a href='#contato'>Contato</a></li>
             </Ul>
-            <HeadNav ref={menuResponsive}>
+            <Menu ref={menuResponsive}>
                 <div className="line-1"></div>
                 <div className="line-2"></div>
                 <div className="line-3"></div>
-            </HeadNav>
+            </Menu>
             <Button>
                 <button onClick={() => setActiveForm(true)}><User className='icon' />Cadastrar</button>
             </Button>

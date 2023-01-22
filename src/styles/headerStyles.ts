@@ -20,7 +20,7 @@ export const Logo = styled.div`
   }
 `;
 
-export const HeadNav = styled.div`
+export const Menu = styled.div`
   position: absolute;
   right: 7%;
   cursor: pointer;
@@ -116,6 +116,7 @@ export const Button = styled.div`
     outline: none;
     width: 120px;
     display: flex;
+    border-radius: 8px;
     align-items: center;
     justify-content: center;
     border: none;

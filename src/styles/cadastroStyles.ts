@@ -31,6 +31,32 @@ export const Overlay = styled.div`
 export const Header = styled.div`
   margin: 10px 0px;
 
+  button {
+    outline: none;
+    border: none;
+    padding: 0px;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
+  button:hover {
+    .icon {
+      color: rgba(235, 235, 235, 0.7);
+    }
+  }
+
+  .icon {
+    width: 34px;
+    height: 34px;
+    color: #fff;
+    transition: 0.2s ease;
+  }
+
   svg {
     width: 100%;
     height: 70px;
@@ -81,12 +107,12 @@ export const Form = styled.form`
   }
 
   input:invalid {
-    border-color: red;
+    border-color: var(--red);
   }
 
   input:invalid ~ .icon,
   input:invalid ~ label {
-    color: red;
+    color: var(--red);
   }
 
   @media (max-width: 570px) {
@@ -139,6 +165,7 @@ export const Button = styled.div`
   top: 120px;
 
   button {
+    border-radius: 8px;
     outline: none;
     display: block;
     margin: 15px auto;
