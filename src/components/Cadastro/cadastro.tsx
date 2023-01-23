@@ -4,6 +4,7 @@ import { HashStraight, Eye, IdentificationCard, EyeSlash, X } from "phosphor-rea
 import { useState } from "react";
 import { toast, Toaster } from 'react-hot-toast';
 import api from "../../services/api";
+import { setCookie } from "nookies";
 
 export type typeClients = {
     _id: string;
@@ -80,6 +81,10 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                     setEmail('');
                     setSenha('');
                     successfulAlert('Cadastro feito, seja bem-vindo(a)');
+                    setCookie(null, 'ID_CLIENT', data.data._id, {
+                        path: '/',
+                        maxAge: 86400 * 7
+                    })
         
                 } catch (error) {
                     console.log(error)
@@ -90,6 +95,8 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                 errorAlert('Este e-mail já está sendo usado.');
             }
         }
+
+
     }
 
     const verifyEmail = async () => {

@@ -30,7 +30,7 @@ export const Overlay = styled.div`
 `;
 
 export const Header = styled.div`
-  margin: 10px 0px;
+  margin: 20px 0px;
 
   button {
     outline: none;
@@ -131,14 +131,14 @@ export const Form = styled.form`
 export const Email = styled.div`
   position: relative;
   width: 100%;
-  top: 60px;
+  top: 50px;
   display: flex;
 `;
 
 export const Senha = styled.div`
   position: relative;
   width: 100%;
-  top: 80px;
+  top: 70px;
   display: flex;
 `;
 
