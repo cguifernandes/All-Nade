@@ -1,9 +1,9 @@
 import { Container, Menu, Logo, Ul, Button } from '../../styles/headerStyles';
 import { useEffect, useRef } from 'react';
-import IDV from './logo';
+import LogoSVG from '../../assets/logoSVG';
 import { User } from "phosphor-react";
 
-const Header = ({setActiveForm} : any) => {
+const Header = ({setActiveCadastro} : any) => {
 
     var ul = useRef(null);
     var menuResponsive = useRef(null);
@@ -50,7 +50,7 @@ const Header = ({setActiveForm} : any) => {
     return (  
         <Container>
             <Logo>
-                <IDV />
+                <LogoSVG />
             </Logo>
             <Ul ref={ul}>
                 <li ref={li1} className='li'><a href='#about'>Sobre</a></li>
@@ -63,7 +63,7 @@ const Header = ({setActiveForm} : any) => {
                 <div className="line-3"></div>
             </Menu>
             <Button>
-                <button onClick={() => setActiveForm(true)}><User className='icon' />Cadastrar</button>
+                <button onClick={() => setActiveCadastro(true)}><User className='icon' />Cadastrar</button>
             </Button>
         </Container>
     );

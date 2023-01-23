@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 750px;
-  height: 630px;
+  height: 530px;
   position: absolute;
   transform: translate(-50%, 0);
   left: 50%;
-  top: 120px;
+  top: 210px;
   background-color: var(--dark);
   animation: overlayAnimation 0.2s ease;
   border-radius: 10px;
@@ -16,6 +16,7 @@ export const Container = styled.div`
     width: 95%;
   }
 `;
+
 export const Overlay = styled.div`
   width: 100%;
   height: 100%;
@@ -23,12 +24,13 @@ export const Overlay = styled.div`
   top: 0px;
   position: absolute;
   z-index: 30;
-  animation: name duration timing-function delay iteration-count direction fill-mode;
+  animation: name duration timing-function delay iteration-count direction
+    fill-mode;
   animation: overlayAnimation 0.8s ease;
 `;
 
 export const Header = styled.div`
-  margin: 20px 0px;
+  margin: 10px 0px;
 
   button {
     outline: none;
@@ -67,10 +69,11 @@ export const Header = styled.div`
     text-align: center;
   }
 `;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  height: 305px;
+  height: 215px;
 
   input {
     outline: none;
@@ -128,14 +131,7 @@ export const Form = styled.form`
 export const Email = styled.div`
   position: relative;
   width: 100%;
-  top: 20px;
-  display: flex;
-`;
-
-export const Nome = styled.div`
-  position: relative;
-  width: 100%;
-  top: 50px;
+  top: 60px;
   display: flex;
 `;
 
@@ -146,29 +142,9 @@ export const Senha = styled.div`
   display: flex;
 `;
 
-export const Footer = styled.div`
-  p {
-    color: rgba(235, 235, 235, 0.7);
-    text-align: center;
-  }
-
-  a {
-    font-size: 16px;
-    color: var(--blue);
-    text-align: center;
-    cursor: pointer;
-    transition: 0.4s ease;
-  }
-
-  a:hover {
-    color: rgba(13, 148, 226, 0.8);
-  }
-`;
-
 export const Button = styled.div`
   position: relative;
   top: 140px;
-
   button {
     border-radius: 8px;
     outline: none;
@@ -193,13 +169,7 @@ export const Button = styled.div`
 
   @media (max-width: 768px) {
     button {
-        width: 65%;
+      width: 65%;
     }
   }
-`;
-
-export const Text = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: 40px;
 `;

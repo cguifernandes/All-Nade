@@ -1,7 +1,7 @@
 import { Container, Email, Footer, Header, Form, Overlay, Senha, Nome, Button, Text } from "@/styles/cadastroStyles";
-import IDV from "../Header/logo";
+import CadastroSVG from "../../assets/CadastroSVG";
 import { HashStraight, Eye, IdentificationCard, EyeSlash, X } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast, Toaster } from 'react-hot-toast';
 import api from "../../services/api";
 
@@ -13,7 +13,7 @@ export type typeClients = {
     createdAt: Date
 }
 
-const Cadastro = ({setActiveForm} : any) => {
+const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     const [email, setEmail] = useState('');
     const [nome, setNome] = useState('');  
     const [senha, setSenha] = useState('');
@@ -102,21 +102,19 @@ const Cadastro = ({setActiveForm} : any) => {
         return true;
     }
 
-
-
-    const handleShow = () => {
-        setShow(!show);  
+    const handleLogin = () => {
+        setActiveLogin(true);
+        setActiveCadastro(false);
     }
 
     return (  
         <>
-            <Overlay onClick={() => setActiveForm(false)} ></Overlay>
+            <Overlay onClick={() => setActiveCadastro(false)} ></Overlay>
             <div><Toaster/></div>
             <Container>
                 <Header>
-                    <IDV />
-                    <p>Faça o login ou crie uma conta!</p>
-                    <button onClick={() => setActiveForm(false)}>
+                    <CadastroSVG />
+                    <button onClick={() => setActiveCadastro(false)}>
                         <X className="icon" />
                     </button>
                 </Header>
@@ -133,19 +131,18 @@ const Cadastro = ({setActiveForm} : any) => {
                         <input placeholder="Senha" maxLength={9} type={show ? "text" : "password"} onChange={(e) => setSenha(e.target.value)} value={senha} />
                         {
                             show ?
-                            <EyeSlash onClick={() => handleShow()} className="icon" />
+                            <EyeSlash onClick={() => setShow(!show)} className="icon" />
                             :
-                            <Eye onClick={() => handleShow()} className="icon" />
+                            <Eye onClick={() => setShow(!show)} className="icon" />
                         }   
                     </Senha>
                     <Button>
                         <button type='submit'>Registrar</button>
-                        <button>Registrar com google</button>
                     </Button>
                 </Form>
                 <Footer>
                     <Text>
-                        <p>Já tem uma conta?<a href="https://dribbble.com/shots/17408454-Login-Form-Prototype"> Logar!</a></p>
+                        <p>Já tem uma conta?<a onClick={() => handleLogin()}> Logar!</a></p>
                     </Text>
                 </Footer>
             </Container>

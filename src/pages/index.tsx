@@ -2,10 +2,12 @@
 import Cadastro from '@/components/Cadastro/cadastro';
 import Header from '@/components/Header/header'
 import Head from 'next/head'
+import Login from '../components/Login/login';
 import { useState } from 'react';
 
 export default function Home() {
-  const [activeForm, setActiveForm] = useState(false);
+  const [activeCadastro, setActiveCadastro] = useState(false);
+  const [activeLogin, setActiveLogin] = useState(false);
 
   return (
     <>
@@ -19,11 +21,16 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-      <Header setActiveForm={setActiveForm}/>
+      <Header setActiveCadastro={setActiveCadastro}/>
       {
-        activeForm &&
-        <Cadastro setActiveForm={setActiveForm} />
+        activeCadastro &&
+          <Cadastro setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
       }
+      {
+        activeLogin &&
+          <Login setActiveLogin={setActiveLogin} />        
+      }
+      {/* <Login setActiveLogin={setActiveLogin} />   */}
     </>
   )
 }
