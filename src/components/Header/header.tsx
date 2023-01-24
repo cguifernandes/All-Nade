@@ -1,33 +1,38 @@
-import { Container, Menu, Logo, Ul, Button, Account, UserAccount } from '../../styles/headerStyles';
+import { Container, Menu, Logo, Ul, Button, Account, UserAccount, List, Email, Text, Caret } from '../../styles/headerStyles';
 import { useEffect, useRef, useState } from 'react';
 import LogoSVG from '../../assets/logoSVG';
-import { User } from "phosphor-react";
-import { parseCookies } from 'nookies';
+import { User, SignOut, CaretUp } from "phosphor-react";
+import { parseCookies, destroyCookie } from 'nookies';
 import api from '@/services/api';
 import { typeClients } from '../Cadastro/cadastro';
 
 const Header = ({setActiveCadastro} : any) => {
     const [ID, setID] = useState<typeClients[]>()
-
+    const [active, setActive] = useState(false)
+    
     var ul = useRef(null);
     var menuResponsive = useRef(null);
     var li1 = useRef(null);
     var li2 = useRef(null);
     var li3 = useRef(null);
-    var li4 = useRef(null);
     
     var btnMenu : any;
     var list : any;
     
     useEffect(() => {
+        var clientCard : any = [];
         const ID_Client = parseCookies();
-        var clientCard : any = []
 
-        if (ID_Client) {
-            api.get(`/clients/${ID_Client['ID_CLIENT']}`).then(({ data }) => {
-                clientCard.push(data.data)
-                setID(clientCard)
-            })
+        if (ID_Client["ID_CLIENT"]) {
+            (async () => {
+                try {
+                    const response = await api.get(`/clients/${ID_Client['ID_CLIENT']}`);
+                    clientCard.push(response.data.data);
+                    setID(clientCard);
+                } catch(err) {
+                    console.log(err);
+                }
+            })();
         }
     }, []);
 
@@ -39,7 +44,7 @@ const Header = ({setActiveCadastro} : any) => {
     });
 
     const EventListener = () => {
-        var lis = [li1.current, li2.current, li3.current, li4.current];
+        var lis = [li1.current, li2.current, li3.current];
         list = ul.current;
 
         if (list.classList.contains('active')) {
@@ -64,6 +69,11 @@ const Header = ({setActiveCadastro} : any) => {
         });
     };
 
+    const handlerClick = () => {
+        window.location.reload();
+        destroyCookie(null, "ID_CLIENT")
+    }
+
     return (  
         <Container>
             <Logo>
@@ -82,21 +92,37 @@ const Header = ({setActiveCadastro} : any) => {
             {
                 ID != null ?
                 <Account>
-                    
-                    {
-                        ID.map(client => {
-                            return (
-                                <>
-                                    <UserAccount></UserAccount>
+                    {ID.map((client) => {
+                        return (
+                            <>
+                                <UserAccount key={client._id} onClick={() => setActive(!active)}>
                                     <p>{client.nome}</p>
-                                </>
-                            )
-                        })
-                    }
+                                    <User className='icon account' />
+                                </UserAccount>
+                                {
+                                    active &&
+                                    <>
+                                        <Caret>
+                                            <CaretUp className='icon' />
+                                        </Caret>
+                                        <List>
+                                            <Email>
+                                                <p>Email: {client.email}</p>
+                                            </Email>
+                                            <div className="line"></div>
+                                            <Text onClick={() => handlerClick()}>
+                                                <p>Sair</p>
+                                                <SignOut className='icon' />
+                                            </Text>
+                                        </List>
+                                    </>
+                                }
+                            </>
+                        )})}
                 </Account>
                 :
                 <Button>
-                    <button ref={li4} onClick={() => setActiveCadastro(true)}><User className='icon' />Cadastrar</button>
+                    <button onClick={() => setActiveCadastro(true)}><User className='icon button' />Cadastrar</button>
                 </Button>
             }
         </Container>

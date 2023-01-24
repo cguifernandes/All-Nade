@@ -5,6 +5,7 @@ export const Container = styled.header`
   height: 80px;
   display: flex;
   align-items: center;
+  overflow: hidden;
 `;
 
 export const Logo = styled.div`
@@ -17,6 +18,10 @@ export const Logo = styled.div`
 
   @media (max-width: 570px) {
     padding-left: 3%;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -130,7 +135,7 @@ export const Button = styled.div`
     cursor: pointer;
   }
 
-  .icon {
+  .button {
     font-size: 18px;
     margin-right: 5px;
   }
@@ -150,5 +155,108 @@ export const Button = styled.div`
 `;
 
 export const Account = styled.div `
-  width: 15%;
+  width: auto;
+`;
+
+export const UserAccount = styled.div `
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  margin-right: 30px;
+  align-items: center;
+  border-radius: 5px;
+  transition: 0.4s all ease;
+  cursor: pointer;
+  border: 1px solid var(--grey);
+
+  &:hover {
+    background-color: var(--blue);
+    border-color: var(--blue);
+  }
+
+  p {
+    color: var(--grey);
+    pointer-events: none;
+  }
+
+  .account {
+    font-size: 22px;
+    color: var(--grey);
+    margin-left: 10px;
+  }
+
+  @media (max-width: 768px) {
+    margin-right: 0px;
+    margin-left: 30px;
+  }
+`;
+
+export const List = styled.div `
+  position: absolute;
+  width: auto;
+  height: auto;
+  right: 30px;
+  top: 77px;
+  border-radius: 5px;
+  background-color: var(--dark);
+  border: 1px solid var(--grey);
+  overflow: hidden;
+
+  .line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--grey);
+  }
+
+  @media (max-width: 768px) {
+    right: 0px;
+    right: none;
+    left: 30px;
+  }
+`;
+
+export const Email = styled.div `
+  p {
+    color: var(--grey);
+    text-align: center;
+    padding: 10px;
+  }
+`;
+
+export const Caret = styled.div `
+  position: absolute;
+  right: 50px;
+
+  .icon {
+    color: var(--grey);
+    font-size: 28px;
+  }
+
+  @media (max-width: 768px) {
+    left: 50px;
+  }
+`;
+
+export const Text = styled.div `
+  cursor: pointer;
+  transition: 0.4s all ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+  
+  &:hover {
+    background-color: #1b1b1b;
+  }
+
+  p {
+    color: var(--grey);
+    text-align: center;
+    padding: 10px;
+  }
+
+  .icon {
+    color: var(--grey);
+    font-size: 28px;
+  }
 `;

@@ -21,39 +21,38 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     const [show, setShow] = useState(false);
     const [clients, setClients] = useState<typeClients[]>([]);
 
-    const handleSubmit = async (e : any) => {
+    const errorAlert = (message : any) => 
+    toast.error(message, {
+        position: 'top-right',
+        duration: 2200,
+        style: {
+            padding: '16px',
+            color: '#090909',
+        },
+        iconTheme: {
+            primary: '#FF0000',
+            secondary: '#FFFAEE',
+        },
+    });
 
+    const successfulAlert = (message : any) => 
+    toast.success(message, {
+        position: 'top-right',
+        duration: 2200,
+        style: {
+            padding: '16px',
+            width: '500px',
+            color: '#090909',
+        },
+        iconTheme: {
+            primary: '#00a000',
+            secondary: '#FFFAEE',
+        },
+    });
+
+    const handleSubmit = async (e : any) => {
         e.preventDefault();
         var clientsCards : any = [];
-
-        const errorAlert = (message : any) => 
-        toast.error(message, {
-            position: 'top-right',
-            duration: 2200,
-            style: {
-                padding: '16px',
-                color: '#090909',
-            },
-            iconTheme: {
-                primary: '#FF0000',
-                secondary: '#FFFAEE',
-            },
-        });
-
-        const successfulAlert = (message : any) => 
-        toast.success(message, {
-            position: 'top-right',
-            duration: 2200,
-            style: {
-                padding: '16px',
-                width: '500px',
-                color: '#090909',
-            },
-            iconTheme: {
-                primary: '#00a000',
-                secondary: '#FFFAEE',
-            },
-        });
 
         if (!email && !nome && !senha) {
             errorAlert('Preencha todos os campos.');
@@ -85,7 +84,8 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                         path: '/',
                         maxAge: 86400 * 7,
                         SameSite: null
-                    })
+                    });
+                    setActiveCadastro(false);
         
                 } catch (error) {
                     console.log(error)
@@ -108,7 +108,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
         return true;
     }
 
-    const handleLogin = () => {
+    const handlerLogin = () => {
         setActiveLogin(true);
         setActiveCadastro(false);
     }
@@ -148,7 +148,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                 </Form>
                 <Footer>
                     <Text>
-                        <p>Já tem uma conta?<a onClick={() => handleLogin()}> Logar!</a></p>
+                        <p>Já tem uma conta?<a onClick={() => handlerLogin()}> Logar!</a></p>
                     </Text>
                 </Footer>
             </Container>
