@@ -72,7 +72,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
         }
 
         else {
-            if (await verifyEmail() == true) {
+            if (await verifyEmail()) {
                 try {
                     const {data} = await api.post('/clients', {nome, email, senha})
                     clientsCards.push(data.data)
@@ -83,7 +83,8 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                     successfulAlert('Cadastro feito, seja bem-vindo(a)');
                     setCookie(null, 'ID_CLIENT', data.data._id, {
                         path: '/',
-                        maxAge: 86400 * 7
+                        maxAge: 86400 * 7,
+                        SameSite: null
                     })
         
                 } catch (error) {
@@ -95,8 +96,6 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                 errorAlert('Este e-mail já está sendo usado.');
             }
         }
-
-
     }
 
     const verifyEmail = async () => {

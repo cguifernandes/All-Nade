@@ -1,7 +1,7 @@
 import { Container, Header, Overlay, Form, Button, Email, Senha } from "@/styles/loginStyles";
 import { useState } from "react";
 import { HashStraight, Eye, EyeSlash, X } from "phosphor-react";
-import { toast, Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import LoginSVG from "../../assets/LoginSVG";
 
 const Login = ({setActiveLogin} : any) => {

@@ -1,18 +1,35 @@
-import { Container, Menu, Logo, Ul, Button } from '../../styles/headerStyles';
-import { useEffect, useRef } from 'react';
+import { Container, Menu, Logo, Ul, Button, Account, UserAccount } from '../../styles/headerStyles';
+import { useEffect, useRef, useState } from 'react';
 import LogoSVG from '../../assets/logoSVG';
 import { User } from "phosphor-react";
+import { parseCookies } from 'nookies';
+import api from '@/services/api';
+import { typeClients } from '../Cadastro/cadastro';
 
 const Header = ({setActiveCadastro} : any) => {
+    const [ID, setID] = useState<typeClients[]>()
 
     var ul = useRef(null);
     var menuResponsive = useRef(null);
     var li1 = useRef(null);
     var li2 = useRef(null);
     var li3 = useRef(null);
-
+    var li4 = useRef(null);
+    
     var btnMenu : any;
     var list : any;
+    
+    useEffect(() => {
+        const ID_Client = parseCookies();
+        var clientCard : any = []
+
+        if (ID_Client) {
+            api.get(`/clients/${ID_Client['ID_CLIENT']}`).then(({ data }) => {
+                clientCard.push(data.data)
+                setID(clientCard)
+            })
+        }
+    }, []);
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,7 +39,7 @@ const Header = ({setActiveCadastro} : any) => {
     });
 
     const EventListener = () => {
-        var lis = [li1.current, li2.current, li3.current];
+        var lis = [li1.current, li2.current, li3.current, li4.current];
         list = ul.current;
 
         if (list.classList.contains('active')) {
@@ -46,7 +63,7 @@ const Header = ({setActiveCadastro} : any) => {
             }
         });
     };
-   
+
     return (  
         <Container>
             <Logo>
@@ -62,9 +79,26 @@ const Header = ({setActiveCadastro} : any) => {
                 <div className="line-2"></div>
                 <div className="line-3"></div>
             </Menu>
-            <Button>
-                <button onClick={() => setActiveCadastro(true)}><User className='icon' />Cadastrar</button>
-            </Button>
+            {
+                ID != null ?
+                <Account>
+                    
+                    {
+                        ID.map(client => {
+                            return (
+                                <>
+                                    <UserAccount></UserAccount>
+                                    <p>{client.nome}</p>
+                                </>
+                            )
+                        })
+                    }
+                </Account>
+                :
+                <Button>
+                    <button ref={li4} onClick={() => setActiveCadastro(true)}><User className='icon' />Cadastrar</button>
+                </Button>
+            }
         </Container>
     );
 }
