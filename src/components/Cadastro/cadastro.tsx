@@ -1,5 +1,5 @@
 import { Container, Email, Footer, Header, Form, Overlay, Senha, Nome, Button, Text } from "@/styles/cadastroStyles";
-import CadastroSVG from "../../assets/CadastroSVG";
+import CadastroSVG from "../../assets/cadastroSVG";
 import { HashStraight, Eye, IdentificationCard, EyeSlash, X } from "phosphor-react";
 import { useState } from "react";
 import { toast, Toaster } from 'react-hot-toast';
