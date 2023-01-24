@@ -2,15 +2,16 @@ import { Container, Header, Overlay, Form, Button, Email, Senha, Text } from "@/
 import { useState } from "react";
 import { HashStraight, Eye, EyeSlash, X } from "phosphor-react";
 import { Toaster, toast } from 'react-hot-toast';
-import LoginSVG from "../../assets/LoginSVG";
 import api from "@/services/api";
 import { setCookie } from "nookies";
+import LoginSVG from "../../assets/loginSVG";
+
 
 const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [show, setShow] = useState(false);
-
+    
     const errorAlert = (message : any) => 
     toast.error(message, {
         position: 'top-left',
