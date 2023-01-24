@@ -23,7 +23,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
 
     const errorAlert = (message : any) => 
     toast.error(message, {
-        position: 'top-right',
+        position: 'top-left',
         duration: 2200,
         style: {
             padding: '16px',
@@ -37,7 +37,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
 
     const successfulAlert = (message : any) => 
     toast.success(message, {
-        position: 'top-right',
+        position: 'top-left',
         duration: 2200,
         style: {
             padding: '16px',
@@ -85,8 +85,6 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                         maxAge: 86400 * 7,
                         SameSite: null
                     });
-                    setActiveCadastro(false);
-        
                 } catch (error) {
                     console.log(error)
                 }
@@ -99,9 +97,9 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     }
 
     const verifyEmail = async () => {
-        const Clients = await api.get('/clients');
-        for (let i = 0; i < Clients.data.data.length; i++) {
-            if (Clients.data.data[i].email === email) {
+        const {data} = await api.get('/clients');
+        for (let i = 0; i < data.data.length; i++) {
+            if (data.data[i].email === email) {
                 return false;
             }
         }

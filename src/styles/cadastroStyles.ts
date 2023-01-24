@@ -153,7 +153,6 @@ export const Footer = styled.div`
   }
 
   a {
-    font-size: 16px;
     color: var(--blue);
     text-align: center;
     cursor: pointer;

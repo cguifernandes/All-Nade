@@ -144,7 +144,8 @@ export const Senha = styled.div`
 
 export const Button = styled.div`
   position: relative;
-  top: 140px;
+  top: 110px;
+
   button {
     border-radius: 8px;
     outline: none;
@@ -172,4 +173,27 @@ export const Button = styled.div`
       width: 65%;
     }
   }
+`;
+
+export const Text = styled.div `
+  position: absolute;
+  width: 100%;
+  bottom: 40px;
+
+  p {
+    color: var(--grey);
+    text-align: center;
+  }
+
+  a {
+    color: var(--blue);
+    text-align: center;
+    cursor: pointer;
+    transition: 0.4s ease;
+  }
+
+  a:hover {
+    color: rgba(13, 148, 226, 0.8);
+  }
+
 `;

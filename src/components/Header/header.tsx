@@ -9,7 +9,8 @@ import { typeClients } from '../Cadastro/cadastro';
 const Header = ({setActiveCadastro} : any) => {
     const [ID, setID] = useState<typeClients[]>()
     const [active, setActive] = useState(false)
-    
+    const ID_Client = parseCookies();
+
     var ul = useRef(null);
     var menuResponsive = useRef(null);
     var li1 = useRef(null);
@@ -21,8 +22,7 @@ const Header = ({setActiveCadastro} : any) => {
     
     useEffect(() => {
         var clientCard : any = [];
-        const ID_Client = parseCookies();
-
+        
         if (ID_Client["ID_CLIENT"]) {
             (async () => {
                 try {
@@ -34,7 +34,7 @@ const Header = ({setActiveCadastro} : any) => {
                 }
             })();
         }
-    }, []);
+    }, [ID_Client]);
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,7 +102,7 @@ const Header = ({setActiveCadastro} : any) => {
                                 {
                                     active &&
                                     <>
-                                        <Caret>
+                                        <Caret key={client.senha}>
                                             <CaretUp className='icon' />
                                         </Caret>
                                         <List>

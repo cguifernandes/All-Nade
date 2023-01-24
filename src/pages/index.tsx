@@ -25,7 +25,7 @@ export default function Home() {
       }
       {
         activeLogin &&
-          <Login setActiveLogin={setActiveLogin} />        
+          <Login setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
       }
     </>
   )

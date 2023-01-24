@@ -1,17 +1,19 @@
-import { Container, Header, Overlay, Form, Button, Email, Senha } from "@/styles/loginStyles";
+import { Container, Header, Overlay, Form, Button, Email, Senha, Text } from "@/styles/loginStyles";
 import { useState } from "react";
 import { HashStraight, Eye, EyeSlash, X } from "phosphor-react";
 import { Toaster, toast } from 'react-hot-toast';
 import LoginSVG from "../../assets/LoginSVG";
+import api from "@/services/api";
+import { setCookie } from "nookies";
 
-const Login = ({setActiveLogin} : any) => {
+const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [show, setShow] = useState(false);
 
     const errorAlert = (message : any) => 
     toast.error(message, {
-        position: 'top-right',
+        position: 'top-left',
         duration: 2200,
         style: {
             padding: '16px',
@@ -23,7 +25,7 @@ const Login = ({setActiveLogin} : any) => {
         },
     });
 
-    const handlerSubmit = (e : any) => {
+    const handlerSubmit = async (e : any) => {
         e.preventDefault();
 
         if (!email && !senha){
@@ -34,10 +36,44 @@ const Login = ({setActiveLogin} : any) => {
             errorAlert('Preencha o campo Senha.');
         }
 
-        else {
-            const Clients = await api.get('/clients');
+        if (await verifyExist()) {
+            try {
+                const {data} = await api.get('/clients');
+                for (let i = 0; i < data.data.length; i++) {
+                    if (email == data.data[i].email && senha == data.data[i].senha) {
+                        setCookie(null, 'ID_CLIENT', data.data[i]._id, {
+                            path: '/',
+                            maxAge: 86400 * 7,
+                            SameSite: null
+                        });
+                    }
+                } 
+                setEmail('');
+                setSenha('');
+            } catch (err) {
+                console.log(err);
+            }
         }
 
+        else {
+            errorAlert('Este e-mail não está cadastrado!');
+        }
+    }
+
+    const verifyExist = async () => {
+        const {data} = await api.get('/clients');
+        for (let i = 0; i < data.data.length; i++) {
+            if (email === data.data[i].email) {
+                return true;
+            }
+        } 
+        return false;
+    }
+    
+
+    const handlerCadastro = () => {
+        setActiveLogin(false);
+        setActiveCadastro(true);
     }
 
     return (  
@@ -69,6 +105,9 @@ const Login = ({setActiveLogin} : any) => {
                         <button type='submit'>Logar</button>
                     </Button>
                 </Form>
+                <Text>
+                    <p>Ainda não tem conta? <a onClick={() => handlerCadastro()}>Cadastre-se</a></p>
+                </Text>
             </Container>
         </>
     );

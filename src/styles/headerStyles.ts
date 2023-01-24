@@ -196,7 +196,7 @@ export const List = styled.div `
   width: auto;
   height: auto;
   right: 30px;
-  top: 77px;
+  top: 76px;
   border-radius: 5px;
   background-color: var(--dark);
   border: 1px solid var(--grey);
