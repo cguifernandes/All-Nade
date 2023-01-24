@@ -10,9 +10,9 @@ export default async function handler(req, res) {
         if(!ClientID) throw 'invalid data'
 
         const clients = await Client.findById({_id: ClientID})
-        res.status(200).json({success: true, data: clients})
+        res.status(200).json({data: clients})
     } catch (err) {
         console.log(err)
-        res.status(500).json({success: false, err})
+        res.status(500).json({err})
     }
 }
