@@ -25,20 +25,6 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
         },
     });
 
-    const successfullAlert = (message : any) => 
-    toast.success(message, {
-        position: 'top-right',
-        duration: 2200,
-        style: {
-            padding: '16px',
-            color: '#090909',
-        },
-        iconTheme: {
-            primary: '#00a000',
-            secondary: '#FFFAEE',
-        },
-    });
-
     const handlerSubmit = async (e : any) => {
         e.preventDefault();
 
@@ -62,6 +48,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
                             SameSite: null
                         });
                         setIsLoading(false);
+                        setTimeout
                     }
                 } 
                 setEmail('');
@@ -84,7 +71,6 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
         } 
         return false;
     }
-    
 
     const handlerCadastro = () => {
         setActiveLogin(false);
