@@ -83,6 +83,13 @@ export const Ul = styled.ul`
     transform: scaleX(1);
   }
 
+  h2 {
+    color: var(--grey);
+    letter-spacing: 4px;
+    text-align: center; 
+    display: none;
+  }
+
   .li {
     margin: 0px 20px;
     font-weight: 500;
@@ -101,6 +108,13 @@ export const Ul = styled.ul`
     transition: all 0.4s ease-in;
     z-index: 991;
 
+    h2 {
+      display: inline;
+      opacity: 0;
+      margin: 0;
+      font-size: 18px;
+    }
+
     li {
       width: 0;
       opacity: 0;
@@ -108,7 +122,7 @@ export const Ul = styled.ul`
     }
 
     &.active {
-      width: 210px;
+      width: 250px;
     }
   }
 `;

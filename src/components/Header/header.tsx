@@ -17,6 +17,7 @@ const Header = ({setActiveCadastro} : any) => {
     var li1 = useRef(null);
     var li2 = useRef(null);
     var li3 = useRef(null);
+    var li4 = useRef(null);
     
     var btnMenu : any;
     var list : any;
@@ -45,7 +46,7 @@ const Header = ({setActiveCadastro} : any) => {
     });
 
     const EventListener = () => {
-        var lis = [li1.current, li2.current, li3.current];
+        var lis = [li1.current, li2.current, li3.current, li4.current];
         list = ul.current;
 
         if (list.classList.contains('active')) {
@@ -117,6 +118,7 @@ const Header = ({setActiveCadastro} : any) => {
                 <li ref={li1} className='li'><a href='#about'>Sobre</a></li>
                 <li ref={li2} className='li'><a href='#produtos'>Produtos</a></li>
                 <li ref={li3} className='li'><a href='#contato'>Contato</a></li>
+                <h2 ref={li4}>ALL NADE</h2>
             </Ul>
             <Menu ref={menuResponsive}>
                 <div className="line-1"></div>

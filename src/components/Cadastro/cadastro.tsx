@@ -120,7 +120,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                         <HashStraight className="icon" />
                     </Email>
                     <Nome>
-                        <input placeholder="Nome" maxLength={15} autoComplete='on' type="name" onChange={(e) => setNome(e.target.value)} value={nome} />
+                        <input placeholder="Nome" autoComplete='on' type="name" onChange={(e) => setNome(e.target.value)} value={nome} />
                         <IdentificationCard className="icon" />
                     </Nome>
                     <Senha>
