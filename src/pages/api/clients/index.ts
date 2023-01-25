@@ -3,7 +3,7 @@ import Client from '../../../services/models/Client';
 
 dbConnection()
 
-export default async function handler(req, res) {
+export default async function handler(req : any, res : any) {
     const {method} = req
 
     switch(method) {
@@ -20,8 +20,6 @@ export default async function handler(req, res) {
         case 'POST':
             try {
                 const {nome, email, senha} = req.body
-
-                if(!nome && !email && !senha) throw 'invalid data'
 
                 const clients = await Client.create({nome, email, senha})
 
