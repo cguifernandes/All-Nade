@@ -1,5 +1,4 @@
 import { Container, Email, Footer, Header, Form, Overlay, Senha, Nome, Button, Text } from "@/styles/cadastroStyles";
-import CadastroSVG from "../../assets/cadastroSVG";
 import { HashStraight, Eye, IdentificationCard, EyeSlash, X } from "phosphor-react";
 import { useState } from "react";
 import { toast, Toaster } from 'react-hot-toast';
@@ -117,7 +116,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
             <div><Toaster/></div>
             <Container>
                 <Header>
-                    <CadastroSVG />
+                    <h1>CADASTRO</h1>
                     <button onClick={() => setActiveCadastro(false)}>
                         <X className="icon" />
                     </button>
@@ -128,7 +127,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                         <HashStraight className="icon" />
                     </Email>
                     <Nome>
-                        <input placeholder="Nome" autoComplete='on' type="name" onChange={(e) => setNome(e.target.value)} value={nome} />
+                        <input placeholder="Nome" maxLength={30} autoComplete='on' type="name" onChange={(e) => setNome(e.target.value)} value={nome} />
                         <IdentificationCard className="icon" />
                     </Nome>
                     <Senha>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 750px;
-  height: 630px;
+  height: 600px;
   position: absolute;
   transform: translate(-50%, 0);
   left: 50%;
@@ -29,6 +29,7 @@ export const Overlay = styled.div`
 
 export const Header = styled.div`
   margin: 20px 0px;
+  height: 50px;
 
   button {
     outline: none;
@@ -56,9 +57,10 @@ export const Header = styled.div`
     transition: 0.2s ease;
   }
 
-  svg {
-    width: 100%;
-    height: 70px;
+  h1 {
+    color: var(--grey);
+    text-align: center;
+    letter-spacing: 3.5px;
   }
 
   p {

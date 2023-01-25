@@ -4,8 +4,6 @@ import { HashStraight, Eye, EyeSlash, X } from "phosphor-react";
 import { Toaster, toast } from 'react-hot-toast';
 import api from "@/services/api";
 import { setCookie } from "nookies";
-import LoginSVG from "../../assets/loginSVG";
-
 
 const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     const [email, setEmail] = useState('');
@@ -83,14 +81,14 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
             <div><Toaster/></div>
             <Container>
                 <Header>
-                    <LoginSVG />
+                    <h1>LOGIN</h1>
                     <button onClick={() => setActiveLogin(false)}>
                         <X className="icon" />
                     </button>
                 </Header>
                 <Form onSubmit={handlerSubmit}>
                     <Email>
-                        <input placeholder="E-mail" autoComplete='on' type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
+                        <input placeholder="E-mail" maxLength={30} autoComplete='on' type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
                         <HashStraight className="icon" />
                     </Email>
                     <Senha>

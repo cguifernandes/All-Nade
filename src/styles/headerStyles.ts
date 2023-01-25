@@ -8,23 +8,6 @@ export const Container = styled.header`
   overflow: hidden;
 `;
 
-export const Logo = styled.div`
-  padding-left: 2%;
-
-  p {
-    text-align: center;
-    color: var(--grey);
-  }
-
-  @media (max-width: 570px) {
-    padding-left: 3%;
-  }
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
 export const Menu = styled.div`
   position: absolute;
   right: 7%;
@@ -57,11 +40,27 @@ export const Menu = styled.div`
   }
 `;
 
+export const Logo = styled.div `  
+  margin-right: 20px;
+
+  h2 {
+    color: var(--grey);
+    letter-spacing: 4px;
+    text-align: center; 
+  }
+  
+  @media (max-width: 768px) {
+    h2 {
+      display: none; 
+    }
+  }
+`;
+
 export const Ul = styled.ul`
   display: flex;
   margin: 0 auto;
   list-style: none;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
 
   a {
@@ -85,7 +84,7 @@ export const Ul = styled.ul`
   }
 
   .li {
-    margin: 0px 30px;
+    margin: 0px 20px;
     font-weight: 500;
     font-size: 18px;
   }
@@ -100,7 +99,7 @@ export const Ul = styled.ul`
     background-color: var(--dark);
     justify-content: space-around;
     transition: all 0.4s ease-in;
-    z-index: 999;
+    z-index: 991;
 
     li {
       width: 0;
@@ -162,45 +161,39 @@ export const UserAccount = styled.div `
   display: flex;
   justify-content: space-between;
   padding: 5px 20px;
-  margin-right: 30px;
+  margin-left: 20px;
   align-items: center;
   border-radius: 5px;
   transition: 0.4s all ease;
   cursor: pointer;
   border: 1px solid var(--grey);
-
   &:hover {
     background-color: var(--blue);
     border-color: var(--blue);
   }
-
   p {
     color: var(--grey);
     pointer-events: none;
   }
-
   .account {
     font-size: 22px;
     color: var(--grey);
     margin-left: 10px;
   }
 
-  @media (max-width: 768px) {
-    margin-right: 0px;
-    margin-left: 30px;
-  }
 `;
 
 export const List = styled.div `
   position: absolute;
   width: auto;
   height: auto;
-  right: 30px;
+  left: 20px;
   top: 76px;
   border-radius: 5px;
   background-color: var(--dark);
   border: 1px solid var(--grey);
   overflow: hidden;
+  z-index: 999;
 
   .line {
     width: 100%;
@@ -208,11 +201,6 @@ export const List = styled.div `
     background-color: var(--grey);
   }
 
-  @media (max-width: 768px) {
-    right: 0px;
-    right: none;
-    left: 30px;
-  }
 `;
 
 export const Email = styled.div `
@@ -225,13 +213,12 @@ export const Email = styled.div `
 
 export const Caret = styled.div `
   position: absolute;
-  right: 50px;
+  left: 50px;
 
   .icon {
     color: var(--grey);
     font-size: 28px;
   }
-
   @media (max-width: 768px) {
     left: 50px;
   }
@@ -248,13 +235,11 @@ export const Text = styled.div `
   &:hover {
     background-color: #1b1b1b;
   }
-
   p {
     color: var(--grey);
     text-align: center;
     padding: 10px;
   }
-
   .icon {
     color: var(--grey);
     font-size: 28px;

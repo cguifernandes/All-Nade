@@ -6,7 +6,7 @@ export const Container = styled.div`
   position: absolute;
   transform: translate(-50%, 0);
   left: 50%;
-  top: 210px;
+  top: 120px;
   background-color: var(--dark);
   animation: overlayAnimation 0.2s ease;
   border-radius: 10px;
@@ -31,6 +31,7 @@ export const Overlay = styled.div`
 
 export const Header = styled.div`
   margin: 20px 0px;
+  height: 50px;
 
   button {
     outline: none;
@@ -58,9 +59,10 @@ export const Header = styled.div`
     transition: 0.2s ease;
   }
 
-  svg {
-    width: 100%;
-    height: 70px;
+  h1 {
+    color: var(--grey);
+    text-align: center;
+    letter-spacing: 3.5px;
   }
 
   p {
@@ -131,14 +133,14 @@ export const Form = styled.form`
 export const Email = styled.div`
   position: relative;
   width: 100%;
-  top: 50px;
+  top: 40px;
   display: flex;
 `;
 
 export const Senha = styled.div`
   position: relative;
   width: 100%;
-  top: 70px;
+  top: 60px;
   display: flex;
 `;
 

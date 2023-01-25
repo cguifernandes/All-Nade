@@ -1,6 +1,5 @@
-import { Container, Menu, Logo, Ul, Button, Account, UserAccount, List, Email, Text, Caret } from '../../styles/headerStyles';
+import { Container, Menu, Ul, Button, Account, UserAccount, List, Email, Text, Caret, Logo } from '../../styles/headerStyles';
 import { useEffect, useRef, useState } from 'react';
-import LogoSVG from '../../assets/logoSVG';
 import { User, SignOut, CaretUp } from "phosphor-react";
 import { parseCookies, destroyCookie } from 'nookies';
 import api from '@/services/api';
@@ -22,21 +21,21 @@ const Header = ({setActiveCadastro} : any) => {
     var btnMenu : any;
     var list : any;
     
-        useEffect(() => {
-            var clientCard : any = [];
-            
-            if (ID_Client["ID_CLIENT"]) {
-                (async () => {
-                    try {
-                        const response = await api.get(`${ID_Client['ID_CLIENT']}`);
-                        clientCard.push(response.data.data);
-                        setID(clientCard);
-                    } catch(err) {
-                        console.log(err);
-                    }
-                })();
-            }
-        }, [ID_Client]);
+    useEffect(() => {
+        var clientCard : any = [];
+        
+        if (ID_Client["ID_CLIENT"]) {
+            (async () => {
+                try {
+                    const response = await api.get(`${ID_Client['ID_CLIENT']}`);
+                    clientCard.push(response.data.data);
+                    setID(clientCard);
+                } catch(err) {
+                    console.log(err);
+                }
+            })();
+        }
+    }, [ID_Client]);
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,19 +77,6 @@ const Header = ({setActiveCadastro} : any) => {
 
     return (  
         <Container>
-            <Logo>
-                <LogoSVG />
-            </Logo>
-            <Ul ref={ul}>
-                <li ref={li1} className='li'><a href='#about'>Sobre</a></li>
-                <li ref={li2} className='li'><a href='#produtos'>Produtos</a></li>
-                <li ref={li3} className='li'><a href='#contato'>Contato</a></li>
-            </Ul>
-            <Menu ref={menuResponsive}>
-                <div className="line-1"></div>
-                <div className="line-2"></div>
-                <div className="line-3"></div>
-            </Menu>
             {
                 ID != null ?
                 <Account>
@@ -127,6 +113,19 @@ const Header = ({setActiveCadastro} : any) => {
                     <button onClick={() => setActiveCadastro(true)}><User className='icon button' />Cadastrar</button>
                 </Button>
             }
+            <Ul ref={ul}>
+                <li ref={li1} className='li'><a href='#about'>Sobre</a></li>
+                <li ref={li2} className='li'><a href='#produtos'>Produtos</a></li>
+                <li ref={li3} className='li'><a href='#contato'>Contato</a></li>
+            </Ul>
+            <Menu ref={menuResponsive}>
+                <div className="line-1"></div>
+                <div className="line-2"></div>
+                <div className="line-3"></div>
+            </Menu>
+            <Logo>
+                <h2>ALL NADE</h2>
+            </Logo>
         </Container>
     );
 }
