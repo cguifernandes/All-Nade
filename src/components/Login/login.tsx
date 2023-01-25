@@ -51,7 +51,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
                         }
                         
                         else {
-                            errorAlert('Senha ou E-mail incorreto.');
+                            errorAlert('Senha ou E-mail está incorreto.');
                         }
                     } 
                     setEmail('');
