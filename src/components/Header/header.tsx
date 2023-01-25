@@ -5,11 +5,13 @@ import { User, SignOut, CaretUp } from "phosphor-react";
 import { parseCookies, destroyCookie } from 'nookies';
 import api from '@/services/api';
 import { typeClients } from '../Cadastro/cadastro';
+import router, { useRouter } from 'next/router';
 
 const Header = ({setActiveCadastro} : any) => {
     const [ID, setID] = useState<typeClients[]>()
     const [active, setActive] = useState(false)
     const ID_Client = parseCookies();
+    const router = useRouter();
 
     var ul = useRef(null);
     var menuResponsive = useRef(null);
@@ -70,7 +72,7 @@ const Header = ({setActiveCadastro} : any) => {
     };
 
     const handlerClick = () => {
-        window.location.reload();
+        router.reload();
         destroyCookie(null, "ID_CLIENT")
     }
 
@@ -110,7 +112,7 @@ const Header = ({setActiveCadastro} : any) => {
                                                 <p>Email: {client.email}</p>
                                             </Email>
                                             <div className="line"></div>
-                                            <Text onClick={() => handlerClick}>
+                                            <Text onClick={handlerClick}>
                                                 <p>Sair</p>
                                                 <SignOut className='icon' />
                                             </Text>
