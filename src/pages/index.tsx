@@ -4,12 +4,10 @@ import Header from '@/components/Header/header'
 import Head from 'next/head'
 import Login from '../components/Login/login';
 import { useState } from 'react';
-import { destroyCookie } from 'nookies';
 
 export default function Home() {
   const [activeCadastro, setActiveCadastro] = useState(false);
   const [activeLogin, setActiveLogin] = useState(false);
-  destroyCookie(null, "ID_CLIENT")
 
   return (
     <>
