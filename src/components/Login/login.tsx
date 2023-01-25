@@ -48,7 +48,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
                             SameSite: null
                         });
                         setIsLoading(false);
-                        setTimeout
+                        setTimeout(setActiveLogin(false), 2200)
                     }
                 } 
                 setEmail('');
