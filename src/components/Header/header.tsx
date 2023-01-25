@@ -110,7 +110,7 @@ const Header = ({setActiveCadastro} : any) => {
                                                 <p>Email: {client.email}</p>
                                             </Email>
                                             <div className="line"></div>
-                                            <Text onClick={() => handlerClick()}>
+                                            <Text onClick={() => handlerClick}>
                                                 <p>Sair</p>
                                                 <SignOut className='icon' />
                                             </Text>
