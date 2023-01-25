@@ -9,6 +9,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [show, setShow] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const errorAlert = (message : any) => 
     toast.error(message, {
@@ -35,28 +36,33 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
             errorAlert('Preencha o campo Senha.');
         }
 
-        if (await verifyExist()) {
-            try {
-                const {data} = await api.get('/getClient');
-                for (let i = 0; i < data.data.length; i++) {
-                    if (email == data.data[i].email && senha == data.data[i].senha) {
-                        setCookie(null, 'ID_CLIENT', data.data[i]._id, {
-                            path: '/',
-                            maxAge: 86400 * 7,
-                            SameSite: null
-                        });
-                    }
-                } 
-                setEmail('');
-                setSenha('');
-            } catch (err) {
-                console.log(err);
-            }
-        }
-
         else {
-            errorAlert('Este e-mail não está cadastrado!');
-        }
+            setIsLoading(true);
+            if (await verifyExist()) {
+                try {
+                    const {data} = await api.get('/getClient');
+                    for (let i = 0; i < data.data.length; i++) {
+                        if (email == data.data[i].email && senha == data.data[i].senha) {
+                            setCookie(null, 'ID_CLIENT', data.data[i]._id, {
+                                path: '/',
+                                maxAge: 86400 * 7,
+                                SameSite: null
+                            });
+                        }
+                    } 
+                    setEmail('');
+                    setSenha('');
+                    setIsLoading(false);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+    
+            else {
+                errorAlert('Este e-mail não está cadastrado!');
+                setIsLoading(false);
+            }
+        } 
     }
 
     const verifyExist = async () => {
@@ -88,7 +94,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
                 </Header>
                 <Form onSubmit={handlerSubmit}>
                     <Email>
-                        <input placeholder="E-mail" maxLength={30} autoComplete='on' type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
+                        <input placeholder="E-mail" autoComplete='on' type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
                         <HashStraight className="icon" />
                     </Email>
                     <Senha>
@@ -101,7 +107,10 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
                         }
                     </Senha>
                     <Button>
-                        <button type='submit'>Logar</button>
+                        <button className={isLoading ? "loading" : undefined}>
+                            <div className="spinner" />
+                            <p>Logar</p>
+                        </button>
                     </Button>
                 </Form>
                 <Text>

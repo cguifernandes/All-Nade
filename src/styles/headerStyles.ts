@@ -114,13 +114,13 @@ export const Ul = styled.ul`
 `;
 
 export const Button = styled.div`
-  width: 15%;
+  width: auto;
+  margin-left: 20px;
 
   button {
     outline: none;
     width: 120px;
     display: flex;
-    border-radius: 8px;
     align-items: center;
     justify-content: center;
     border: none;
@@ -142,14 +142,6 @@ export const Button = styled.div`
   button:hover {
     box-shadow: inset 0 -3.95em 0 0 var(--blue);
     border: 1px solid var(--blue);
-  }
-
-  @media (max-width: 1220px) {
-    width: 25%;
-  }
-
-  @media (max-width: 768px) {
-    width: 45%;
   }
 `;
 

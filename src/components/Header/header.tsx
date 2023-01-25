@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import { User, SignOut, CaretUp } from "phosphor-react";
 import { parseCookies, destroyCookie } from 'nookies';
 import api from '@/services/api';
-import { typeClients } from '../Cadastro/cadastro';
-import router, { useRouter } from 'next/router';
+import { typeClients } from '../../types/typeClient';
+import { useRouter } from 'next/router';
 
 const Header = ({setActiveCadastro} : any) => {
     const [ID, setID] = useState<typeClients[]>()

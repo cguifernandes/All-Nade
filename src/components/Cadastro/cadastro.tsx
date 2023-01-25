@@ -5,20 +5,12 @@ import { toast, Toaster } from 'react-hot-toast';
 import api from "../../services/api";
 import { setCookie } from "nookies";
 
-export type typeClients = {
-    _id: string;
-    email: string;
-    senha: string;
-    nome: string;
-    createdAt: Date
-}
-
 const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     const [email, setEmail] = useState('');
     const [nome, setNome] = useState('');  
     const [senha, setSenha] = useState('');
     const [show, setShow] = useState(false);
-    const [clients, setClients] = useState<typeClients[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const errorAlert = (message : any) => 
     toast.error(message, {
@@ -51,7 +43,6 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
 
     const handleSubmit = async (e : any) => {
         e.preventDefault();
-        var clientsCards : any = [];
 
         if (!email && !nome && !senha) {
             errorAlert('Preencha todos os campos.');
@@ -70,11 +61,10 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
         }
 
         else {
+            setIsLoading(true);
             if (await verifyEmail()) {
                 try {
                     const {data} = await api.post('/createClient', {nome, email, senha})
-                    clientsCards.push(data.data)
-                    setClients(clientsCards)
                     setNome('');
                     setEmail('');
                     setSenha('');
@@ -84,13 +74,16 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                         maxAge: 86400 * 7,
                         SameSite: null
                     });
+                    setIsLoading(false);
                 } catch (error) {
                     console.log(error)
+                    setIsLoading(false);
                 }
             }
 
             else {
                 errorAlert('Este e-mail já está sendo usado.');
+                setIsLoading(false);
             }
         }
     }
@@ -127,7 +120,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                         <HashStraight className="icon" />
                     </Email>
                     <Nome>
-                        <input placeholder="Nome" maxLength={30} autoComplete='on' type="name" onChange={(e) => setNome(e.target.value)} value={nome} />
+                        <input placeholder="Nome" maxLength={15} autoComplete='on' type="name" onChange={(e) => setNome(e.target.value)} value={nome} />
                         <IdentificationCard className="icon" />
                     </Nome>
                     <Senha>
@@ -140,7 +133,10 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                         }   
                     </Senha>
                     <Button>
-                        <button type='submit'>Registrar</button>
+                        <button className={isLoading ? "loading" : undefined}>
+                            <div className="spinner" />
+                            <p>Registrar</p>
+                        </button>
                     </Button>
                 </Form>
                 <Footer>

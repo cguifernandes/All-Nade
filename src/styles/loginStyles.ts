@@ -165,6 +165,48 @@ export const Button = styled.div`
     cursor: pointer;
   }
 
+  p {
+    color: var(--grey);
+    transition: opacity 250ms;
+    transition-delay: 250ms;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  button.loading p {
+    opacity: 0;
+    transition-delay: 0s;
+  }
+
+  .spinner {
+    border: 4px solid transparent;
+    border-radius: 50%;
+    border-top-color: var(--grey);
+    opacity: 0;
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    width: 32px;
+    height: 32px;
+    transition: opacity 250ms;
+    animation: rotate-spinner 1s linear;
+    animation-iteration-count: infinite;
+  }
+
+  button.loading .spinner {
+    opacity: 1;
+    transition-delay: 250ms;
+  }
+
+  @keyframes rotate-spinner {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   button:hover {
     box-shadow: inset 0 -3.95em 0 0 var(--blue);
     border: 1px solid var(--blue);
