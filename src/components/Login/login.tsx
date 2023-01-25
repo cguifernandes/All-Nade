@@ -49,6 +49,10 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
                                 SameSite: null
                             });
                         }
+                        
+                        else {
+                            errorAlert('Senha ou E-mail incorreto.');
+                        }
                     } 
                     setEmail('');
                     setSenha('');
