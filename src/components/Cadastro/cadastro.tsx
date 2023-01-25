@@ -14,7 +14,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
 
     const errorAlert = (message : any) => 
     toast.error(message, {
-        position: 'top-left',
+        position: 'top-right',
         duration: 2200,
         style: {
             padding: '16px',
@@ -26,13 +26,12 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
         },
     });
 
-    const successfulAlert = (message : any) => 
+    const successfullAlert = (message : any) => 
     toast.success(message, {
-        position: 'top-left',
+        position: 'top-right',
         duration: 2200,
         style: {
             padding: '16px',
-            width: '500px',
             color: '#090909',
         },
         iconTheme: {
@@ -68,7 +67,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                     setNome('');
                     setEmail('');
                     setSenha('');
-                    successfulAlert('Cadastro feito, seja bem-vindo(a)');
+                    successfullAlert('Cadastro feito, seja bem-vindo(a)');
                     setCookie(null, 'ID_CLIENT', data.data._id, {
                         path: '/',
                         maxAge: 86400 * 7,

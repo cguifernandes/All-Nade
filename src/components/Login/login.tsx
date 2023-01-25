@@ -13,7 +13,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
 
     const errorAlert = (message : any) => 
     toast.error(message, {
-        position: 'top-left',
+        position: 'top-right',
         duration: 2200,
         style: {
             padding: '16px',
@@ -21,6 +21,20 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
         },
         iconTheme: {
             primary: '#FF0000',
+            secondary: '#FFFAEE',
+        },
+    });
+
+    const successfullAlert = (message : any) => 
+    toast.success(message, {
+        position: 'top-right',
+        duration: 2200,
+        style: {
+            padding: '16px',
+            color: '#090909',
+        },
+        iconTheme: {
+            primary: '#00a000',
             secondary: '#FFFAEE',
         },
     });
@@ -39,31 +53,23 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
         else {
             setIsLoading(true);
             if (await verifyExist()) {
-                try {
-                    const {data} = await api.get('/getClient');
-                    for (let i = 0; i < data.data.length; i++) {
-                        if (email == data.data[i].email && senha == data.data[i].senha) {
-                            setCookie(null, 'ID_CLIENT', data.data[i]._id, {
-                                path: '/',
-                                maxAge: 86400 * 7,
-                                SameSite: null
-                            });
-                        }
-                        
-                        else {
-                            errorAlert('Senha ou E-mail está incorreto.');
-                        }
-                    } 
-                    setEmail('');
-                    setSenha('');
-                    setIsLoading(false);
-                } catch (err) {
-                    console.log(err);
-                }
+                const {data} = await api.get('/getClient');
+                for (let i = 0; i < data.data.length; i++) {
+                    if (email == data.data[i].email && senha == data.data[i].senha) {
+                        setCookie(null, 'ID_CLIENT', data.data[i]._id, {
+                            path: '/',
+                            maxAge: 86400 * 7,
+                            SameSite: null
+                        });
+                        setIsLoading(false);
+                    }
+                } 
+                setEmail('');
+                setSenha('');
             }
     
             else {
-                errorAlert('Este e-mail não está cadastrado!');
+                errorAlert('Usuário não esta cadastrado.');
                 setIsLoading(false);
             }
         } 
@@ -72,7 +78,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     const verifyExist = async () => {
         const {data} = await api.get('/getClient');
         for (let i = 0; i < data.data.length; i++) {
-            if (email === data.data[i].email) {
+            if (email === data.data[i].email && senha === data.data[i].senha) {
                 return true;
             }
         } 
