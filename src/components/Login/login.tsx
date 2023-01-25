@@ -48,11 +48,11 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
                             SameSite: null
                         });
                         setIsLoading(false);
-                        setTimeout(setActiveLogin(false), 2200)
                     }
                 } 
                 setEmail('');
                 setSenha('');
+                setActiveLogin(false)
             }
     
             else {

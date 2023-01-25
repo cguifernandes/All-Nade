@@ -74,7 +74,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                         SameSite: null
                     });
                     setIsLoading(false);
-                    setTimeout(setActiveCadastro(false), 2200)
+                    setActiveCadastro(false)
                 } catch (error) {
                     console.log(error)
                     setIsLoading(false);
