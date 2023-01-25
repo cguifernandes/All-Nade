@@ -73,7 +73,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
         else {
             if (await verifyEmail()) {
                 try {
-                    const {data} = await api.post('/clients', {nome, email, senha})
+                    const {data} = await api.post('/createClient', {nome, email, senha})
                     clientsCards.push(data.data)
                     setClients(clientsCards)
                     setNome('');
@@ -97,7 +97,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     }
 
     const verifyEmail = async () => {
-        const {data} = await api.get('/clients');
+        const {data} = await api.get('/getClient');
         for (let i = 0; i < data.data.length; i++) {
             if (data.data[i].email === email) {
                 return false;

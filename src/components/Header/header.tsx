@@ -20,21 +20,21 @@ const Header = ({setActiveCadastro} : any) => {
     var btnMenu : any;
     var list : any;
     
-    useEffect(() => {
-        var clientCard : any = [];
-        
-        if (ID_Client["ID_CLIENT"]) {
-            (async () => {
-                try {
-                    const response = await api.get(`/clients/${ID_Client['ID_CLIENT']}`);
-                    clientCard.push(response.data.data);
-                    setID(clientCard);
-                } catch(err) {
-                    console.log(err);
-                }
-            })();
-        }
-    }, [ID_Client]);
+        useEffect(() => {
+            var clientCard : any = [];
+            
+            if (ID_Client["ID_CLIENT"]) {
+                (async () => {
+                    try {
+                        const response = await api.get(`${ID_Client['ID_CLIENT']}`);
+                        clientCard.push(response.data.data);
+                        setID(clientCard);
+                    } catch(err) {
+                        console.log(err);
+                    }
+                })();
+            }
+        }, [ID_Client]);
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps

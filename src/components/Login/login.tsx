@@ -11,7 +11,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [show, setShow] = useState(false);
-    
+
     const errorAlert = (message : any) => 
     toast.error(message, {
         position: 'top-left',
@@ -39,7 +39,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
 
         if (await verifyExist()) {
             try {
-                const {data} = await api.get('/clients');
+                const {data} = await api.get('/getClient');
                 for (let i = 0; i < data.data.length; i++) {
                     if (email == data.data[i].email && senha == data.data[i].senha) {
                         setCookie(null, 'ID_CLIENT', data.data[i]._id, {
@@ -62,7 +62,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     }
 
     const verifyExist = async () => {
-        const {data} = await api.get('/clients');
+        const {data} = await api.get('/getClient');
         for (let i = 0; i < data.data.length; i++) {
             if (email === data.data[i].email) {
                 return true;
