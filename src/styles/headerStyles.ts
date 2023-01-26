@@ -10,11 +10,17 @@ export const Container = styled.header`
 
 export const Menu = styled.div`
   position: absolute;
-  right: 7%;
+  right: 30px;
   cursor: pointer;
   transition: 0.4s all;
   display: none;
   visibility: hidden;
+  padding: 10px;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: var(--dark-grey);
+  }
 
   div {
     width: 20px;
@@ -239,7 +245,7 @@ export const Text = styled.div `
   padding: 0px 10px;
   
   &:hover {
-    background-color: #1b1b1b;
+    background-color: var(--dark-grey);
   }
   p {
     color: var(--grey);

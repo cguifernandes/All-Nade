@@ -239,8 +239,6 @@ export const Button = styled.div`
         width: 65%;
     }
   }
-
-
 `;
 
 export const Text = styled.div`
