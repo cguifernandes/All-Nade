@@ -2,7 +2,7 @@ import { Container, Email, Footer, Header, Form, Overlay, Senha, Nome, Button, T
 import { HashStraight, Eye, IdentificationCard, EyeSlash, X } from "phosphor-react";
 import { useState } from "react";
 import { toast, Toaster } from 'react-hot-toast';
-import api from "../../services/api";
+import { db } from "../../services/api";
 import { setCookie } from "nookies";
 
 const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
@@ -63,7 +63,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
             setIsLoading(true);
             if (await verifyEmail()) {
                 try {
-                    const {data} = await api.post('/createClient', {nome, email, senha})
+                    const {data} = await db.post('/createClient', {nome, email, senha})
                     setNome('');
                     setEmail('');
                     setSenha('');
@@ -89,7 +89,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     }
 
     const verifyEmail = async () => {
-        const {data} = await api.get('/getClient');
+        const {data} = await db.get('/getClient');
         for (let i = 0; i < data.data.length; i++) {
             if (data.data[i].email === email) {
                 return false;

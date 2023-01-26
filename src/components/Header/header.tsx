@@ -2,7 +2,7 @@ import { Container, Menu, Ul, Button, Account, UserAccount, List, Email, Text, C
 import { useEffect, useRef, useState } from 'react';
 import { User, SignOut, CaretUp } from "phosphor-react";
 import { parseCookies, destroyCookie } from 'nookies';
-import api from '@/services/api';
+import { db } from "../../services/api";
 import { typeClients } from '../../types/typeClient';
 import { useRouter } from 'next/router';
 
@@ -28,7 +28,7 @@ const Header = ({setActiveCadastro} : any) => {
         if (ID_Client["ID_CLIENT"]) {
             (async () => {
                 try {
-                    const response = await api.get(`${ID_Client['ID_CLIENT']}`);
+                    const response = await db.get(`${ID_Client['ID_CLIENT']}`);
                     clientCard.push(response.data.data);
                     setID(clientCard);
                 } catch(err) {

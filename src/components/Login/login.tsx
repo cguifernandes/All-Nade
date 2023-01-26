@@ -2,7 +2,7 @@ import { Container, Header, Overlay, Form, Button, Email, Senha, Text } from "@/
 import { useState } from "react";
 import { HashStraight, Eye, EyeSlash, X } from "phosphor-react";
 import { Toaster, toast } from 'react-hot-toast';
-import api from "@/services/api";
+import { db } from "../../services/api";
 import { setCookie } from "nookies";
 
 const Login = ({setActiveLogin, setActiveCadastro} : any) => {
@@ -39,7 +39,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
         else {
             setIsLoading(true);
             if (await verifyExist()) {
-                const {data} = await api.get('/getClient');
+                const {data} = await db.get('/getClient');
                 for (let i = 0; i < data.data.length; i++) {
                     if (email == data.data[i].email && senha == data.data[i].senha) {
                         setCookie(null, 'ID_CLIENT', data.data[i]._id, {
@@ -63,7 +63,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     }
 
     const verifyExist = async () => {
-        const {data} = await api.get('/getClient');
+        const {data} = await db.get('/getClient');
         for (let i = 0; i < data.data.length; i++) {
             if (email === data.data[i].email && senha === data.data[i].senha) {
                 return true;

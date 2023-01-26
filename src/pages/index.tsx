@@ -4,6 +4,7 @@ import Header from '@/components/Header/header'
 import Head from 'next/head'
 import Login from '../components/Login/login';
 import { useState } from 'react';
+import Main from '@/components/Main/main';
 
 export default function Home() {
   const [activeCadastro, setActiveCadastro] = useState(false);
@@ -27,6 +28,7 @@ export default function Home() {
         activeLogin &&
           <Login setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
       }
+      <Main />
     </>
   )
 }
