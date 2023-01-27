@@ -9,7 +9,7 @@ import Skeleton from 'react-loading-skeleton';
 
 const Header = ({setActiveCadastro} : any) => {
     const [ID, setID] = useState<typeClients[]>();
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [active, setActive] = useState(false);
     const ID_Client = parseCookies();
     const router = useRouter();
@@ -33,7 +33,7 @@ const Header = ({setActiveCadastro} : any) => {
                     const response = await db.get(`${ID_Client['ID_CLIENT']}`);
                     clientCard.push(response.data.data);
                     setID(clientCard);
-                    setIsLoading(false);
+                    setIsLoading(true);
                 } catch(err) {
                     console.log(err);
                 }
@@ -82,15 +82,10 @@ const Header = ({setActiveCadastro} : any) => {
     return (  
         <Container>
             {
-                isLoading ?
-                <Account>
-                    <Skeleton width={240} height={30}></Skeleton>
-                </Account>
-                :
                 ID != null ?
                 <Account>
                     {
-                        ID.map((client) => {
+                        ID?.map((client) => {
                             return (
                                 <>
                                     <UserAccount 
@@ -122,9 +117,14 @@ const Header = ({setActiveCadastro} : any) => {
                     }
                 </Account>
                 :
+                !isLoading ?
                 <Button>
                     <button onClick={() => setActiveCadastro(true)}><User className='icon button' />Cadastrar</button>
                 </Button>
+                :
+                <Account>
+                    <Skeleton width={240} height={30}></Skeleton>
+                </Account>
             }
             <Ul ref={ul}>
                 <li ref={li1} className='li'><a href='#about'>Sobre</a></li>
