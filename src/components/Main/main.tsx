@@ -2,8 +2,6 @@ import { api } from "@/services/api";
 import { Card, Container, Img, Text } from "@/styles/mainStyles";
 import { typeMovies } from "@/types/typeClient";
 import { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
-import { Star } from "phosphor-react";
 import 'react-loading-skeleton/dist/skeleton.css'
 import LoadingMain from "../Loading/mainLoading";
 
