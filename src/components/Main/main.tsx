@@ -20,8 +20,8 @@ const Main = () => {
       <Container>
         {
         movies?.length == 0 ?
-        movies?.map(() => {
-                return <LoadingMain></LoadingMain>;
+        movies?.map((movie) => {
+                return <LoadingMain key={movie.vote_count}></LoadingMain>;
             })
         :
         movies?.map((movie) => {
