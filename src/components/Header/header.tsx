@@ -41,8 +41,6 @@ const Header = ({setActiveCadastro} : any) => {
         }
     }, [ID_Client]);
 
-    console.log(isLoading)
-
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         btnMenu = menuResponsive.current;
@@ -86,39 +84,40 @@ const Header = ({setActiveCadastro} : any) => {
             {
                 ID != null ?
                 <Account>
-                    <Skeleton width={170} height={30}></Skeleton>
-                    
-                    {/* {
+                    {
+                        isLoading ?
+                        <Skeleton width={170} height={30}></Skeleton>
+                        :
                         ID.map((client) => {
-                        return (
-                            <>
-                                <UserAccount 
-                                key={client._id} 
-                                onClick={() => setActive(!active)}>
-                                    <p>{client.nome}</p>
-                                    <User className='icon account' />
-                                </UserAccount>
-                                {
-                                    active &&
-                                    <>
-                                        <Caret key={client.senha}>
-                                            <CaretUp className='icon' />
-                                        </Caret>
-                                        <List>
-                                            <Email>
-                                                <p>Email: {client.email}</p>
-                                            </Email>
-                                            <div className="line"></div>
-                                            <Text onClick={handlerClick}>
-                                                <p>Sair</p>
-                                                <SignOut className='icon' />
-                                            </Text>
-                                        </List>
-                                    </>
-                                }
-                            </>
-                        )})
-                    } */}
+                            return (
+                                <>
+                                    <UserAccount 
+                                    key={client._id} 
+                                    onClick={() => setActive(!active)}>
+                                        <p>{client.nome}</p>
+                                        <User className='icon account' />
+                                    </UserAccount>
+                                    {
+                                        active &&
+                                        <>
+                                            <Caret key={client.senha}>
+                                                <CaretUp className='icon' />
+                                            </Caret>
+                                            <List>
+                                                <Email>
+                                                    <p>Email: {client.email}</p>
+                                                </Email>
+                                                <div className="line"></div>
+                                                <Text onClick={handlerClick}>
+                                                    <p>Sair</p>
+                                                    <SignOut className='icon' />
+                                                </Text>
+                                            </List>
+                                        </>
+                                    }
+                                </>
+                            )})
+                    }
                 </Account>
                 :
                 <Button>
