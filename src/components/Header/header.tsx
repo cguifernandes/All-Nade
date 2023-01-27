@@ -5,10 +5,11 @@ import { parseCookies, destroyCookie } from 'nookies';
 import { db } from "../../services/api";
 import { typeClients } from '../../types/typeClient';
 import { useRouter } from 'next/router';
+import Skeleton from 'react-loading-skeleton';
 
 const Header = ({setActiveCadastro} : any) => {
     const [ID, setID] = useState<typeClients[]>();
-    // const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [active, setActive] = useState(false);
     const ID_Client = parseCookies();
     const router = useRouter();
@@ -32,12 +33,15 @@ const Header = ({setActiveCadastro} : any) => {
                     const response = await db.get(`${ID_Client['ID_CLIENT']}`);
                     clientCard.push(response.data.data);
                     setID(clientCard);
+                    setIsLoading(false);
                 } catch(err) {
                     console.log(err);
                 }
             })();
         }
     }, [ID_Client]);
+
+    console.log(isLoading)
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,7 +86,10 @@ const Header = ({setActiveCadastro} : any) => {
             {
                 ID != null ?
                 <Account>
-                    {ID.map((client) => {
+                    <Skeleton width={170} height={30}></Skeleton>
+                    
+                    {/* {
+                        ID.map((client) => {
                         return (
                             <>
                                 <UserAccount 
@@ -110,7 +117,8 @@ const Header = ({setActiveCadastro} : any) => {
                                     </>
                                 }
                             </>
-                        )})}
+                        )})
+                    } */}
                 </Account>
                 :
                 <Button>

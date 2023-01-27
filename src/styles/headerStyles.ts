@@ -167,13 +167,13 @@ export const Button = styled.div`
 
 export const Account = styled.div `
   width: auto;
+  margin-left: 20px;
 `;
 
 export const UserAccount = styled.div `
   display: flex;
   justify-content: space-between;
   padding: 5px 20px;
-  margin-left: 20px;
   align-items: center;
   border-radius: 5px;
   transition: 0.4s all ease;
