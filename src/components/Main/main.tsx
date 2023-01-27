@@ -7,7 +7,6 @@ import LoadingMain from "../Loading/mainLoading";
 
 const Main = () => {
     const [movies, setMovies] = useState<typeMovies[]>();
-    const [isLoading, setIsLoading] = useState(true);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
 
@@ -15,14 +14,13 @@ const Main = () => {
         api.get(`/movie/top_rated?api_key=${key}&language=pt-BR&page=1&region=BR`)
         .then(res => {
             setMovies(res.data.results);
-            setIsLoading(false);
         });
     });
 
     return (
       <Container>
         {
-            isLoading ?
+            movies?.length == 0 ?
             movies?.map((movie) => {
                 return <LoadingMain key={movie.vote_count}></LoadingMain>;
             })

@@ -82,12 +82,14 @@ const Header = ({setActiveCadastro} : any) => {
     return (  
         <Container>
             {
+                isLoading ?
+                <Account>
+                    <Skeleton width={240} height={30}></Skeleton>
+                </Account>
+                :
                 ID != null ?
                 <Account>
                     {
-                        isLoading ?
-                        <Skeleton width={170} height={30}></Skeleton>
-                        :
                         ID.map((client) => {
                             return (
                                 <>
