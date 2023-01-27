@@ -19,8 +19,6 @@ const Main = () => {
         });
     });
 
-    console.log(isLoading)
-
     return (
       <Container>
         {
