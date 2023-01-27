@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 750px;
   height: 530px;
-  position: absolute;
+  position: fixed;
   transform: translate(-50%, 0);
   left: 50%;
   top: 120px;
@@ -22,7 +22,7 @@ export const Overlay = styled.div`
   height: 100%;
   background-color: rgb(0 0 0/0.5);
   top: 0px;
-  position: absolute;
+  position: fixed;
   z-index: 30;
   animation: name duration timing-function delay iteration-count direction
     fill-mode;

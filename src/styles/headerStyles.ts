@@ -193,6 +193,10 @@ export const UserAccount = styled.div `
     margin-left: 10px;
   }
 
+  .loading {
+    background-color: #ebebeb;
+  }
+
 `;
 
 export const List = styled.div `

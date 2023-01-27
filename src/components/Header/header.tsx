@@ -7,8 +7,9 @@ import { typeClients } from '../../types/typeClient';
 import { useRouter } from 'next/router';
 
 const Header = ({setActiveCadastro} : any) => {
-    const [ID, setID] = useState<typeClients[]>()
-    const [active, setActive] = useState(false)
+    const [ID, setID] = useState<typeClients[]>();
+    // const [isLoading, setIsLoading] = useState(false);
+    const [active, setActive] = useState(false);
     const ID_Client = parseCookies();
     const router = useRouter();
 
@@ -84,7 +85,9 @@ const Header = ({setActiveCadastro} : any) => {
                     {ID.map((client) => {
                         return (
                             <>
-                                <UserAccount key={client._id} onClick={() => setActive(!active)}>
+                                <UserAccount 
+                                key={client._id} 
+                                onClick={() => setActive(!active)}>
                                     <p>{client.nome}</p>
                                     <User className='icon account' />
                                 </UserAccount>

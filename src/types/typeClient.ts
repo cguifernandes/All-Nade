@@ -10,8 +10,8 @@ export type typeMovies = {
     adult?: boolean;
     backdrop_path?: string;
     genre_ids?: number[];
-    poster_path?: string;
-    overview?: string;
+    poster_path: string;
+    overview: string;
     release_date?: string;
     id?: number;
     original_title?: string;
@@ -20,5 +20,5 @@ export type typeMovies = {
     popularity?: number;
     vote_count?: number;
     video?: boolean;
-    vote_average?: number;
+    vote_average: number;
 }
