@@ -46,6 +46,7 @@ export const Img = styled.div`
         display: block;
         transition: 0.4s all;
         margin: 10px auto;
+        border-radius: 10px;
     }
 
     h3 {
