@@ -6,6 +6,18 @@ export const Container = styled.div`
     justify-items: center;
     margin: 80px 0px;
     gap: 50px 0px;
+
+    @media (max-width: 1460px) {
+        grid-template-columns: auto auto auto;
+    }
+
+    @media (max-width: 1100px) {
+        grid-template-columns: auto auto;
+    }
+
+    @media (max-width: 740px) {
+        grid-template-columns: auto;
+    }
 `;
 
 export const Card = styled.div`
@@ -19,6 +31,10 @@ export const Card = styled.div`
         img {
             scale: 0.95;
         }
+    }
+
+    @media (max-width: 740px) {
+        width: 85%;
     }
 `;
 
@@ -52,5 +68,11 @@ export const Img = styled.div`
     h3 {
         color: var(--grey);
         text-align: center;
+    }
+
+    @media (max-width: 415px) {
+        img {
+            width: 220px;
+        }
     }
 `;
