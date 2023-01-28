@@ -10,9 +10,9 @@ import Skeleton from 'react-loading-skeleton';
 const Header = ({setActiveCadastro} : any) => {
     const [ID, setID] = useState<typeClients[]>();
     const [isLoading, setIsLoading] = useState(false);
-    const [active, setActive] = useState(false);
     const ID_Client = parseCookies();
     const router = useRouter();
+    const [active, setActive] = useState(false);
 
     var ul = useRef(null);
     var menuResponsive = useRef(null);
@@ -20,7 +20,7 @@ const Header = ({setActiveCadastro} : any) => {
     var li2 = useRef(null);
     var li3 = useRef(null);
     var li4 = useRef(null);
-    
+
     var btnMenu : any;
     var list : any;
     
@@ -28,18 +28,20 @@ const Header = ({setActiveCadastro} : any) => {
         var clientCard : any = [];
         
         if (ID_Client["ID_CLIENT"]) {
+            setIsLoading(true);
             (async () => {
                 try {
                     const response = await db.get(`${ID_Client['ID_CLIENT']}`);
                     clientCard.push(response.data.data);
                     setID(clientCard);
-                    setIsLoading(true);
+                    setIsLoading(false);
                 } catch(err) {
                     console.log(err);
+                    setIsLoading(false);
                 }
             })();
         }
-    }, [ID_Client]);
+    }, [ID_Client["ID_CLIENT"]]);
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,7 +84,7 @@ const Header = ({setActiveCadastro} : any) => {
     return (  
         <Container>
             {
-                ID != null ?
+                ID != null && !isLoading ?
                 <Account>
                     {
                         ID?.map((client) => {
@@ -117,14 +119,14 @@ const Header = ({setActiveCadastro} : any) => {
                     }
                 </Account>
                 :
-                !isLoading ?
-                <Button>
-                    <button onClick={() => setActiveCadastro(true)}><User className='icon button' />Cadastrar</button>
-                </Button>
-                :
+                isLoading ?
                 <Account>
                     <Skeleton width={240} height={30}></Skeleton>
                 </Account>
+                :
+                <Button>
+                    <button onClick={() => setActiveCadastro(true)}><User className='icon button' />Cadastrar</button>
+                </Button>
             }
             <Ul ref={ul}>
                 <li ref={li1} className='li'><a href='#about'>Sobre</a></li>
