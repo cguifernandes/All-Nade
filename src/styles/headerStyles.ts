@@ -5,131 +5,42 @@ export const Container = styled.header`
   height: 80px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   overflow: hidden;
 `;
 
-export const Menu = styled.div`
-  position: absolute;
-  right: 30px;
-  cursor: pointer;
-  transition: 0.4s all;
-  display: none;
-  visibility: hidden;
+export const Favoritos = styled.div`
+  margin-right: 20px;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
   border-radius: 50%;
+  transition: 0.4s ease-in-out;
 
   &:hover {
     background-color: var(--dark-grey);
+
+    .icon {
+      color: #FFD700;
+    }
   }
 
-  div {
+  .icon {
+    color: var(--grey);
     width: 20px;
-    height: 2px;
-    background: var(--grey);
-    margin: 5px;
-    transition: all 0.2s ease;
-  }
-
-  &.active .line-1 {
-    transform: rotate(-45deg) translate(-5px, 5px);
-  }
-  &.active .line-2 {
-    opacity: 0;
-  }
-  &.active .line-3 {
-    transform: rotate(45deg) translate(-5px, -5px);
-  }
-
-  @media (max-width: 768px) {
-    visibility: visible;
-    display: inline;
+    height: 20px;
+    transition: 0.4s ease-in-out;
   }
 `;
 
 export const Logo = styled.div `  
-  margin-right: 20px;
-
   h2 {
-    color: var(--grey);
-    letter-spacing: 4px;
-    text-align: center; 
-  }
-  
-  @media (max-width: 768px) {
-    h2 {
-      display: none; 
-    }
-  }
-`;
-
-export const Ul = styled.ul`
-  display: flex;
-  margin: 0 auto;
-  list-style: none;
-  justify-content: center;
-  align-items: center;
-
-  a {
-    text-decoration: none;
-    transition: 0.4s all;
-    color: var(--grey);
-    font-size: 18px;
-  }
-
-  .li a:after {
     display: block;
-    content: "";
-    border-bottom: solid 2px var(--grey);
-    margin-right: 2px;
-    transform: scaleX(0);
-    transition: transform 320ms ease-in-out;
-  }
-
-  .li:hover a:after {
-    transform: scaleX(1);
-  }
-
-  h2 {
+    margin: 0 auto;
     color: var(--grey);
     letter-spacing: 4px;
     text-align: center; 
-    display: none;
-  }
-
-  .li {
-    margin: 0px 20px;
-    font-weight: 500;
-    font-size: 18px;
-  }
-
-  @media (max-width: 768px) {
-    position: fixed;
-    top: 80px;
-    right: 0;
-    width: 0px;
-    height: 92vh;
-    flex-direction: column;
-    background-color: var(--dark);
-    justify-content: space-around;
-    transition: all 0.4s ease-in;
-    z-index: 991;
-
-    h2 {
-      display: inline;
-      opacity: 0;
-      margin: 0;
-      font-size: 18px;
-    }
-
-    li {
-      width: 0;
-      opacity: 0;
-      margin: 0;
-    }
-
-    &.active {
-      width: 250px;
-    }
   }
 `;
 
@@ -160,8 +71,8 @@ export const Button = styled.div`
   }
 
   button:hover {
-    box-shadow: inset 0 -3.95em 0 0 var(--blue);
-    border: 1px solid var(--blue);
+    box-shadow: inset 0 -3.95em 0 0 #fff;
+    color: #000;
   }
 `;
 
@@ -179,18 +90,31 @@ export const UserAccount = styled.div `
   transition: 0.4s all ease;
   cursor: pointer;
   border: 1px solid var(--grey);
+
   &:hover {
-    background-color: var(--blue);
-    border-color: var(--blue);
+    background-color: #fff;
+    border-color: #fff;
+
+    p {
+      color: #000;
+    }
+
+    .account {
+      color: #000;
+    }
   }
+
   p {
     color: var(--grey);
     pointer-events: none;
+    transition: 0.4s all ease;
   }
+
   .account {
     font-size: 22px;
     color: var(--grey);
     margin-left: 10px;
+    transition: 0.4s all ease;
   }
 
   .loading {

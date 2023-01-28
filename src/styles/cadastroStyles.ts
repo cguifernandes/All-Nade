@@ -99,14 +99,6 @@ export const Form = styled.form`
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  input:focus {
-    border-color: var(--blue);
-  }
-
-  input:focus ~ .icon {
-    color: var(--blue);
-  }
-
   input:invalid {
     border-color: var(--red);
   }
@@ -155,14 +147,13 @@ export const Footer = styled.div`
   }
 
   a {
-    color: var(--blue);
     text-align: center;
     cursor: pointer;
     transition: 0.4s ease;
   }
 
   a:hover {
-    color: rgba(13, 148, 226, 0.8);
+    color: var(--grey);
   }
 `;
 
@@ -192,6 +183,7 @@ export const Button = styled.div`
     transition: opacity 250ms;
     transition-delay: 250ms;
     width: 100%;
+    transition: 0.4s all;
     font-size: 16px;
   }
 
@@ -224,8 +216,12 @@ export const Button = styled.div`
   }
 
   button:hover {
-    box-shadow: inset 0 -3.95em 0 0 var(--blue);
-    border: 1px solid var(--blue);
+    box-shadow: inset 0 -3.95em 0 0 #fff;
+    border: 1px solid #fff;
+
+    p {
+      color: #000;
+    }
   }
 
   @media (max-width: 768px) {

@@ -47,13 +47,6 @@ export const Text = styled.div`
 
     .vote {
         color: var(--grey);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        svg {
-            margin: 0px 2px;
-        }
     }
 `;
 

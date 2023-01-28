@@ -36,9 +36,7 @@ const Main = () => {
                             <img src={urlImg + movie.poster_path}/>
                         </Img>
                         <Text>
-                            <div className="vote">
-                                <p className="vote">{movie.vote_average}</p>
-                            </div>
+                            <p className="vote">{movie.vote_average}</p>
                             <p>{movie.overview.slice(0, 139)}...</p>
                         </Text>
                     </Card>
