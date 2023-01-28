@@ -22,7 +22,7 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 25px;
+    box-shadow: rgba(0, 0, 0, 1) 0px 10px 20px;
     background-color: var(--dark);
     width: 380px;
     padding: 15px;
@@ -45,6 +45,8 @@ export const Card = styled.div`
 `;
 
 export const Text = styled.div`
+    padding-bottom: 10px;
+
     p {
         word-wrap: break-word;
         color: var(--grey);
@@ -57,7 +59,8 @@ export const Text = styled.div`
 `;
 
 export const Img = styled.div`
-    position: relative;
+    padding-top: 10px;
+
 
     img {
         display: block;

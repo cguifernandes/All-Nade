@@ -20,13 +20,13 @@ export const Container = styled.div`
 export const Overlay = styled.div`
   width: 100%;
   height: 100%;
-  background-color: rgb(0 0 0/0.5);
+  background-color: rgb(0 0 0/0.7);
   top: 0px;
   position: fixed;
   z-index: 30;
   animation: name duration timing-function delay iteration-count direction
     fill-mode;
-  animation: overlayAnimation 0.8s ease;
+  animation: overlayAnimation 0.6s ease;
 `;
 
 export const Header = styled.div`

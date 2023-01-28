@@ -10,7 +10,7 @@ export const Container = styled.header`
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 998;
+  z-index: 28;
 `;
 
 export const Favoritos = styled.div`
@@ -143,7 +143,7 @@ export const List = styled.div `
   background-color: var(--dark);
   border: 1px solid var(--grey);
   overflow: hidden;
-  z-index: 999;
+  z-index: 28;
 
   .line {
     width: 100%;
