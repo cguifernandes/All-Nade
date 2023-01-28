@@ -7,7 +7,7 @@ import { typeClients } from '../../types/typeClient';
 import { useRouter } from 'next/router';
 import Skeleton from 'react-loading-skeleton';
 
-const Header = ({setActiveCadastro} : any) => {
+const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
     const [ID, setID] = useState<typeClients[]>();
     const [isLoading, setIsLoading] = useState(false);
     const ID_Client = parseCookies();
@@ -88,7 +88,7 @@ const Header = ({setActiveCadastro} : any) => {
             <Logo>
                 <h2>ALL NADE</h2>
             </Logo>
-            <Favoritos>
+            <Favoritos onClick={() => setFavorites(!favorites)}>
                 <Star className='icon' weight='fill' />
             </Favoritos>
         </Container>

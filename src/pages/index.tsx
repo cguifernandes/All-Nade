@@ -6,10 +6,13 @@ import Login from '../components/Login/login';
 import { useState } from 'react';
 import Main from '@/components/Main/main';
 import { SkeletonTheme } from 'react-loading-skeleton';
+import { Bar } from '@/styles/favoritesStyles';
 
 export default function Home() {
   const [activeCadastro, setActiveCadastro] = useState(false);
   const [activeLogin, setActiveLogin] = useState(false);
+  const [favorites, setFavorites] = useState(false);
+
 
   return (
     <>
@@ -21,7 +24,7 @@ export default function Home() {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
         </Head>
-        <Header setActiveCadastro={setActiveCadastro}/>
+        <Header favorites={favorites} setFavorites={setFavorites} setActiveCadastro={setActiveCadastro}/>
         {
           activeCadastro &&
             <Cadastro setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
@@ -29,6 +32,12 @@ export default function Home() {
         {
           activeLogin &&
             <Login setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
+        }
+        {
+          favorites &&
+          <Bar>
+            <p>oi</p>
+          </Bar>
         }
         <Main />
       </SkeletonTheme>

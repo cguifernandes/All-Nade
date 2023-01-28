@@ -23,7 +23,6 @@ export const Overlay = styled.div`
   top: 0px;
   position: fixed;
   z-index: 30;
-  animation: name duration timing-function delay iteration-count direction fill-mode;
   animation: overlayAnimation 0.8s ease;
 `;
 

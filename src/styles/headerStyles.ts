@@ -7,6 +7,10 @@ export const Container = styled.header`
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 998;
 `;
 
 export const Favoritos = styled.div`
@@ -34,13 +38,20 @@ export const Favoritos = styled.div`
   }
 `;
 
-export const Logo = styled.div `  
+export const Logo = styled.div `
+  margin-right: 10%;
+
   h2 {
-    display: block;
-    margin: 0 auto;
     color: var(--grey);
     letter-spacing: 4px;
-    text-align: center; 
+  }
+
+  @media (max-width: 650px) {
+    margin-right: 0px;
+  }
+
+  @media (max-width: 520px) {
+    display: none;
   }
 `;
 
@@ -92,8 +103,7 @@ export const UserAccount = styled.div `
   border: 1px solid var(--grey);
 
   &:hover {
-    background-color: #fff;
-    border-color: #fff;
+    box-shadow: inset 0 -3.95em 0 0 #fff;
 
     p {
       color: #000;
@@ -124,7 +134,7 @@ export const UserAccount = styled.div `
 `;
 
 export const List = styled.div `
-  position: absolute;
+  position: fixed;
   width: auto;
   height: auto;
   left: 20px;

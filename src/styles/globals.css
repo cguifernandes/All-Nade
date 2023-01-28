@@ -25,6 +25,16 @@ html, body {
   }
 }
 
+@keyframes favoritesAnimation {
+  from {
+      transform: translateX(350px);
+  }
+
+  to {
+    transform: translateX(0px);
+  }
+}
+
 @keyframes overlayAnimation {
   from {
       opacity: 0;
@@ -32,30 +42,6 @@ html, body {
 
   to {
       opacity: 1;
-  }
-}
-
-@keyframes navLinkFadeIn {
-  from {
-    width: auto;
-    opacity: 0;
-  }
-
-  to {
-    width: auto;
-    opacity: 1;
-  }
-}
-
-@keyframes navLinkFadeOut {
-  from {
-    opacity: 1;
-    width: auto;
-  }
-
-  to {
-    opacity: 0;
-    width: auto;
   }
 }
 

@@ -37,7 +37,7 @@ const Main = () => {
                         </Img>
                         <Text>
                             <p className="vote">{movie.vote_average}</p>
-                            <p>{movie.overview.slice(0, 139)}...</p>
+                            <p>{movie.overview.slice(0, 137)}...</p>
                         </Text>
                     </Card>
                 )
