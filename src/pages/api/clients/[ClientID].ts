@@ -1,10 +1,9 @@
-import { NextApiRequest } from 'next';
 import dbConnection from '../../../services/db';
 import Client from '../../../services/models/Client';
 
 dbConnection()
 
-export default async function handler(req : NextApiRequest, res : any) {
+export default async function handler(req : any, res : any) {
     try {
         const {ClientID} = req.query 
 

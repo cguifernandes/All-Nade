@@ -12,6 +12,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     const [senha, setSenha] = useState('');
     const [show, setShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const idMovie = 0;
 
     const handleSubmit = async (e : any) => {
         e.preventDefault();

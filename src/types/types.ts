@@ -1,9 +1,12 @@
+import { ObjectId } from "mongoose";
+
 export type typeClients = {
-    _id: string;
+    _id: ObjectId;
     email: string;
-    senha: string;
     nome: string;
-    createdAt: Date
+    senha: string;
+    idMovie: Array<number>;
+    __v: number;
 }
 
 export type typeMovies = {

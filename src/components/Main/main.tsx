@@ -1,19 +1,18 @@
-import { api } from "@/services/api";
+import { api, db } from "@/services/api";
 import { Card, Container, Icon, Img, Text } from "@/styles/mainStyles";
-import { typeMovies } from "@/types/typeClient";
+import { typeMovies } from "@/types/types";
 import { parseCookies } from "nookies";
 import { Star } from "phosphor-react";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import 'react-loading-skeleton/dist/skeleton.css'
 import { errorAlert } from "../Alert/alert";
 
 const Main = () => {
-    const [movies, setMovies] = useState<typeMovies[]>();
-    const [verify, setVerify] = useState(false);
+    const [movies, setMovies] = useState<typeMovies[]>([]);
+    const [verifyFavorite, setVerifyFavorite] = useState(false);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
-    const ID_Client = parseCookies()
+    const ID_Client = parseCookies();
 
     useEffect(() => {
         api.get(`/movie/top_rated?api_key=${key}&language=pt-BR&page=1&region=BR`)
@@ -22,9 +21,15 @@ const Main = () => {
         });
     }, []);
 
-    const handlerClickFavorite = async () => {
-        if (await verify) {
-            console.log(ID_Client["ID_CLIENT"])
+    const handlerClickFavorite = async (index : any) => {
+        const idMovie = movies[index].id;
+
+        if (await verifyFavorite) {
+            try {
+                await db.post(`/favorites/${ID_Client["ID_CLIENT"]}`, {idMovie});
+            } catch (err) {
+                console.log(err);
+            }
         }
 
         else {
@@ -34,17 +39,17 @@ const Main = () => {
     
     useEffect(() => {
         if (ID_Client["ID_CLIENT"]) {
-            setVerify(true)
+            setVerifyFavorite(true)
         }
     }, [ID_Client["ID_CLIENT"]]);
 
     return (
       <Container>
         {
-            movies?.map((movie) => {
+            movies?.map((movie, index) => {
                 return (
                     <Card key={movie.id}>
-                        <Icon onClick={() => handlerClickFavorite()}>
+                        <Icon onClick={() => handlerClickFavorite(index)}>
                             <Star weight="fill" className="icon" />
                         </Icon>
                         <Img>

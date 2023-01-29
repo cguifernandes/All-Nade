@@ -3,16 +3,15 @@ import { useEffect, useState } from 'react';
 import { User, SignOut, CaretUp, Star } from "phosphor-react";
 import { parseCookies, destroyCookie } from 'nookies';
 import { db } from "../../services/api";
-import { typeClients } from '../../types/typeClient';
-import { useRouter } from 'next/router';
+import { typeClients } from '../../types/types';
 import Skeleton from 'react-loading-skeleton';
+import router from 'next/router';
 
 const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
     const [ID, setID] = useState<typeClients[]>();
     const [isLoading, setIsLoading] = useState(false);
     const [active, setActive] = useState(false);
     const ID_Client = parseCookies();
-    const router = useRouter();
 
     useEffect(() => {
         var clientCard : any = [];
@@ -46,7 +45,7 @@ const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
                     {
                         ID?.map((client) => {
                             return (
-                                <div key={client._id} >
+                                <div key={client.email} >
                                     <UserAccount 
                                     onClick={() => setActive(!active)}>
                                         <p>{client.nome}</p>
