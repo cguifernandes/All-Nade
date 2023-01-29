@@ -55,7 +55,7 @@ export const Header = styled.div`
   .icon {
     width: 34px;
     height: 34px;
-    color: #fff;
+    color: var(--grey);
     transition: 0.2s ease;
   }
 
@@ -88,12 +88,12 @@ export const Form = styled.form`
     border: 1px solid var(--grey);
     margin: 0 auto;
     font-size: 16px;
-    color: #fff;
+    color: var(--grey);
     transition: 0.4s all;
   }
 
   .icon {
-    color: #fff;
+    color: var(--grey);
     position: absolute;
     right: 12%;
     top: 17px;
@@ -201,8 +201,8 @@ export const Button = styled.div`
   }
 
   button:hover {
-    box-shadow: inset 0 -3.95em 0 0 #fff;
-    border: 1px solid #fff;
+    box-shadow: inset 0 -3.95em 0 0 var(--grey);
+    border: 1px solid var(--grey);
 
     p {
       color: #000;

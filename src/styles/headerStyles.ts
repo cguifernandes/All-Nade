@@ -21,13 +21,13 @@ export const Favoritos = styled.div`
   cursor: pointer;
   border-radius: 50%;
   transition: 0.4s ease-in-out;
-
   &:hover {
     background-color: var(--dark-grey);
 
     .icon {
       color: #FFD700;
     }
+
   }
 
   .icon {
@@ -78,7 +78,7 @@ export const Button = styled.div`
   }
 
   button:hover {
-    box-shadow: inset 0 -3.95em 0 0 #fff;
+    box-shadow: inset 0 -3.95em 0 0 var(--grey);
     color: #000;
   }
 `;
@@ -99,7 +99,7 @@ export const UserAccount = styled.div `
   border: 1px solid var(--grey);
 
   &:hover {
-    box-shadow: inset 0 -3.95em 0 0 #fff;
+    box-shadow: inset 0 -3.95em 0 0 var(--grey);
 
     p {
       color: #000;
