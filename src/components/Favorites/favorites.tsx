@@ -1,6 +1,6 @@
 import { api, db } from "../../services/api";
 import { Bar, Card, Container, Img, Title } from "@/styles/favoritesStyles";
-import { typeClients, typeMovies } from "@/types/types";
+import { typeMovies } from "@/types/types";
 import { useEffect, useState } from "react";
 import { parseCookies } from "nookies";
 
@@ -15,7 +15,6 @@ const Favorites = ({favorites} : any) => {
     var MovieIDCard : any = [];
 
     useEffect(() => {
-
         setIsLoading(true);
             (async () => {
                 try {
@@ -31,17 +30,16 @@ const Favorites = ({favorites} : any) => {
                     setIsLoading(false);
                 }
             })(); 
-    }, [MoviesCard, MovieIDCard]);
+    }, []);
 
     useEffect(() => {
-
         for (let i = 0; i < movieID.length; i++) {
             api.get(`/movie/${movieID[i]}?api_key=${key}&language=pt-BR&region=BR`).then(res => {
                 MoviesCard.push(res.data)
                 setMovies(MoviesCard)
             });
         }
-    }, [MoviesCard, MovieIDCard]);
+    }, []);
 
     return (  
         <Bar className={favorites ? "active" : ""}>

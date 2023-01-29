@@ -1,6 +1,7 @@
 import { api, db } from "@/services/api";
 import { Card, Container, Icon, Img, Text } from "@/styles/mainStyles";
 import { typeMovies } from "@/types/types";
+import router from "next/router";
 import { parseCookies } from "nookies";
 import { Star } from "phosphor-react";
 import { useEffect, useState } from "react";
@@ -27,6 +28,7 @@ const Main = () => {
         if (await verifyFavorite) {
             try {
                 await db.post(`/favorites/${ID_Client["ID_CLIENT"]}`, {idMovie});
+                router.reload();
             } catch (err) {
                 console.log(err);
             }
