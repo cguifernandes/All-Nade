@@ -11,10 +11,10 @@ const Favorites = ({favorites} : any) => {
     const ID_Client = parseCookies();
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
-    var MoviesCard : any = [];
-    var MovieIDCard : any = [];
 
     useEffect(() => {
+        var MovieIDCard : any = [];
+
         setIsLoading(true);
             (async () => {
                 try {
@@ -33,6 +33,8 @@ const Favorites = ({favorites} : any) => {
     }, []);
 
     useEffect(() => {
+        var MoviesCard : any = [];
+
         for (let i = 0; i < movieID.length; i++) {
             api.get(`/movie/${movieID[i]}?api_key=${key}&language=pt-BR&region=BR`).then(res => {
                 MoviesCard.push(res.data)
