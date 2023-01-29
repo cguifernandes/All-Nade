@@ -10,9 +10,9 @@ import Skeleton from 'react-loading-skeleton';
 const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
     const [ID, setID] = useState<typeClients[]>();
     const [isLoading, setIsLoading] = useState(false);
+    const [active, setActive] = useState(false);
     const ID_Client = parseCookies();
     const router = useRouter();
-    const [active, setActive] = useState(false);
 
     useEffect(() => {
         var clientCard : any = [];
@@ -46,9 +46,8 @@ const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
                     {
                         ID?.map((client) => {
                             return (
-                                <>
+                                <div key={client._id} >
                                     <UserAccount 
-                                    key={client._id} 
                                     onClick={() => setActive(!active)}>
                                         <p>{client.nome}</p>
                                         <User className='icon account' />
@@ -71,7 +70,7 @@ const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
                                             </List>
                                         </>
                                     }
-                                </>
+                                </div>
                             )})
                     }
                 </Account>

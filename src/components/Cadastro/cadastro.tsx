@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast, Toaster } from 'react-hot-toast';
 import { db } from "../../services/api";
 import { setCookie } from "nookies";
+import { errorAlert, successfullAlert } from "../Alert/alert";
 
 const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     const [email, setEmail] = useState('');
@@ -12,51 +13,23 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     const [show, setShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const errorAlert = (message : any) => 
-    toast.error(message, {
-        position: 'top-right',
-        duration: 2200,
-        style: {
-            padding: '16px',
-            color: '#090909',
-        },
-        iconTheme: {
-            primary: '#FF0000',
-            secondary: '#FFFAEE',
-        },
-    });
-
-    const successfullAlert = (message : any) => 
-    toast.success(message, {
-        position: 'top-right',
-        duration: 2200,
-        style: {
-            padding: '16px',
-            color: '#090909',
-        },
-        iconTheme: {
-            primary: '#00a000',
-            secondary: '#FFFAEE',
-        },
-    });
-
     const handleSubmit = async (e : any) => {
         e.preventDefault();
 
         if (!email && !nome && !senha) {
-            errorAlert('Preencha todos os campos.');
+            errorAlert('Preencha todos os campos.', 'top-right');
         } else if (!email && !nome) {
-            errorAlert('Preencha os campos E-mail e Nome.');
+            errorAlert('Preencha os campos E-mail e Nome.', 'top-right');
         } else if (!email && !senha) {
-            errorAlert('Preencha os campos E-mail e Senha.');
+            errorAlert('Preencha os campos E-mail e Senha.', 'top-right');
         } else if (!email) {
-            errorAlert('Preencha o campo E-mail.');
+            errorAlert('Preencha o campo E-mail.', 'top-right');
         } else if (!nome && !senha) {
-            errorAlert('Preencha os campos Nome e Senha.');
+            errorAlert('Preencha os campos Nome e Senha.', 'top-right');
         } else if (!senha) {
-            errorAlert('Preencha o campo Senha.');
+            errorAlert('Preencha o campo Senha.', 'top-right');
         } else if (!nome) {
-            errorAlert('Preencha o campo Nome.');
+            errorAlert('Preencha o campo Nome.', 'top-right');
         }
 
         else {
@@ -67,14 +40,14 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                     setNome('');
                     setEmail('');
                     setSenha('');
-                    successfullAlert('Cadastro feito, seja bem-vindo(a)');
+                    successfullAlert('Cadastro feito, seja bem-vindo(a)', 'top-right');
                     setCookie(null, 'ID_CLIENT', data.data._id, {
                         path: '/',
                         maxAge: 86400 * 7,
                         SameSite: null
                     });
                     setIsLoading(false);
-                    setActiveCadastro(false)
+                    setActiveCadastro(false);
                 } catch (error) {
                     console.log(error)
                     setIsLoading(false);
@@ -82,7 +55,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
             }
 
             else {
-                errorAlert('Este e-mail já está sendo usado.');
+                errorAlert('Este e-mail já está sendo usado.', 'top-right');
                 setIsLoading(false);
             }
         }

@@ -39,7 +39,7 @@ export const Favoritos = styled.div`
 `;
 
 export const Logo = styled.div `
-  margin-right: 10%;
+  margin-right: 5%;
 
   h2 {
     color: var(--grey);
@@ -48,10 +48,6 @@ export const Logo = styled.div `
 
   @media (max-width: 650px) {
     margin-right: 0px;
-  }
-
-  @media (max-width: 520px) {
-    display: none;
   }
 `;
 

@@ -8,11 +8,11 @@ export const Container = styled.div`
     margin-top: 140px;
     gap: 50px 0px;
 
-    @media (max-width: 1580px) {
+    @media (max-width: 1670px) {
         grid-template-columns: auto auto auto;
     }
 
-    @media (max-width: 1190px) {
+    @media (max-width: 1260px) {
         grid-template-columns: auto auto;
     }
 
@@ -24,10 +24,11 @@ export const Container = styled.div`
 export const Card = styled.div`
     box-shadow: rgba(0, 0, 0, 1) 0px 10px 20px;
     background-color: var(--dark);
-    width: 380px;
+    width: 400px;
     padding: 15px;
     border-radius: 10px;
     cursor: pointer;
+    position: relative;
 
     &:hover {
         img {
@@ -36,31 +37,65 @@ export const Card = styled.div`
     }
 
     @media (max-width: 800px) {
-        width: 65%;
+        width: 85% !important;
     }
 
     @media (max-width: 650px) {
         width: 85%;
+    }
+
+    @media (max-width: 1260px) {
+        width: 90%;
+    }
+`;
+
+export const Icon = styled.div`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 38px;
+    padding: 10px;
+    border-radius: 50%;
+    transition: 0.4s ease-in-out;
+
+    &:hover {
+        background-color: var(--dark-grey);
+
+        .icon {
+        color: #FFD700;
+        }
+    }
+    
+    .icon {
+        color: var(--grey);
+        font-size: 18px;
     }
 `;
 
 export const Text = styled.div`
     padding-bottom: 10px;
 
+    h3 {
+        color: var(--grey);
+        text-align: center;
+        padding: 10px 0px;
+    }
+
     p {
         word-wrap: break-word;
         color: var(--grey);
         text-align: center;
+        padding: 0px 10px;
     }
 
     .vote {
         color: var(--grey);
+        padding: 0;
     }
 `;
 
 export const Img = styled.div`
-    padding-top: 10px;
-
+    padding-top: 25px;
 
     img {
         display: block;
@@ -68,11 +103,6 @@ export const Img = styled.div`
         margin: 10px auto;
         border-radius: 10px;
         transition: 0.4s ease;
-    }
-
-    h3 {
-        color: var(--grey);
-        text-align: center;
     }
 
     @media (max-width: 520px) {

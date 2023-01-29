@@ -1,9 +1,10 @@
 import { Container, Header, Overlay, Form, Button, Email, Senha, Text } from "@/styles/loginStyles";
 import { useState } from "react";
 import { HashStraight, Eye, EyeSlash, X } from "phosphor-react";
-import { Toaster, toast } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { db } from "../../services/api";
 import { setCookie } from "nookies";
+import { errorAlert } from "../Alert/alert";
 
 const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     const [email, setEmail] = useState('');
@@ -11,29 +12,16 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     const [show, setShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const errorAlert = (message : any) => 
-    toast.error(message, {
-        position: 'top-right',
-        duration: 2200,
-        style: {
-            padding: '16px',
-            color: '#090909',
-        },
-        iconTheme: {
-            primary: '#FF0000',
-            secondary: '#FFFAEE',
-        },
-    });
 
     const handlerSubmit = async (e : any) => {
         e.preventDefault();
 
         if (!email && !senha){
-            errorAlert('Preencha todos os campos.');
+            errorAlert('Preencha todos os campos.', 'top-right');
         } else if (!email) {
-            errorAlert('Preencha o campo E-mail.');
+            errorAlert('Preencha o campo E-mail.', 'top-right');
         } else if (!senha) {
-            errorAlert('Preencha o campo Senha.');
+            errorAlert('Preencha o campo Senha.', 'top-right');
         }
 
         else {
@@ -56,7 +44,7 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
             }
     
             else {
-                errorAlert('Usuário não esta cadastrado.');
+                errorAlert('Usuário não esta cadastrado.', 'top-right');
                 setIsLoading(false);
             }
         } 

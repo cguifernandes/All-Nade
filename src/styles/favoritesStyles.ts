@@ -8,5 +8,9 @@ export const Bar = styled.div`
     right: 0;
     top: 80px;
     z-index: 999;
-    animation: favoritesAnimation 0.6s ease;
+    animation: favoritesAnimationOut forwards 0.6s ease;
+
+    &.active {
+        animation: favoritesAnimationIn 0.6s ease;
+    }
 `;

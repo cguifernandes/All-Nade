@@ -25,13 +25,23 @@ html, body {
   }
 }
 
-@keyframes favoritesAnimation {
+@keyframes favoritesAnimationIn {
   from {
       transform: translateX(350px);
   }
 
   to {
     transform: translateX(0px);
+  }
+}
+
+@keyframes favoritesAnimationOut {
+  from {
+      transform: translateX(0px);
+  }
+
+  to {
+    transform: translateX(350px);
   }
 }
 
