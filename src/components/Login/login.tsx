@@ -1,10 +1,9 @@
 import { Container, Header, Overlay, Form, Button, Email, Senha, Text } from "@/styles/loginStyles";
 import { useState } from "react";
 import { HashStraight, Eye, EyeSlash, X } from "phosphor-react";
-import { Toaster } from 'react-hot-toast';
 import { db } from "../../services/api";
 import { setCookie } from "nookies";
-import { errorAlert } from "../Alert/alert";
+import { errorAlert, successfullAlert } from "../Utils/alert";
 
 const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     const [email, setEmail] = useState('');
@@ -40,7 +39,8 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
                 } 
                 setEmail('');
                 setSenha('');
-                setActiveLogin(false)
+                setActiveLogin(false);
+                successfullAlert('Login feito, seja bem-vindo(a)', 'top-right');
             }
     
             else {
@@ -68,7 +68,6 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
     return (  
         <>
             <Overlay onClick={() => setActiveLogin(false)}></Overlay>
-            <div><Toaster/></div>
             <Container>
                 <Header>
                     <h1>LOGIN</h1>

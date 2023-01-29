@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-page-custom-font */
 import Cadastro from '@/components/Cadastro/cadastro';
 import Header from '@/components/Header/header'
 import Head from 'next/head'
@@ -6,8 +5,8 @@ import Login from '../components/Login/login';
 import { useState } from 'react';
 import Main from '@/components/Main/main';
 import { SkeletonTheme } from 'react-loading-skeleton';
-import { Bar } from '@/styles/favoritesStyles';
 import { Toaster } from 'react-hot-toast';
+import Favorites from '@/components/Favorites/favorites';
 
 export default function Home() {
   const [activeCadastro, setActiveCadastro] = useState(false);
@@ -34,9 +33,7 @@ export default function Home() {
           activeLogin &&
             <Login setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
         }
-          <Bar className={favorites ? "active" : ""}>
-            <p>oi</p>
-          </Bar>
+        <Favorites favorites={favorites} />
         <Main />
       </SkeletonTheme>
     </>

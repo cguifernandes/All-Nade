@@ -1,10 +1,9 @@
 import { Container, Email, Footer, Header, Form, Overlay, Senha, Nome, Button, Text } from "@/styles/cadastroStyles";
 import { HashStraight, Eye, IdentificationCard, EyeSlash, X } from "phosphor-react";
 import { useState } from "react";
-import { toast, Toaster } from 'react-hot-toast';
 import { db } from "../../services/api";
 import { setCookie } from "nookies";
-import { errorAlert, successfullAlert } from "../Alert/alert";
+import { errorAlert, successfullAlert } from "../Utils/alert";
 
 const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     const [email, setEmail] = useState('');
@@ -12,7 +11,6 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     const [senha, setSenha] = useState('');
     const [show, setShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const idMovie = 0;
 
     const handleSubmit = async (e : any) => {
         e.preventDefault();
@@ -80,7 +78,6 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
     return (  
         <>
             <Overlay onClick={() => setActiveCadastro(false)} ></Overlay>
-            <div><Toaster/></div>
             <Container>
                 <Header>
                     <h1>CADASTRO</h1>

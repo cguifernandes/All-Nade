@@ -5,7 +5,7 @@ import { parseCookies } from "nookies";
 import { Star } from "phosphor-react";
 import { useEffect, useState } from "react";
 import 'react-loading-skeleton/dist/skeleton.css'
-import { errorAlert } from "../Alert/alert";
+import { errorAlert } from "../Utils/alert";
 
 const Main = () => {
     const [movies, setMovies] = useState<typeMovies[]>([]);

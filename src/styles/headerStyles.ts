@@ -25,9 +25,8 @@ export const Favoritos = styled.div`
     background-color: var(--dark-grey);
 
     .icon {
-      color: #FFD700;
+      color: #ffd700;
     }
-
   }
 
   .icon {
@@ -38,7 +37,7 @@ export const Favoritos = styled.div`
   }
 `;
 
-export const Logo = styled.div `
+export const Logo = styled.div`
   margin-right: 5%;
 
   h2 {
@@ -83,12 +82,12 @@ export const Button = styled.div`
   }
 `;
 
-export const Account = styled.div `
+export const Account = styled.div`
   width: auto;
   margin-left: 20px;
 `;
 
-export const UserAccount = styled.div `
+export const UserAccount = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 5px 20px;
@@ -126,10 +125,9 @@ export const UserAccount = styled.div `
   .loading {
     background-color: #ebebeb;
   }
-
 `;
 
-export const List = styled.div `
+export const List = styled.div`
   position: fixed;
   width: auto;
   height: auto;
@@ -146,10 +144,9 @@ export const List = styled.div `
     height: 1px;
     background-color: var(--grey);
   }
-
 `;
 
-export const Email = styled.div `
+export const Email = styled.div`
   p {
     color: var(--grey);
     text-align: center;
@@ -157,7 +154,7 @@ export const Email = styled.div `
   }
 `;
 
-export const Caret = styled.div `
+export const Caret = styled.div`
   position: absolute;
   left: 50px;
 
@@ -170,14 +167,14 @@ export const Caret = styled.div `
   }
 `;
 
-export const Text = styled.div `
+export const Text = styled.div`
   cursor: pointer;
   transition: 0.4s all ease;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0px 10px;
-  
+
   &:hover {
     background-color: var(--dark-grey);
   }
