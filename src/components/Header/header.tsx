@@ -6,6 +6,7 @@ import { db } from "../../services/api";
 import { typeClients } from '../../types/types';
 import Skeleton from 'react-loading-skeleton';
 import router from 'next/router';
+import { Input } from '@/styles/searchStyles';
 
 const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
     const [ID, setID] = useState<typeClients[]>();
@@ -39,6 +40,8 @@ const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
 
     return (  
         <Container>
+            <Input>
+            </Input>
             {
                 ID != null && !isLoading ?
                 <Account>

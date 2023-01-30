@@ -16,11 +16,11 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
         e.preventDefault();
 
         if (!email && !senha){
-            errorAlert('Preencha todos os campos.', 'top-right');
+            errorAlert('Preencha todos os campos.');
         } else if (!email) {
-            errorAlert('Preencha o campo E-mail.', 'top-right');
+            errorAlert('Preencha o campo E-mail.');
         } else if (!senha) {
-            errorAlert('Preencha o campo Senha.', 'top-right');
+            errorAlert('Preencha o campo Senha.');
         }
 
         else {
@@ -40,11 +40,11 @@ const Login = ({setActiveLogin, setActiveCadastro} : any) => {
                 setEmail('');
                 setSenha('');
                 setActiveLogin(false);
-                successfullAlert('Login feito, seja bem-vindo(a)', 'top-right');
+                successfullAlert('Login feito, seja bem-vindo(a)');
             }
     
             else {
-                errorAlert('Usuário não esta cadastrado.', 'top-right');
+                errorAlert('Usuário não esta cadastrado.');
                 setIsLoading(false);
             }
         } 

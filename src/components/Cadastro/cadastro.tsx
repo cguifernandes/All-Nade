@@ -16,19 +16,19 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
         e.preventDefault();
 
         if (!email && !nome && !senha) {
-            errorAlert('Preencha todos os campos.', 'top-right');
+            errorAlert('Preencha todos os campos.');
         } else if (!email && !nome) {
-            errorAlert('Preencha os campos E-mail e Nome.', 'top-right');
+            errorAlert('Preencha os campos E-mail e Nome.');
         } else if (!email && !senha) {
-            errorAlert('Preencha os campos E-mail e Senha.', 'top-right');
+            errorAlert('Preencha os campos E-mail e Senha.');
         } else if (!email) {
-            errorAlert('Preencha o campo E-mail.', 'top-right');
+            errorAlert('Preencha o campo E-mail.');
         } else if (!nome && !senha) {
-            errorAlert('Preencha os campos Nome e Senha.', 'top-right');
+            errorAlert('Preencha os campos Nome e Senha.');
         } else if (!senha) {
-            errorAlert('Preencha o campo Senha.', 'top-right');
+            errorAlert('Preencha o campo Senha.');
         } else if (!nome) {
-            errorAlert('Preencha o campo Nome.', 'top-right');
+            errorAlert('Preencha o campo Nome.');
         }
 
         else {
@@ -39,7 +39,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
                     setNome('');
                     setEmail('');
                     setSenha('');
-                    successfullAlert('Cadastro feito, seja bem-vindo(a)', 'top-right');
+                    successfullAlert('Cadastro feito, seja bem-vindo(a)');
                     setCookie(null, 'ID_CLIENT', data.data._id, {
                         path: '/',
                         maxAge: 86400 * 7,
@@ -54,7 +54,7 @@ const Cadastro = ({setActiveCadastro, setActiveLogin} : any) => {
             }
 
             else {
-                errorAlert('Este e-mail já está sendo usado.', 'top-right');
+                errorAlert('Este e-mail já está sendo usado.');
                 setIsLoading(false);
             }
         }
