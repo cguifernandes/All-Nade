@@ -27,7 +27,8 @@ const Favorites = ({favorites} : any) => {
         })(); 
 
         for (let i = 0; i < movieID.length; i++) {
-            api.get(`/movie/${movieID[i]}?api_key=${key}&language=pt-BR&region=BR`).then(res => {
+            api.get(`/movie/${movieID[i]}?api_key=${key}&language=pt-BR&region=BR`)
+            .then(res => {
                 MoviesCard.push(res.data)
                 setMovies(MoviesCard)
             });

@@ -3,34 +3,39 @@ import { Card, Container, Icon, Img, Text } from "@/styles/mainStyles";
 import { Input } from "@/styles/searchStyles";
 import { typeMovies } from "@/types/types";
 import { parseCookies } from "nookies";
-import { Star, MagnifyingGlass } from "phosphor-react";
+import { Star } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import 'react-loading-skeleton/dist/skeleton.css'
-import { errorAlert } from "../Utils/alert";
+import { errorAlert, successfullAlert } from "../Utils/alert";
 
 const Main = () => {
     const [movies, setMovies] = useState<typeMovies[]>([]);
     const [verifyFavorite, setVerifyFavorite] = useState(false);
     const [result, setResult] = useState(false);
-    const [id, setID] = useState<Number>();
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
     const ID_Client = parseCookies();
     const _id = ID_Client["ID_CLIENT"];
 
-    useEffect(() => {
-        
-    }, []);
-
     const handlerClickFavorite = async (index : any) => {
         const idMovie = movies[index].id;
-        setID(idMovie);
 
         if (await verifyFavorite) {
             try {
                 const {data} = await db.post('/favorites/getFavorites', {_id});
+                    for (let i = 0; i < data.data.idMovie.length; i++) {
+                        if (data.data.idMovie[i] == idMovie) {
+                            db.post(`/favorites/deleteFavorites`, {_id, idMovie});
+                            successfullAlert('Favorito removido.')
+                        }
+
+                        else {
+                            db.post(`/favorites/${_id}`, {idMovie});
+                            successfullAlert('Favorito adiconado.')
+                        }
+                    }
 
             } catch (err) {
                 console.log(err);
@@ -76,15 +81,10 @@ const Main = () => {
     }, [ID_Client["ID_CLIENT"]]);
 
     useEffect(() => {
-        (async () => {
-            const {data} = await db.post('/favorites/getFavorites', {_id});
-            for (let i = 0; i < data.data[0].idMovie.length; i++) {
-                if (data.data[0].idMovie[i] === id) {
-                }
-                else {
-                }
-            }
-        })();
+        api.get(`/movie/top_rated?api_key=${key}&language=pt-BR&page=1&region=BR`)
+        .then(res => {
+            setMovies(res.data.results);
+        })
     }, []);
 
     return (
@@ -121,6 +121,7 @@ const Main = () => {
                                     :
                                     <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma descrição 😓.</p>
                                 }
+                                <p>{movie.id}</p>
                             </Text>
                         </Card>
                     )
