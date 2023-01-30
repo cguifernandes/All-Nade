@@ -5,7 +5,7 @@ export const Container = styled.div`
     grid-template-columns: auto auto auto auto;
     justify-items: center;
     margin: 80px 0px;
-    margin-top: 140px;
+    margin-top: 160px;
     gap: 50px 0px;
 
     @media (max-width: 1670px) {
@@ -25,6 +25,7 @@ export const Card = styled.div`
     box-shadow: rgba(0, 0, 0, 1) 0px 10px 20px;
     background-color: var(--dark);
     width: 400px;
+    height: auto;
     padding: 15px;
     border-radius: 10px;
     cursor: pointer;
@@ -103,6 +104,7 @@ export const Img = styled.div`
         margin: 10px auto;
         border-radius: 10px;
         transition: 0.4s ease;
+        width: 300px;
     }
 
     @media (max-width: 520px) {
