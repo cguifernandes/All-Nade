@@ -16,7 +16,7 @@ export const Bar = styled.div`
     }
 `;
 
-export const Container = styled.div`
+export const ContainerF = styled.div`
     p {
         color: var(--grey);
         text-align: center;
@@ -24,7 +24,7 @@ export const Container = styled.div`
     }
 `;
 
-export const Card = styled.div`
+export const CardF = styled.div`
     padding: 10px 0px;
     transition: 0.4s all;
     cursor: pointer;
@@ -34,7 +34,7 @@ export const Card = styled.div`
     }
 `;
 
-export const Img = styled.div`
+export const ImgF = styled.div`
     img {
         width: 200px;
         display: block;

@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import Main from '@/components/Main/main';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { Toaster } from 'react-hot-toast';
-import Favorites from '@/components/Favorites/favorites';
 import Loading from '@/components/Loading/loading';
 
 export default function Home() {
@@ -14,6 +13,7 @@ export default function Home() {
   const [activeLogin, setActiveLogin] = useState(false);
   const [favorites, setFavorites] = useState(false);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     setTimeout(() => {
@@ -46,8 +46,7 @@ export default function Home() {
               activeLogin &&
                 <Login setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
             }
-            <Favorites favorites={favorites} />
-            <Main />
+            <Main setActiveLogin={setActiveLogin} favorites={favorites}/>
           </>
         }
       </SkeletonTheme>

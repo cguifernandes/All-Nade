@@ -9,7 +9,7 @@ import router from 'next/router';
 
 const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
     const [ID, setID] = useState<typeClients[]>();
-    const [isLoading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [active, setActive] = useState(false);
     const ID_Client = parseCookies();
 
@@ -17,16 +17,16 @@ const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
         var clientCard : any = [];
         
         if (ID_Client["ID_CLIENT"]) {
-            setIsLoading(true);
+            setLoading(true);
             (async () => {
                 try {
                     const response = await db.get(`${ID_Client['ID_CLIENT']}`);
                     clientCard.push(response.data.data);
                     setID(clientCard);
-                    setIsLoading(false);
+                    setLoading(false);
                 } catch(err) {
                     console.log(err);
-                    setIsLoading(false);
+                    setLoading(false);
                 }
             })();
         }
@@ -40,7 +40,7 @@ const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
     return (  
         <Container>
             {
-                ID != null && !isLoading ?
+                ID != null && !loading ?
                 <Account>
                     {
                         ID?.map((client) => {
@@ -74,7 +74,7 @@ const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
                     }
                 </Account>
                 :
-                isLoading ?
+                loading ?
                 <Account>
                     <Skeleton width={240} height={30}></Skeleton>
                 </Account>
