@@ -13,6 +13,7 @@ import { errorAlert, successfullAlert } from "../Utils/alert";
 const Main = () => {
     const [movies, setMovies] = useState<typeMovies[]>([]);
     const [verifyFavorite, setVerifyFavorite] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [result, setResult] = useState(false);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
@@ -81,8 +82,10 @@ const Main = () => {
     }, [ID_Client["ID_CLIENT"]]);
 
     useEffect(() => {
+        setIsLoading(true);
         api.get(`/movie/top_rated?api_key=${key}&language=pt-BR&page=1&region=BR`)
         .then(res => {
+            setIsLoading(false);
             setMovies(res.data.results);
         })
     }, []);
@@ -95,43 +98,41 @@ const Main = () => {
                     <FontAwesomeIcon icon={faSearch} />
                 </div>
             </Input>
-            <Container>
-            {
-                movies?.map((movie, index) => {
-                    return (
-                        <Card key={movie.id}>
-                            <Icon onClick={() => handlerClickFavorite(index)}>
-                                <Star weight="fill" className="icon" />
-                            </Icon>
-                            <Img>
-                                {
-                                    movie.poster_path ? 
-                                    <img src={urlImg + movie.poster_path}/>
-                                    :
-                                    <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma imagem 😓.</p>
-                                }
-                                
-                            </Img>
-                            <Text>
-                                <h3>{movie.title}</h3>
-                                <p className="vote">{movie.vote_average}</p>
-                                {
-                                    movie.overview?
-                                    <p>{movie.overview.slice(0, 137)}...</p>
-                                    :
-                                    <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma descrição 😓.</p>
-                                }
-                                <p>{movie.id}</p>
-                            </Text>
-                        </Card>
-                    )
-                })
-            }
-            </Container>
-            {
-                result &&
-                <p style={{color: '#090909', textAlign: 'center', fontSize: '19px'}}>Nenhum resultado.</p>
-            }
+                <Container>
+                    {movies?.map((movie, index) => {
+                        return (
+                            <Card key={movie.id}>
+                                <Icon onClick={() => handlerClickFavorite(index)}>
+                                    <Star weight="fill" className="icon" />
+                                </Icon>
+                                <Img>
+                                    {
+                                        movie.poster_path ? 
+                                        <img src={urlImg + movie.poster_path}/>
+                                        :
+                                        <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma imagem 😓.</p>
+                                    }
+                                    
+                                </Img>
+                                <Text>
+                                    <h3>{movie.title}</h3>
+                                    <p className="vote">{movie.vote_average}</p>
+                                    {
+                                        movie.overview?
+                                        <p>{movie.overview.slice(0, 137)}...</p>
+                                        :
+                                        <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma descrição 😓.</p>
+                                    }
+                                    <p>{movie.id}</p>
+                                </Text>
+                            </Card>
+                        )
+                    })}
+                </Container>
+                {
+                    result &&
+                    <p style={{color: '#090909', textAlign: 'center', fontSize: '19px'}}>Nenhum resultado.</p>
+                }
         </>
     );
 }

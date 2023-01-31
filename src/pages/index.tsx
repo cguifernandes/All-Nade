@@ -2,16 +2,24 @@ import Cadastro from '@/components/Cadastro/cadastro';
 import Header from '@/components/Header/header'
 import Head from 'next/head'
 import Login from '../components/Login/login';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Main from '@/components/Main/main';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { Toaster } from 'react-hot-toast';
 import Favorites from '@/components/Favorites/favorites';
+import Loading from '@/components/Loading/loading';
 
 export default function Home() {
   const [activeCadastro, setActiveCadastro] = useState(false);
   const [activeLogin, setActiveLogin] = useState(false);
   const [favorites, setFavorites] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  }, []);
 
   return (
     <>
@@ -23,18 +31,25 @@ export default function Home() {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
         </Head>
-        <Header favorites={favorites} setFavorites={setFavorites} setActiveCadastro={setActiveCadastro}/>
-        <div><Toaster/></div>
         {
-          activeCadastro &&
-            <Cadastro setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
+          loading ?
+          <Loading />
+          :
+          <>
+            <Header favorites={favorites} setFavorites={setFavorites} setActiveCadastro={setActiveCadastro}/>
+            <div><Toaster/></div>
+            {
+              activeCadastro &&
+                <Cadastro setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
+            }
+            {
+              activeLogin &&
+                <Login setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
+            }
+            <Favorites favorites={favorites} />
+            <Main />
+          </>
         }
-        {
-          activeLogin &&
-            <Login setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
-        }
-        <Favorites favorites={favorites} />
-        <Main />
       </SkeletonTheme>
     </>
   )
