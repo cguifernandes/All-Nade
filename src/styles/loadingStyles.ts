@@ -8,8 +8,8 @@ export const Container = styled.div`
     justify-content: center;
 
     .loader {
-        width: 98px;
-        height: 98px;
+        width: 68px;
+        height: 68px;
         border: 5px solid var(--dark);
         border-bottom-color: transparent;
         border-radius: 50%;

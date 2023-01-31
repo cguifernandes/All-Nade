@@ -25,7 +25,13 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
-    margin: 20px 0px;
+    padding: 10px 0px;
+    transition: 0.4s all;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--dark-grey);
+    }
 `;
 
 export const Img = styled.div`
@@ -37,11 +43,9 @@ export const Img = styled.div`
 `;
 
 export const Title = styled.div`
-    margin: 10px 0px;
-
+    padding-top: 10px;
     h3 {
         color: var(--grey);
         text-align: center;
-        padding: 0px 20px;
     }
 `;

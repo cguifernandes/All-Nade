@@ -48,6 +48,10 @@ export const Logo = styled.div`
   @media (max-width: 650px) {
     margin-right: 0px;
   }
+
+  @media (max-width: 490px) {
+    display: none
+  }
 `;
 
 export const Button = styled.div`

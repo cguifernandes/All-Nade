@@ -5,45 +5,37 @@ import { useEffect, useState } from "react";
 import { parseCookies } from "nookies";
 
 const Favorites = ({favorites} : any) => {
-    const [movieID, setMovieID] = useState([]);
     const [movies, setMovies] = useState<typeMovies[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
     const ID_Client = parseCookies();
+    const _id = ID_Client["ID_CLIENT"];
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
+    var movieCard : any = [];
+    var passou = true;
 
     useEffect(() => {
-        var MoviesCard : any = [];
-        var MovieIDCard : any = [];
-
-        (async () => {
-            try {
-                const _id = ID_Client["ID_CLIENT"]
-                const {data} = await db.post('/favorites/getFavorites', {_id});
-                
-            } catch(err) {
-                console.log(err);
-            }
-        })(); 
-
-        for (let i = 0; i < movieID.length; i++) {
-            api.get(`/movie/${movieID[i]}?api_key=${key}&language=pt-BR&region=BR`)
-            .then(res => {
-                MoviesCard.push(res.data)
-                setMovies(MoviesCard)
-            });
+        if (passou) {
+            getMovies();
+            passou = false;
         }
-
     }, []);
+
+    const getMovies = async () => {
+        try {
+            const {data} = await db.post('/favorites/getFavorites', {_id});
+            for (let i = 0; i < data.data.idMovie.length; i++) {
+                const Movies = await api.get(`/movie/${data.data.idMovie[i]}?api_key=${key}&language=pt-BR&region=BR`)
+                movieCard.push(Movies.data);
+            }
+            setMovies(movieCard);
+        } catch(err) {
+            console.log(err);
+        }
+    }
 
     return (  
         <Bar className={favorites ? "active" : ""}>
             {
-                movieID == null ?
-                <Container>
-                    <p>Sem nenhum favorito aqui.</p>
-                </Container>
-                :
                 <Container>
                     {
                         movies.map((movie, index) => {
