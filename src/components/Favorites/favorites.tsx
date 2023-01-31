@@ -38,21 +38,18 @@ const Favorites = ({favorites} : any) => {
         }
     }
 
-    console.log(loading)
-
     return (  
         <Bar className={favorites ? "active" : ""}>
             <Container>
                 {
                     loading ?
-                    movies.map(() => {
-                        return (
-                            <>
-                                <Skeleton style={{display: 'block', margin: '0 auto'}} height={300} width={200} />
-                                <Skeleton style={{display: 'block', margin: '0 auto'}} width={200} />
-                            </>
-                        )
-                    })
+                    <>
+                        <Skeleton style={{display: 'block', margin: '0 auto'}} height={300} width={200} />
+                        <Skeleton style={{display: 'block', margin: '0 auto'}} width={200} />
+                        <Skeleton style={{display: 'block', margin: '0 auto'}} height={300} width={200} />
+                        <Skeleton style={{display: 'block', margin: '0 auto'}} width={200} />
+                        <Skeleton style={{display: 'block', margin: '0 auto'}} height={300} width={200} />
+                    </>
                     :
                     movies.map((movie, index) => {
                         return (
