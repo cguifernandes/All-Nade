@@ -18,7 +18,7 @@ const Main = ({favorites, setActiveLogin} : any) => {
     const [verifyFavorite, setVerifyFavorite] = useState(false);
     const [result, setResult] = useState(false);
     const [favoritesCard, setFavoritesCard] = useState<typeMovies[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
     const ID_Client = parseCookies();
@@ -29,20 +29,19 @@ const Main = ({favorites, setActiveLogin} : any) => {
     const getMovies = async () => {
         setLoading(true);
 
-        if (movieCard.length > 0) {
+        if (favoritesCard.length > 0) {
             try {
                 const {data} = await db.post('/favorites/getFavorites', {_id});
                 for (let i = 0; i < data.data.idMovie.length; i++) {
                     const Movies = await api.get(`/movie/${data.data.idMovie[i]}?api_key=${key}&language=pt-BR&region=BR`);
                     movieCard.push(Movies.data);
                 }
-                setLoading(false);
+                setLoading(true);
                 setFavoritesCard(movieCard);
             } catch(err) {
                 console.log(err);
             }
         }
-        
     }
 
     const handlerClickFavorite = async (index : any) => {
@@ -157,7 +156,7 @@ const Main = ({favorites, setActiveLogin} : any) => {
                 <Bar className={favorites ? "active" : ""}>
                     <ContainerF>
                         {
-                            !loading ?
+                            loading ?
                             favoritesCard.map((movie, index) => {
                                 return (
                                     <CardF key={index}>
