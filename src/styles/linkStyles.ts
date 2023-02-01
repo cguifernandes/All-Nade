@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 `;
 
 export const Header = styled.div`
@@ -47,6 +44,10 @@ export const Card = styled.div`
     box-shadow: rgba(0, 0, 0, 1) 0px 10px 20px;
     background-color: var(--dark);
     z-index: 99;
+    position: absolute;
+    top: 100px;
+    transform: translate(-50%, 0);
+    left: 50%;
 
     @media (max-width: 850px) {
         width: 95%;
@@ -77,7 +78,7 @@ export const Img = styled.div`
 export const Divisor = styled.div `
     .custom-shape-divider-bottom-1675263634 {
         position: absolute;
-        bottom: -80px;
+        bottom: 0px;
         left: 0;
         width: 100%;
         overflow: hidden;
@@ -93,7 +94,7 @@ export const Divisor = styled.div `
     }
 
     .custom-shape-divider-bottom-1675263634 .shape-fill {
-        fill: var(--dark);
+        fill: var(--dark-grey);
     }
 
 `;

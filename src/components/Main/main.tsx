@@ -1,5 +1,5 @@
 import { api, db } from "@/services/api";
-import { Container, Icon, Img, Text } from "@/styles/mainStyles";
+import { Container, Icon, Img, Text, Card } from "@/styles/mainStyles";
 import { Input } from "@/styles/searchStyles";
 import { typeMovies } from "@/types/types";
 import Link from "next/link";
@@ -119,30 +119,31 @@ const Main = ({favorites, setActiveLogin} : any) => {
                 <Container>
                     {movies?.map((movie, index) => {
                         return (
-                            <Link href={`${movie.id}`} key={movie.id}>
+                            <Card>
                                 <Icon onClick={() => handlerClickFavorite(index)}>
                                     <Star weight="fill" className="icon" />
                                 </Icon>
-                                <Img>
-                                    {
-                                        movie.poster_path ? 
-                                        <img src={urlImg + movie.poster_path}/>
-                                        :
-                                        <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma imagem 😓.</p>
-                                    }
-                                    
-                                </Img>
-                                <Text>
-                                    <h3>{movie.title}</h3>
-                                    <p className="vote">{movie.vote_average}</p>
-                                    {
-                                        movie.overview?
-                                        <p>{movie.overview.slice(0, 137)}...</p>
-                                        :
-                                        <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma descrição 😓.</p>
-                                    }
-                                </Text>
-                            </Link>
+                                <Link href={`${movie.id}`} key={movie.id}>
+                                    <Img>
+                                        {
+                                            movie.poster_path ? 
+                                            <img src={urlImg + movie.poster_path}/>
+                                            :
+                                            <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma imagem 😓.</p>
+                                        }
+                                    </Img>
+                                    <Text>
+                                        <h3>{movie.title}</h3>
+                                        <p className="vote">{movie.vote_average}</p>
+                                        {
+                                            movie.overview?
+                                            <p>{movie.overview.slice(0, 137)}...</p>
+                                            :
+                                            <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma descrição 😓.</p>
+                                        }
+                                    </Text>
+                                </Link>
+                            </Card>
                         )
                     })}
                 </Container>
