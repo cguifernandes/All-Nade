@@ -1,11 +1,11 @@
 import { Container, Favoritos, Button, Account, UserAccount, List, Email, Text, Caret, Logo } from '../../styles/headerStyles';
-import { useEffect, useState } from 'react';
 import { User, SignOut, CaretUp, Star } from "phosphor-react";
 import { parseCookies, destroyCookie } from 'nookies';
 import { db } from "../../services/api";
 import { typeClients } from '../../types/types';
 import Skeleton from 'react-loading-skeleton';
 import router from 'next/router';
+import { useEffect, useState } from 'react';
 
 const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
     const [ID, setID] = useState<typeClients[]>();
