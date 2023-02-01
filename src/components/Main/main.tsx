@@ -18,7 +18,6 @@ const Main = ({favorites, setActiveLogin} : any) => {
     const [verifyFavorite, setVerifyFavorite] = useState(false);
     const [result, setResult] = useState(false);
     const [favoritesCard, setFavoritesCard] = useState<typeMovies[]>([]);
-    const [loading, setLoading] = useState(false);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
     const ID_Client = parseCookies();
@@ -27,7 +26,6 @@ const Main = ({favorites, setActiveLogin} : any) => {
     var verify = true;
     
     const getMovies = async () => {
-        setLoading(true);
 
         try {
             const {data} = await db.post('/favorites/getFavorites', {_id});
@@ -35,7 +33,6 @@ const Main = ({favorites, setActiveLogin} : any) => {
                 const Movies = await api.get(`/movie/${data.data.idMovie[i]}?api_key=${key}&language=pt-BR&region=BR`);
                 movieCard.push(Movies.data);
             }
-            setLoading(true);
             setFavoritesCard(movieCard);
         } catch(err) {
             console.log(err);
@@ -44,11 +41,20 @@ const Main = ({favorites, setActiveLogin} : any) => {
 
     const handlerClickFavorite = async (index : any) => {
         const idMovie = movies[index].id;
+        var favoritesCard : any = [];
 
         if (await verifyFavorite) {
             try {
                 const {data} = await db.post('/favorites/getFavorites', {_id});
-                getMovies();   
+                favoritesCard.push(data.data.idMovie);
+                
+                if (favoritesCard[0].includes(idMovie)) {
+                    db.post(`/favorites/deleteFavorites`, {idMovie, _id});
+                }
+
+                else {
+                    db.post(`/favorites/${_id}`, {idMovie});
+                }
 
             } catch (err) {
                 console.log(err);
@@ -68,7 +74,6 @@ const Main = ({favorites, setActiveLogin} : any) => {
             api.get(`/search/movie?api_key=${key}&query=${value}&language=pt-BR&page=1&region=BR`)
             .then(res => {
                 setMovies(res.data.results);
-
                 if (res.data.results.length == 0) {
                     setResult(true);
                 }
@@ -98,7 +103,7 @@ const Main = ({favorites, setActiveLogin} : any) => {
             verify = false;
         }
 
-    }, [ID_Client["ID_CLIENT"]]);
+    }, [ID_Client["ID_CLIENT"], getMovies ]);
 
     useEffect(() => {
         api.get(`/movie/top_rated?api_key=${key}&language=pt-BR&page=1&region=BR`)
@@ -134,7 +139,8 @@ const Main = ({favorites, setActiveLogin} : any) => {
                                     </Img>
                                     <Text>
                                         <h3>{movie.title}</h3>
-                                        <p className="vote">{movie.vote_average}</p>
+                                        <p className="vote">Média de votos: <span>{movie.vote_average}</span></p>
+                                        <p>{movie.id}</p>
                                         {
                                             movie.overview?
                                             <p>{movie.overview.slice(0, 137)}...</p>
@@ -154,7 +160,7 @@ const Main = ({favorites, setActiveLogin} : any) => {
                 <Bar className={favorites ? "active" : ""}>
                     <ContainerF>
                         {
-                            loading ?
+                            favoritesCard.length > 0 ?
                             favoritesCard.map((movie, index) => {
                                 return (
                                     <CardF key={index}>
@@ -168,13 +174,7 @@ const Main = ({favorites, setActiveLogin} : any) => {
                                 )
                             })
                             :
-                            <>
-                                <Skeleton style={{display: 'block', margin: '0 auto'}} height={300} width={200} />
-                                <Skeleton style={{display: 'block', margin: '0 auto'}} width={200} />
-                                <Skeleton style={{display: 'block', margin: '0 auto'}} height={300} width={200} />
-                                <Skeleton style={{display: 'block', margin: '0 auto'}} width={200} />
-                                <Skeleton style={{display: 'block', margin: '0 auto'}} height={300} width={200} />
-                            </>
+                            <p>Sem favoritos 😪!</p>
                         }
                     </ContainerF>
                 </Bar>

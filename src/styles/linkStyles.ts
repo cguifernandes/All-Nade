@@ -78,7 +78,7 @@ export const Img = styled.div`
 export const Divisor = styled.div `
     .custom-shape-divider-bottom-1675263634 {
         position: absolute;
-        bottom: 0px;
+        bottom: 0;
         left: 0;
         width: 100%;
         overflow: hidden;
@@ -97,13 +97,19 @@ export const Divisor = styled.div `
         fill: var(--dark-grey);
     }
 
+    @media (max-width: 640px) {
+        .custom-shape-divider-bottom-1675263634 {
+            position: fixed;
+        }
+    }
+
 `;
 
 export const Text = styled.div`
     p {
         color: var(--grey);
         text-align: center;
-        font-weight: 800;
+        font-weight: bold;
     }
 
     span {

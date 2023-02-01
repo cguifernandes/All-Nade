@@ -92,6 +92,11 @@ export const Text = styled.div`
     .vote {
         color: var(--grey);
         padding: 0;
+        font-weight: bold;
+    }
+    
+    span {
+        font-weight: normal;
     }
 `;
 

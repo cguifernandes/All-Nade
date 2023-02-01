@@ -16,17 +16,15 @@ const Link = () => {
 
     useEffect(() => {
        if (verify) {
-            getMovies();
-            verify = false;
+            (async () => {
+                const {data} = await api.get(`/movie/${id}?api_key=${key}&language=pt-BR&region=BR`)
+                movieCard.push(data)
+                setMovies(movieCard);
+                verify = false;
+            })();
         }
     }, []);
 
-    const getMovies = async () => {
-        const {data} = await api.get(`/movie/${id}?api_key=${key}&language=pt-BR&region=BR`)
-        movieCard.push(data)
-        setMovies(movieCard);
-    }
-    
     return (  
         <>
             <Head>
