@@ -8,6 +8,35 @@ export const Container = styled.div`
     margin-top: 160px;
     gap: 50px 0px;
 
+    a {
+        box-shadow: rgba(0, 0, 0, 1) 0px 10px 20px;
+        background-color: var(--dark);
+        width: 400px;
+        height: auto;
+        padding: 15px;
+        border-radius: 10px;
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+            img {
+                scale: 0.95;
+            }
+        }
+
+        @media (max-width: 800px) {
+            width: 85% !important;
+        }
+
+        @media (max-width: 650px) {
+            width: 85%;
+        }
+
+        @media (max-width: 1260px) {
+            width: 90%;
+        }
+    }
+
     @media (max-width: 1670px) {
         grid-template-columns: auto auto auto;
     }
@@ -18,35 +47,6 @@ export const Container = styled.div`
 
     @media (max-width: 800px) {
         grid-template-columns: auto;
-    }
-`;
-
-export const Card = styled.div`
-    box-shadow: rgba(0, 0, 0, 1) 0px 10px 20px;
-    background-color: var(--dark);
-    width: 400px;
-    height: auto;
-    padding: 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    position: relative;
-
-    &:hover {
-        img {
-            scale: 0.95;
-        }
-    }
-
-    @media (max-width: 800px) {
-        width: 85% !important;
-    }
-
-    @media (max-width: 650px) {
-        width: 85%;
-    }
-
-    @media (max-width: 1260px) {
-        width: 90%;
     }
 `;
 
@@ -63,7 +63,7 @@ export const Icon = styled.div`
         background-color: var(--dark-grey);
 
         .icon {
-        color: #FFD700;
+            color: #FFD700;
         }
     }
     

@@ -14,7 +14,6 @@ export const Container = styled.div`
         border-bottom-color: transparent;
         border-radius: 50%;
         position: absolute;
-        
         display: inline-block;
         box-sizing: border-box;
         animation: rotation 1s linear infinite;

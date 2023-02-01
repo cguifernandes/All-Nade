@@ -1,7 +1,8 @@
 import { api, db } from "@/services/api";
-import { Card, Container, Icon, Img, Text } from "@/styles/mainStyles";
+import { Container, Icon, Img, Text } from "@/styles/mainStyles";
 import { Input } from "@/styles/searchStyles";
 import { typeMovies } from "@/types/types";
+import Link from "next/link";
 import { parseCookies } from "nookies";
 import { Star } from "phosphor-react";
 import { useEffect, useState } from "react";
@@ -12,13 +13,12 @@ import { errorAlert } from "../Utils/alert";
 import { Bar, CardF, ContainerF, ImgF, Title } from "@/styles/favoritesStyles";
 import Skeleton from "react-loading-skeleton";
 
-
 const Main = ({favorites, setActiveLogin} : any) => {
     const [movies, setMovies] = useState<typeMovies[]>([]);
     const [verifyFavorite, setVerifyFavorite] = useState(false);
     const [result, setResult] = useState(false);
     const [favoritesCard, setFavoritesCard] = useState<typeMovies[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
     const ID_Client = parseCookies();
@@ -27,15 +27,15 @@ const Main = ({favorites, setActiveLogin} : any) => {
     var verify = true;
     
     const getMovies = async () => {
-        setLoading(false);
+        setLoading(true);
 
         try {
             const {data} = await db.post('/favorites/getFavorites', {_id});
             for (let i = 0; i < data.data.idMovie.length; i++) {
-                const Movies = await api.get(`/movie/${data.data.idMovie[i]}?api_key=${key}&language=pt-BR&region=BR`)
+                const Movies = await api.get(`/movie/${data.data.idMovie[i]}?api_key=${key}&language=pt-BR&region=BR`);
                 movieCard.push(Movies.data);
             }
-            setLoading(true);
+            setLoading(false);
             setFavoritesCard(movieCard);
         } catch(err) {
             console.log(err);
@@ -119,7 +119,7 @@ const Main = ({favorites, setActiveLogin} : any) => {
                 <Container>
                     {movies?.map((movie, index) => {
                         return (
-                            <Card key={movie.id}>
+                            <Link href={`${movie.id}`} key={movie.id}>
                                 <Icon onClick={() => handlerClickFavorite(index)}>
                                     <Star weight="fill" className="icon" />
                                 </Icon>
@@ -141,9 +141,8 @@ const Main = ({favorites, setActiveLogin} : any) => {
                                         :
                                         <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma descrição 😓.</p>
                                     }
-                                    <p>{movie.id}</p>
                                 </Text>
-                            </Card>
+                            </Link>
                         )
                     })}
                 </Container>
@@ -154,7 +153,7 @@ const Main = ({favorites, setActiveLogin} : any) => {
                 <Bar className={favorites ? "active" : ""}>
                     <ContainerF>
                         {
-                            loading ?
+                            !loading ?
                             favoritesCard.map((movie, index) => {
                                 return (
                                     <CardF key={index}>
