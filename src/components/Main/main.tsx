@@ -140,7 +140,6 @@ const Main = ({favorites, setActiveLogin} : any) => {
                                     <Text>
                                         <h3>{movie.title}</h3>
                                         <p className="vote">Média de votos: <span>{movie.vote_average}</span></p>
-                                        <p>{movie.id}</p>
                                         {
                                             movie.overview?
                                             <p>{movie.overview.slice(0, 137)}...</p>
