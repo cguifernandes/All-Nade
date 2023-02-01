@@ -22,8 +22,6 @@ export default function Home() {
     }, 2500);
   }, []);
 
-  destroyCookie(null, "ID_CLIENT");
-
   return (
     <>
       <SkeletonTheme baseColor='#474747' highlightColor='#585858'>
