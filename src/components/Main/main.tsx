@@ -29,17 +29,20 @@ const Main = ({favorites, setActiveLogin} : any) => {
     const getMovies = async () => {
         setLoading(true);
 
-        try {
-            const {data} = await db.post('/favorites/getFavorites', {_id});
-            for (let i = 0; i < data.data.idMovie.length; i++) {
-                const Movies = await api.get(`/movie/${data.data.idMovie[i]}?api_key=${key}&language=pt-BR&region=BR`);
-                movieCard.push(Movies.data);
+        if (movieCard.length > 0) {
+            try {
+                const {data} = await db.post('/favorites/getFavorites', {_id});
+                for (let i = 0; i < data.data.idMovie.length; i++) {
+                    const Movies = await api.get(`/movie/${data.data.idMovie[i]}?api_key=${key}&language=pt-BR&region=BR`);
+                    movieCard.push(Movies.data);
+                }
+                setLoading(false);
+                setFavoritesCard(movieCard);
+            } catch(err) {
+                console.log(err);
             }
-            setLoading(false);
-            setFavoritesCard(movieCard);
-        } catch(err) {
-            console.log(err);
         }
+        
     }
 
     const handlerClickFavorite = async (index : any) => {
@@ -119,11 +122,11 @@ const Main = ({favorites, setActiveLogin} : any) => {
                 <Container>
                     {movies?.map((movie, index) => {
                         return (
-                            <Card>
+                            <Card key={index}>
                                 <Icon onClick={() => handlerClickFavorite(index)}>
                                     <Star weight="fill" className="icon" />
                                 </Icon>
-                                <Link href={`${movie.id}`} key={movie.id}>
+                                <Link href={`${movie.id}`}>
                                     <Img>
                                         {
                                             movie.poster_path ? 
