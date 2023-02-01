@@ -7,6 +7,7 @@ import Main from '@/components/Main/main';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { Toaster } from 'react-hot-toast';
 import Loading from '@/components/Loading/loading';
+import { destroyCookie } from 'nookies';
 
 export default function Home() {
   const [activeCadastro, setActiveCadastro] = useState(false);
@@ -20,6 +21,8 @@ export default function Home() {
       setLoading(false);
     }, 2500);
   }, []);
+
+  destroyCookie(null, "ID_CLIENT");
 
   return (
     <>

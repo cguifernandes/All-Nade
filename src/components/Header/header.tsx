@@ -34,7 +34,7 @@ const Header = ({setActiveCadastro, setFavorites, favorites} : any) => {
 
     const handlerClick = () => {
         router.reload();
-        destroyCookie(null, "ID_CLIENT")
+        destroyCookie(null, "ID_CLIENT");
     }
 
     return (  
