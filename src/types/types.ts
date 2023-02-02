@@ -25,3 +25,8 @@ export type typeMovies = {
     video?: boolean;
     vote_average: number;
 }
+
+export type typeGenres = {
+    id: number;
+    name: string;
+}

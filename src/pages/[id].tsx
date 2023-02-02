@@ -1,7 +1,7 @@
 import { api } from "@/services/api";
 import Head from 'next/head';
-import { Card, Container, Img, Text, Header, Divisor } from "@/styles/linkStyles";
-import { typeMovies } from "@/types/types";
+import { Card, Container, Img, Text, Header, Divisor, Genero } from "@/styles/linkStyles";
+import { typeGenres, typeMovies } from "@/types/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Back from "@/components/Utils/back";
@@ -9,9 +9,11 @@ import Back from "@/components/Utils/back";
 const Link = () => {
     const { id } = useRouter().query;
     const [movies, setMovies] = useState<typeMovies[]>([]);
+    const [genres, setGenres] = useState<typeGenres[]>([]);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
     var movieCard : any = [];
+    var genresCard : any = [];
     var verify = true;
 
     useEffect(() => {
@@ -20,10 +22,15 @@ const Link = () => {
                 const {data} = await api.get(`/movie/${id}?api_key=${key}&language=pt-BR&region=BR`)
                 movieCard.push(data)
                 setMovies(movieCard);
-                verify = false;
+                for (let i = 0; i < data.genres.length; i++) {
+                    genresCard.push(data.genres[i])
+                    setGenres(genresCard);
+                }
             })();
+            verify = false;
         }
     }, []);
+
 
     return (  
         <>
@@ -43,14 +50,26 @@ const Link = () => {
                         return (
                             <Card key={index}>
                                 <Img>
-                                    <h2>{movie.title}</h2>
                                     <img src={urlImg + movie.poster_path} />
                                 </Img>
                                 <Text>
+                                    <h2>{movie.title}</h2>
                                     <p className="overview">{movie.overview}</p>
                                     <p>Data de lançamento: <span>{movie.release_date}</span></p>
                                     <p>Popularidade: <span>{movie.popularity}</span></p>
+                                    <Genero>
+                                        {
+                                            genres.map((genre) => {
+                                                return (
+                                                    <div className="hover">
+                                                        <p>{genre.name}</p>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </Genero>
                                 </Text>
+                                
                             </Card>
                         )
                     })

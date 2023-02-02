@@ -39,7 +39,9 @@ export const Header = styled.div`
 
 export const Card = styled.div`
     padding: 15px;
-    width: 800px;
+    width: 1000px;
+    display: flex;
+    align-items: center;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 1) 0px 10px 20px;
     background-color: var(--dark);
@@ -49,35 +51,64 @@ export const Card = styled.div`
     transform: translate(-50%, 0);
     left: 50%;
 
-    @media (max-width: 850px) {
-        width: 95%;
-    }
-`;
-
-export const Img = styled.div`
     h2 {
         color: var(--grey);
         text-align: center;
         padding-bottom: 10px;
     }
 
+    @media (max-width: 1030px) {
+        width: 95%;
+    }
+
+    @media (max-width: 770px) {
+        flex-direction: column;
+    }
+
+    @media (max-width: 770px) {
+        h2 {
+            padding-bottom: 0px;
+            padding: 10px 0px;
+        }
+    }
+
+`;
+
+export const Genero = styled.div `
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 80px;
+    margin-top: 10px;
+
+    .hover {
+        padding: 10px;
+        border-radius: 10px;
+        transition: 0.4s ease;
+    }
+
+    .hover:hover {
+        background-color: var(--dark-grey);
+    }
+`;
+
+export const Img = styled.div`
     img {
         display: block;
         margin: 0 auto;
         border-radius: 10px;
-        margin-bottom: 20px;
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 770px) {
         img {
-            width: 250px;
+            width: 300px;
         }
     }
+
 `;
 
 export const Divisor = styled.div `
     .custom-shape-divider-bottom-1675263634 {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -122,12 +153,12 @@ export const Text = styled.div`
         word-wrap: break-word;
         color: var(--grey);
         text-align: center;
-        padding: 0 10px;
+        padding: 0 20px;
         padding-bottom: 10px;
     }
 
-    @media (max-width: 550px) {
-        p, span, .overview {
+    @media (max-width: 840px) {
+        span, p, .overview {
             font-size: 14px;
         }
     }
