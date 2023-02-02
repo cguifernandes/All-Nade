@@ -19,6 +19,7 @@ export const Input = styled.div`
         width: 100%;
         font-size: 14px;
         font-family: 'Poppins', sans-serif;
+        border-radius: 5px;
     }
 
     .icon {

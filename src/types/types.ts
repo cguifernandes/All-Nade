@@ -11,7 +11,7 @@ export type typeClients = {
 
 export type typeMovies = {
     adult?: boolean;
-    backdrop_path?: string;
+    backdrop_path: string;
     genre_ids?: number[];
     poster_path: string;
     overview: string;

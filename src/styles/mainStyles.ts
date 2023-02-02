@@ -76,11 +76,7 @@ export const Icon = styled.div`
 export const Text = styled.div`
     padding-bottom: 10px;
 
-    h3 {
-        color: var(--grey);
-        text-align: center;
-        padding: 10px 0px;
-    }
+    
 
     p {
         word-wrap: break-word;
@@ -103,10 +99,15 @@ export const Text = styled.div`
 export const Img = styled.div`
     padding-top: 25px;
 
+    h3{
+        color: var(--grey);
+        text-align: center;
+    }
+
     img {
         display: block;
         transition: 0.4s ease;
-        margin: 10px auto;
+        margin: 15px auto;
         border-radius: 10px;
         transition: 0.4s ease;
         width: 300px;

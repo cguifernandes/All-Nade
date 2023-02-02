@@ -44,7 +44,7 @@ const Link = () => {
                             <Card key={index}>
                                 <Img>
                                     <h2>{movie.title}</h2>
-                                    <img src={urlImg + movie.poster_path}></img>
+                                    <img src={urlImg + movie.poster_path} />
                                 </Img>
                                 <Text>
                                     <p className="overview">{movie.overview}</p>

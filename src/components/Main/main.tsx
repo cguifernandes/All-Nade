@@ -11,21 +11,22 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { errorAlert } from "../Utils/alert";
 import { Bar, CardF, ContainerF, ImgF, Title } from "@/styles/favoritesStyles";
-import Skeleton from "react-loading-skeleton";
 
 const Main = ({favorites, setActiveLogin} : any) => {
     const [movies, setMovies] = useState<typeMovies[]>([]);
     const [verifyFavorite, setVerifyFavorite] = useState(false);
     const [result, setResult] = useState(false);
+    
+    const [v, setV] = useState(false);
     const [favoritesCard, setFavoritesCard] = useState<typeMovies[]>([]);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
     const ID_Client = parseCookies();
     const _id = ID_Client["ID_CLIENT"];
-    var movieCard : any = [];
     var verify = true;
     
     const getMovies = async () => {
+        var movieCard : any = [];
 
         try {
             const {data} = await db.post('/favorites/getFavorites', {_id});
@@ -39,9 +40,11 @@ const Main = ({favorites, setActiveLogin} : any) => {
         }
     }
 
+
     const handlerClickFavorite = async (index : any) => {
         const idMovie = movies[index].id;
         var favoritesCard : any = [];
+
 
         if (await verifyFavorite) {
             try {
@@ -102,8 +105,11 @@ const Main = ({favorites, setActiveLogin} : any) => {
             getMovies();
             verify = false;
         }
+    }, [ID_Client["ID_CLIENT"], getMovies]);
 
-    }, [ID_Client["ID_CLIENT"], getMovies ]);
+    useEffect(() => {
+        
+    }, [getMovies])
 
     useEffect(() => {
         api.get(`/movie/top_rated?api_key=${key}&language=pt-BR&page=1&region=BR`)
@@ -122,35 +128,37 @@ const Main = ({favorites, setActiveLogin} : any) => {
                 </div>
             </Input>
                 <Container>
-                    {movies?.map((movie, index) => {
-                        return (
-                            <Card key={index}>
-                                <Icon onClick={() => handlerClickFavorite(index)}>
-                                    <Star weight="fill" className="icon" />
-                                </Icon>
-                                <Link href={`${movie.id}`}>
-                                    <Img>
-                                        {
-                                            movie.poster_path ? 
-                                            <img src={urlImg + movie.poster_path}/>
-                                            :
-                                            <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma imagem 😓.</p>
-                                        }
-                                    </Img>
-                                    <Text>
-                                        <h3>{movie.title}</h3>
-                                        <p className="vote">Média de votos: <span>{movie.vote_average}</span></p>
-                                        {
-                                            movie.overview?
-                                            <p>{movie.overview.slice(0, 137)}...</p>
-                                            :
-                                            <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma descrição 😓.</p>
-                                        }
-                                    </Text>
-                                </Link>
-                            </Card>
-                        )
-                    })}
+                    {
+                        movies?.map((movie, index) => {
+                            return (
+                                <Card key={index}>
+                                    <Icon onClick={() => handlerClickFavorite(index)}>
+                                        <Star weight={v ? 'fill' : 'regular'} className="icon" />
+                                    </Icon>
+                                    <Link href={`${movie.id}`}>
+                                        <Img>
+                                            <h3>{movie.title}</h3>
+                                            {
+                                                movie.poster_path ? 
+                                                <img src={urlImg + movie.poster_path}/>
+                                                :
+                                                <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma imagem 😓.</p>
+                                            }
+                                        </Img>
+                                        <Text>
+                                            <p className="vote">Média de votos: <span>{movie.vote_average}</span></p>
+                                            {
+                                                movie.overview?
+                                                <p>{movie.overview.slice(0, 137)}...</p>
+                                                :
+                                                <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma descrição 😓.</p>
+                                            }
+                                        </Text>
+                                    </Link>
+                                </Card>
+                            )   
+                        })
+                    }
                 </Container>
                 {
                     result &&
