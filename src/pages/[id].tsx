@@ -1,38 +1,50 @@
 import { api } from "@/services/api";
 import Head from 'next/head';
-import { Card, Container, Img, Text, Header, Divisor, Genero } from "@/styles/linkStyles";
-import { typeGenres, typeMovies } from "@/types/types";
+import { Card, Container, Img, Text, Header, Input, DropDown, DropDowns } from "@/styles/linkStyles";
+import { typeCompanies, typeGenres, typeMovies } from "@/types/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Back from "@/components/Utils/back";
+import { CaretLeft } from "phosphor-react";
 
 const Link = () => {
     const { id } = useRouter().query;
     const [movies, setMovies] = useState<typeMovies[]>([]);
     const [genres, setGenres] = useState<typeGenres[]>([]);
+    const [companies, setCompanies] = useState<typeCompanies[]>([]);
+    const [activeGenres, setActiveGenres] = useState(false);
+    const [activeCompanies, setActiveCompanies] = useState(false);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
     var movieCard : any = [];
     var genresCard : any = [];
+    var production_companiesCard : any = [];
     var verify = true;
 
     useEffect(() => {
        if (verify) {
             (async () => {
                 const {data} = await api.get(`/movie/${id}?api_key=${key}&language=pt-BR&region=BR`)
-                movieCard.push(data)
-                console.log(data)
+                movieCard.push(data);
                 setMovies(movieCard);
                 for (let i = 0; i < data.genres.length; i++) {
                     genresCard.push(data.genres[i])
                     setGenres(genresCard);
+                }
+                for (let i = 0; i < data.production_companies.length; i++) {
+                    production_companiesCard.push(data.production_companies[i])
+                    setCompanies(production_companiesCard);
                 }
             })();
             verify = false;
         }
     }, []);
 
-
+    const clickOut = () => {
+        setActiveGenres(false);
+        setActiveCompanies(false);
+    }
+    
     return (  
         <>
             <Head>
@@ -53,39 +65,65 @@ const Link = () => {
                                 <Img>
                                     <img src={urlImg + movie.poster_path} />
                                 </Img>
-                                <Text>
-                                    <h2>{movie.title}</h2>
-                                    <p className="tagline">{movie.tagline}</p>
-                                    <p className="overview">{movie.overview}</p>
-                                    <p>Data de lançamento: <span>{movie.release_date}</span></p>
-                                    <p>Popularidade: <span>{movie.popularity}</span></p>
-                                    <Genero>
-                                        {
-                                            genres.map((genre) => {
-                                                return (
-                                                    <div key={genre.id} className="hover">
-                                                        <p>{genre.name}</p>
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                    </Genero>
-                                </Text>
-                                
+                                <div style={{margin: '10px 0px'}}>
+                                    <Text>
+                                        <h2>{movie.title}</h2>
+                                        <p className="tagline">{movie.tagline}</p>
+                                        <p className="overview">{movie.overview}</p>
+                                        
+                                    </Text>
+                                    <div>
+                                        <DropDowns>
+                                            <Input onClick={() => setActiveGenres(!activeGenres)}>
+                                                <p>Gêneros</p>
+                                                <CaretLeft className="icon" />
+                                                {
+                                                    activeGenres && 
+                                                    <DropDown>
+                                                        {
+                                                            genres.map((genre) => {
+                                                                return (
+                                                                    <div key={genre.id} className="hover">
+                                                                        <p>{genre.name}</p>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </DropDown>
+                                                }
+                                            </Input>
+                                            <Input onClick={() => setActiveCompanies(!activeCompanies)}>
+                                                <p>Produção</p>
+                                                <CaretLeft className="icon" />
+                                                {
+                                                    activeCompanies && 
+                                                    <DropDown>
+                                                        {
+                                                            companies.map((companie) => {
+                                                                return (
+                                                                    <div key={companie.id} className="hover">
+                                                                        <p>{companie.name}</p>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </DropDown>
+                                                }
+                                            </Input>
+                                        </DropDowns>
+                                        <Text style={{width: '100%', marginTop: '10px'}}>
+                                            <p>Data de lançamento: <span>{movie.release_date}</span></p>
+                                            <p>Popularidade: <span>{movie.popularity}</span></p>
+                                            <p>Média de votos: <span>{movie.vote_average}</span></p>
+                                            <p>Total de votos: <span>{movie.vote_count}</span></p>
+                                        </Text>
+                                    </div>
+                                </div>
                             </Card>
                         )
                     })
                 }
             </Container>
-            <Divisor>
-                <div className="custom-shape-divider-bottom-1675263634">
-                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" className="shape-fill"></path>
-                        <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" className="shape-fill"></path>
-                        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" className="shape-fill"></path>
-                    </svg>
-                </div>
-            </Divisor>
         </>
     );
 }

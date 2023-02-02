@@ -7,6 +7,14 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0px 40px;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+
+    @media (max-width: 550px) {
+        flex-direction: column;
+        height: 120px;
+    }
 `;
 
 export const Text = styled.div`
@@ -20,6 +28,10 @@ export const Text = styled.div`
 
     a:hover {
         color: var(--grey);
+    }
+
+    @media (max-width: 550px) {
+        padding-bottom: 20px;
     }
 `;
 
@@ -54,4 +66,9 @@ export const Sociais = styled.div`
     .hover:hover {
         background-color: var(--dark-grey);
     }
+
+    @media (max-width: 550px) {
+        padding-top: 20px;
+    }
+   
 `;

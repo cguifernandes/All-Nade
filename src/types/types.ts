@@ -31,3 +31,10 @@ export type typeGenres = {
     id: number;
     name: string;
 }
+
+export type typeCompanies = {
+    id: number;
+    name: string;
+    logo_path: string;
+    origin_country: string;
+}
