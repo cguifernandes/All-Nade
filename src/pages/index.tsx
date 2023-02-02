@@ -48,9 +48,9 @@ export default function Home() {
                 <Login setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
             }
             <Main setActiveLogin={setActiveLogin} favorites={favorites}/>
+            <Footer />
           </>
         }
-        <Footer />
       </SkeletonTheme>
     </>
   )
