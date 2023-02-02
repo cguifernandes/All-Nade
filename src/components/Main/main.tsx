@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { errorAlert } from "../Utils/alert";
-import { Bar, CardF, ContainerF, ImgF, Title } from "@/styles/favoritesStyles";
+import { Bar, CardF, ContainerF, ImgF, Title } from "../../styles/favoritesStyles";
 
 const Main = ({favorites, setActiveLogin} : any) => {
     const [movies, setMovies] = useState<typeMovies[]>([]);
@@ -171,12 +171,14 @@ const Main = ({favorites, setActiveLogin} : any) => {
                             favoritesCard.map((movie, index) => {
                                 return (
                                     <CardF key={index}>
-                                        <ImgF>
-                                            <img src={urlImg + movie.poster_path}></img>
-                                        </ImgF>
-                                        <Title>
-                                            <h3>{movie.title}</h3>
-                                        </Title>
+                                        <Link href={`${movie.id}`} >
+                                            <ImgF>
+                                                <img src={urlImg + movie.poster_path}></img>
+                                            </ImgF>
+                                            <Title>
+                                                <h3>{movie.title}</h3>
+                                            </Title>
+                                        </Link>
                                     </CardF>
                                 )
                             })
