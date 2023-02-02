@@ -21,6 +21,7 @@ const Link = () => {
             (async () => {
                 const {data} = await api.get(`/movie/${id}?api_key=${key}&language=pt-BR&region=BR`)
                 movieCard.push(data)
+                console.log(data)
                 setMovies(movieCard);
                 for (let i = 0; i < data.genres.length; i++) {
                     genresCard.push(data.genres[i])
@@ -54,6 +55,7 @@ const Link = () => {
                                 </Img>
                                 <Text>
                                     <h2>{movie.title}</h2>
+                                    <p className="tagline">{movie.tagline}</p>
                                     <p className="overview">{movie.overview}</p>
                                     <p>Data de lançamento: <span>{movie.release_date}</span></p>
                                     <p>Popularidade: <span>{movie.popularity}</span></p>
@@ -61,7 +63,7 @@ const Link = () => {
                                         {
                                             genres.map((genre) => {
                                                 return (
-                                                    <div className="hover">
+                                                    <div key={genre.id} className="hover">
                                                         <p>{genre.name}</p>
                                                     </div>
                                                 )
