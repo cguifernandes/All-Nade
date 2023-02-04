@@ -65,7 +65,7 @@ const Link = () => {
                                 <Img>
                                     <img src={urlImg + movie.poster_path} />
                                 </Img>
-                                <div style={{margin: '10px 0px', display: 'block'}}>
+                                <div style={{margin: '10px auto', display: 'block'}}>
                                     <Text>
                                         <h2>{movie.title}</h2>
                                         <p className="tagline">{movie.tagline}</p>
