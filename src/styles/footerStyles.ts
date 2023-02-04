@@ -7,8 +7,6 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0px 40px;
-    position: relative;
-    bottom: 0px;
     width: 100%;
 
     @media (max-width: 550px) {
@@ -44,10 +42,6 @@ export const Sociais = styled.div`
         height: 28px;
         cursor: pointer;
         transition: 0.4s ease;
-    }
-
-    .icon:hover {
-        color: var(--grey);
     }
 
     a {

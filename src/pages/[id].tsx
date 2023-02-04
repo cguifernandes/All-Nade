@@ -75,11 +75,16 @@ const Link = () => {
                                         <DropDowns>
                                             <Input onClick={() => setActiveGenres(!activeGenres)}>
                                                 <p>Gêneros</p>
-                                                <CaretLeft className="icon" />
+                                                <CaretLeft style={activeGenres ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
                                                 {
                                                     activeGenres && 
                                                     <DropDown>
                                                         {
+                                                            genres.length == 0 ?
+                                                            <div className="hover">
+                                                                <p>Este filme não tem gêneros</p> 
+                                                            </div>
+                                                            :
                                                             genres.map((genre) => {
                                                                 return (
                                                                     <div key={genre.id} className="hover">
@@ -93,11 +98,16 @@ const Link = () => {
                                             </Input>
                                             <Input onClick={() => setActiveCompanies(!activeCompanies)}>
                                                 <p>Produção</p>
-                                                <CaretLeft className="icon" />
+                                                <CaretLeft style={activeCompanies ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
                                                 {
                                                     activeCompanies && 
                                                     <DropDown>
                                                         {
+                                                            companies.length == 0 ?
+                                                            <div className="hover">
+                                                                <p>Este filme não tem uma empresa de produção</p>
+                                                            </div>
+                                                            :
                                                             companies.map((companie) => {
                                                                 return (
                                                                     <div key={companie.id} className="hover">

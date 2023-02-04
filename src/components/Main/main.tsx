@@ -44,21 +44,21 @@ const Main = ({favorites, setActiveLogin} : any) => {
         const idMovie = movies[index].id;
         var favoritesCard : any = [];
 
-
-        if (await verifyFavorite) {
+        if (verifyFavorite) {
             const {data} = await db.post('/favorites/getFavorites', {_id});
             favoritesCard.push(data.data.idMovie);
             
             if (favoritesCard[0].includes(idMovie)) {
-                db.post(`/favorites/deleteFavorites`, {idMovie, _id});
+                await db.post(`/favorites/deleteFavorites`, {idMovie, _id});
             }
 
             else {
-                db.post(`/favorites/${_id}`, {idMovie});
+                await db.post(`/favorites/${_id}`, {idMovie});
             }
         }
 
         else {
+            console.log("oi")
             errorAlert('Por favor, faça login para adicionar um favorito.');
             setActiveLogin(true);
         }
@@ -100,10 +100,6 @@ const Main = ({favorites, setActiveLogin} : any) => {
             verify = false;
         }
     }, [ID_Client["ID_CLIENT"], getMovies]);
-
-    useEffect(() => {
-        
-    }, [getMovies])
 
     useEffect(() => {
         api.get(`/movie/top_rated?api_key=${key}&language=pt-BR&page=1&region=BR`)

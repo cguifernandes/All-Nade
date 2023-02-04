@@ -104,7 +104,6 @@ export const DropDowns = styled.div `
     display: flex;
     gap: 0px 30px;
 
-
     @media (max-width: 920px) {
         p {
             font-size: 14px;
