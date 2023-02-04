@@ -54,11 +54,9 @@ export const Card = styled.div`
 
     @media (max-width: 770px) {
         flex-direction: column;
-    }
-
-    @media (max-width: 770px) {
         top: 130px;
         padding: 10px;
+        width: 100%;
     }
 `;
 

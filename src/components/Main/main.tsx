@@ -11,6 +11,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { errorAlert } from "../Utils/alert";
 import { Bar, CardF, ContainerF, ImgF, Title } from "../../styles/favoritesStyles";
+import Loading from "../Loading/loading";
 
 const Main = ({favorites, setActiveLogin} : any) => {
     const [movies, setMovies] = useState<typeMovies[]>([]);
@@ -127,42 +128,49 @@ const Main = ({favorites, setActiveLogin} : any) => {
                     <FontAwesomeIcon icon={faSearch} />
                 </div>
             </Input>
-                <Container>
-                    {
-                        movies?.map((movie, index) => {
-                            return (
-                                <Card key={index}>
-                                    <Icon onClick={() => handlerClickFavorite(index)}>
-                                        <Star weight={v ? 'fill' : 'regular'} className="icon" />
-                                    </Icon>
-                                    <Link href={`${movie.id}`}>
-                                        <Img>
-                                            <h3>{movie.title}</h3>
-                                            {
-                                                movie.poster_path ? 
-                                                <img src={urlImg + movie.poster_path}/>
-                                                :
-                                                <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma imagem 😓.</p>
-                                            }
-                                        </Img>
-                                        <Text>
-                                            <p className="vote">Média de votos: <span>{movie.vote_average}</span></p>
-                                            {
-                                                movie.overview?
-                                                <p>{movie.overview.slice(0, 137)}...</p>
-                                                :
-                                                <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma descrição 😓.</p>
-                                            }
-                                        </Text>
-                                    </Link>
-                                </Card>
-                            )   
-                        })
-                    }
-                </Container>
+                {
+                    movies.length == 0 && !result ?
+                    <Loading />
+                    :
+                    <Container>
+                        {
+                            movies?.map((movie, index) => {
+                                return (
+                                    <Card key={index}>
+                                        <Icon onClick={() => handlerClickFavorite(index)}>
+                                            <Star weight={v ? 'fill' : 'regular'} className="icon" />
+                                        </Icon>
+                                        <Link href={`${movie.id}`}>
+                                            <Img>
+                                                <h3>{movie.title}</h3>
+                                                {
+                                                    movie.poster_path ? 
+                                                    <img src={urlImg + movie.poster_path}/>
+                                                    :
+                                                    <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma imagem 😓.</p>
+                                                }
+                                            </Img>
+                                            <Text>
+                                                <p className="vote">Média de votos: <span>{movie.vote_average}</span></p>
+                                                {
+                                                    movie.overview?
+                                                    <p>{movie.overview.slice(0, 137)}...</p>
+                                                    :
+                                                    <p style={{color: '#ebebeb', textAlign: 'center'}}>Este filme não tem uma descrição 😓.</p>
+                                                }
+                                            </Text>
+                                        </Link>
+                                    </Card>
+                                )   
+                            })
+                        }
+                    </Container>
+                }
                 {
                     result &&
-                    <p style={{color: '#090909', textAlign: 'center', fontSize: '19px'}}>Nenhum resultado.</p>
+                    <div style={{height: '62.3vh'}}>
+                        <p style={{color: '#090909', textAlign: 'center', fontSize: '19px'}}>Desculpe, nenhum filme encontrado 😓.</p>
+                    </div>
                 }
                 <Bar className={favorites ? "active" : ""}>
                     <ContainerF>
