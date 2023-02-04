@@ -17,8 +17,6 @@ const Main = ({favorites, setActiveLogin} : any) => {
     const [movies, setMovies] = useState<typeMovies[]>([]);
     const [verifyFavorite, setVerifyFavorite] = useState(false);
     const [result, setResult] = useState(false);
-    
-    const [v, setV] = useState(false);
     const [favoritesCard, setFavoritesCard] = useState<typeMovies[]>([]);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
@@ -48,20 +46,15 @@ const Main = ({favorites, setActiveLogin} : any) => {
 
 
         if (await verifyFavorite) {
-            try {
-                const {data} = await db.post('/favorites/getFavorites', {_id});
-                favoritesCard.push(data.data.idMovie);
-                
-                if (favoritesCard[0].includes(idMovie)) {
-                    db.post(`/favorites/deleteFavorites`, {idMovie, _id});
-                }
+            const {data} = await db.post('/favorites/getFavorites', {_id});
+            favoritesCard.push(data.data.idMovie);
+            
+            if (favoritesCard[0].includes(idMovie)) {
+                db.post(`/favorites/deleteFavorites`, {idMovie, _id});
+            }
 
-                else {
-                    db.post(`/favorites/${_id}`, {idMovie});
-                }
-
-            } catch (err) {
-                console.log(err);
+            else {
+                db.post(`/favorites/${_id}`, {idMovie});
             }
         }
 
@@ -138,7 +131,7 @@ const Main = ({favorites, setActiveLogin} : any) => {
                                 return (
                                     <Card key={index}>
                                         <Icon onClick={() => handlerClickFavorite(index)}>
-                                            <Star weight={v ? 'fill' : 'regular'} className="icon" />
+                                            <Star weight="fill" className="icon" />
                                         </Icon>
                                         <Link href={`${movie.id}`}>
                                             <Img>

@@ -70,7 +70,6 @@ const Link = () => {
                                         <h2>{movie.title}</h2>
                                         <p className="tagline">{movie.tagline}</p>
                                         <p className="overview">{movie.overview}</p>
-                                        
                                     </Text>
                                     <div>
                                         <DropDowns>
