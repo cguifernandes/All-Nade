@@ -27,21 +27,20 @@ const Main = ({favorites, setActiveLogin} : any) => {
     const getMovies = async () => {
         var movieCard : any = [];
 
-        try {
-            const {data} = await db.post('/favorites/getFavorites', {_id});
-            if (data.data != null) {
+        if (favoritesCard != null) {
+            try {
+                const {data} = await db.post('/favorites/getFavorites', {_id});
                 for (let i = 0; i < data.data.idMovie.length; i++) {
                     const Movies = await api.get(`/movie/${data.data.idMovie[i]}?api_key=${key}&language=pt-BR&region=BR`);
                     movieCard.push(Movies.data);
                 }
                 setFavoritesCard(movieCard);
+                
+            } catch(err) {
+                
             }
-            
-        } catch(err) {
-            console.log(err);
         }
     }
-
 
     const handlerClickFavorite = async (index : any) => {
         const idMovie = movies[index].id;

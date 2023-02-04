@@ -24,7 +24,6 @@ export default function Home() {
 
   return (
     <>
-      <SkeletonTheme baseColor='#474747' highlightColor='#585858'>
         <Head>
           <title>All Nade</title>
           <link rel="icon" href="/favicon.ico" />
@@ -36,22 +35,21 @@ export default function Home() {
           loading ?
           <Loading />
           :
-          <>
-            <Header favorites={favorites} setFavorites={setFavorites} setActiveCadastro={setActiveCadastro}/>
-            <div><Toaster/></div>
-            {
-              activeCadastro &&
+            <SkeletonTheme baseColor='#474747' highlightColor='#585858'>
+              <Header favorites={favorites} setFavorites={setFavorites} setActiveCadastro={setActiveCadastro}/>
+              <div><Toaster/></div>
+              {
+                activeCadastro &&
                 <Cadastro setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
-            }
-            {
-              activeLogin &&
+              }
+              {
+                activeLogin &&
                 <Login setActiveLogin={setActiveLogin} setActiveCadastro={setActiveCadastro} />        
-            }
-            <Main setActiveLogin={setActiveLogin} favorites={favorites}/>
-            <Footer />
-          </>
+              }
+              <Main setActiveLogin={setActiveLogin} favorites={favorites}/>
+              <Footer />
+            </SkeletonTheme>
         }
-      </SkeletonTheme>
     </>
   )
 }
