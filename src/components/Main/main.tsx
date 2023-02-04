@@ -58,7 +58,6 @@ const Main = ({favorites, setActiveLogin} : any) => {
         }
 
         else {
-            console.log("oi")
             errorAlert('Por favor, faça login para adicionar um favorito.');
             setActiveLogin(true);
         }
