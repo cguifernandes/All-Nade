@@ -29,11 +29,14 @@ const Main = ({favorites, setActiveLogin} : any) => {
 
         try {
             const {data} = await db.post('/favorites/getFavorites', {_id});
-            for (let i = 0; i < data.data.idMovie.length; i++) {
-                const Movies = await api.get(`/movie/${data.data.idMovie[i]}?api_key=${key}&language=pt-BR&region=BR`);
-                movieCard.push(Movies.data);
+            if (data.data != null) {
+                for (let i = 0; i < data.data.idMovie.length; i++) {
+                    const Movies = await api.get(`/movie/${data.data.idMovie[i]}?api_key=${key}&language=pt-BR&region=BR`);
+                    movieCard.push(Movies.data);
+                }
+                setFavoritesCard(movieCard);
             }
-            setFavoritesCard(movieCard);
+            
         } catch(err) {
             console.log(err);
         }
@@ -101,12 +104,13 @@ const Main = ({favorites, setActiveLogin} : any) => {
     }, [ID_Client["ID_CLIENT"], getMovies]);
 
     useEffect(() => {
-        api.get(`/movie/top_rated?api_key=${key}&language=pt-BR&page=1&region=BR`)
-        .then(res => {
-            setMovies(res.data.results);
+
+        api.get(`/movie/top_rated?api_key=${key}&language=pt-BR&page=1&region=BR`).then(({data}) => {
+            setMovies(data.results)
+        }).catch(error => {
+            console.log(error);
         })
     }, []);
-
 
     return (
         <>
