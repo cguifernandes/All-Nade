@@ -1,16 +1,18 @@
 import { api } from "@/services/api";
 import Head from 'next/head';
-import { Card, Container, Img, Text, Header, Input, DropDown, DropDowns } from "@/styles/linkStyles";
+import { Card, Img, Text, Header, Input, DropDown, DropDowns, Sliders, Container, Cards } from "@/styles/linkStyles";
 import { typeCompanies, typeGenres, typeMovies } from "@/types/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Back from "@/components/Utils/back";
 import { CaretLeft } from "phosphor-react";
+import SimilarMovie from "@/components/Utils/carrousel";
 
 const Link = () => {
     const { id } = useRouter().query;
     const [movies, setMovies] = useState<typeMovies[]>([]);
     const [genres, setGenres] = useState<typeGenres[]>([]);
+    const [similarMovies, setSimilarMovies] = useState<typeMovies[]>([]);
     const [companies, setCompanies] = useState<typeCompanies[]>([]);
     const [activeGenres, setActiveGenres] = useState(false);
     const [activeCompanies, setActiveCompanies] = useState(false);
@@ -36,15 +38,16 @@ const Link = () => {
                     setCompanies(production_companiesCard);
                 }
             })();
+
+            (async () => {
+                const {data} = await api.get(`/movie/${id}/recommendations?api_key=${key}&language=pt-BR`)
+                setSimilarMovies(data.results)
+            })();
+            
             verify = false;
         }
-    }, []);
+    }, [movies]);
 
-    const clickOut = () => {
-        setActiveGenres(false);
-        setActiveCompanies(false);
-    }
-    
     return (  
         <>
             <Head>
@@ -56,83 +59,91 @@ const Link = () => {
             </Head>
             <Header>
                 <Back />
+                <h2 style={{letterSpacing: '4px'}}>ALL NADE</h2>
             </Header>
-            <Container>
-                {
-                    movies.map((movie, index) => {
-                        return (
-                            <Card key={index}>
-                                <Img>
-                                    <img src={urlImg + movie.poster_path} />
-                                </Img>
-                                <div style={{margin: '10px auto', display: 'block'}}>
-                                    <Text>
-                                        <h2>{movie.title}</h2>
-                                        <p className="tagline">{movie.tagline}</p>
-                                        <p className="overview">{movie.overview}</p>
-                                    </Text>
-                                    <div>
-                                        <DropDowns>
-                                            <Input onClick={() => setActiveGenres(!activeGenres)}>
-                                                <p>Gêneros</p>
-                                                <CaretLeft style={activeGenres ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
-                                                {
-                                                    activeGenres && 
-                                                    <DropDown>
-                                                        {
-                                                            genres.length == 0 ?
-                                                            <div className="hover">
-                                                                <p>Este filme não tem gêneros</p> 
-                                                            </div>
-                                                            :
-                                                            genres.map((genre) => {
-                                                                return (
-                                                                    <div key={genre.id} className="hover">
-                                                                        <p>{genre.name}</p>
-                                                                    </div>
-                                                                )
-                                                            })
-                                                        }
-                                                    </DropDown>
-                                                }
-                                            </Input>
-                                            <Input onClick={() => setActiveCompanies(!activeCompanies)}>
-                                                <p>Produção</p>
-                                                <CaretLeft style={activeCompanies ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
-                                                {
-                                                    activeCompanies && 
-                                                    <DropDown>
-                                                        {
-                                                            companies.length == 0 ?
-                                                            <div className="hover">
-                                                                <p>Este filme não tem uma empresa de produção</p>
-                                                            </div>
-                                                            :
-                                                            companies.map((companie) => {
-                                                                return (
-                                                                    <div key={companie.id} className="hover">
-                                                                        <p>{companie.name}</p>
-                                                                    </div>
-                                                                )
-                                                            })
-                                                        }
-                                                    </DropDown>
-                                                }
-                                            </Input>
-                                        </DropDowns>
-                                        <Text style={{width: '100%', marginTop: '10px'}}>
-                                            <p>Data de lançamento: <span>{movie.release_date}</span></p>
-                                            <p>Popularidade: <span>{movie.popularity}</span></p>
-                                            <p>Média de votos: <span>{movie.vote_average}</span></p>
-                                            <p>Total de votos: <span>{movie.vote_count}</span></p>
+                <Container>
+                    {
+                        movies.map((movie, index) => {
+                            return (
+                                <Card key={index}>
+                                    <Img>
+                                        <img src={urlImg + movie.poster_path} />
+                                    </Img>
+                                    <div style={{margin: '10px auto', display: 'block'}}>
+                                        <Text>
+                                            <h2>{movie.title}</h2>
+                                            <p className="tagline">{movie.tagline}</p>
+                                            <p className="overview">{movie.overview}</p>
                                         </Text>
+                                        <div>
+                                            <DropDowns>
+                                                <Input onClick={() => setActiveGenres(!activeGenres)}>
+                                                    <p>Gêneros</p>
+                                                    <CaretLeft style={activeGenres ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
+                                                    {
+                                                        activeGenres && 
+                                                        <DropDown>
+                                                            {
+                                                                genres.length == 0 ?
+                                                                <div className="hover">
+                                                                    <p>Este filme não tem gêneros</p> 
+                                                                </div>
+                                                                :
+                                                                genres.map((genre) => {
+                                                                    return (
+                                                                        <div key={genre.id} className="hover">
+                                                                            <p>{genre.name}</p>
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </DropDown>
+                                                    }
+                                                </Input>
+                                                <Input onClick={() => setActiveCompanies(!activeCompanies)}>
+                                                    <p>Produção</p>
+                                                    <CaretLeft style={activeCompanies ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
+                                                    {
+                                                        activeCompanies && 
+                                                        <DropDown>
+                                                            {
+                                                                companies.length == 0 ?
+                                                                <div className="hover">
+                                                                    <p>Este filme não tem uma empresa de produção</p>
+                                                                </div>
+                                                                :
+                                                                companies.map((companie) => {
+                                                                    return (
+                                                                        <div key={companie.id} className="hover">
+                                                                            <p>{companie.name}</p>
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </DropDown>
+                                                    }
+                                                </Input>
+                                            </DropDowns>
+                                            <Text style={{width: '100%', marginTop: '10px'}}>
+                                                <p>Data de lançamento: <span>{movie.release_date}</span></p>
+                                                <p>Popularidade: <span>{movie.popularity}</span></p>
+                                                <p>Média de votos: <span>{movie.vote_average}</span></p>
+                                                <p>Total de votos: <span>{movie.vote_count}</span></p>
+                                                <p>Duração: <span>{movie.runtime} min</span></p>
+                                            </Text>
+                                        </div>
                                     </div>
-                                </div>
-                            </Card>
-                        )
-                    })
-                }
-            </Container>
+                                </Card>
+                            )
+                        })
+                    }
+                </Container>
+            <Sliders>
+                <h2 style={{margin: '20px 0px', textAlign: 'center'}}>Filmes Recomendados</h2>
+                <Cards>
+                    <SimilarMovie similarMovies={similarMovies}  />
+                </Cards>
+            </Sliders>
         </>
     );
 }

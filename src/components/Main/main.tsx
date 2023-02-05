@@ -103,7 +103,6 @@ const Main = ({favorites, setActiveLogin} : any) => {
     }, [ID_Client["ID_CLIENT"], getMovies]);
 
     useEffect(() => {
-
         api.get(`/movie/top_rated?api_key=${key}&language=pt-BR&page=1&region=BR`).then(({data}) => {
             setMovies(data.results)
         }).catch(error => {

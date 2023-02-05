@@ -109,7 +109,6 @@ export const Img = styled.div`
         transition: 0.4s ease;
         margin: 15px auto;
         border-radius: 10px;
-        transition: 0.4s ease;
         width: 300px;
     }
 

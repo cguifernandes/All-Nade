@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-
-    @media (max-width: 770px) {
-        height: 100vh;
-    }
+    height: auto;
+    margin-top: 50px;
+    
 `;
 
 export const Header = styled.div`
@@ -47,16 +46,15 @@ export const Card = styled.div`
     border-radius: 10px;
     background-color: var(--dark);
     z-index: 99;
-    position: absolute;
-    top: 140px;
+    position: relative;
     transform: translate(-50%, 0);
     left: 50%;
 
     @media (max-width: 770px) {
         flex-direction: column;
-        top: 130px;
         padding: 10px;
         width: 100%;
+        border-radius: 0px;
     }
 `;
 
@@ -181,3 +179,68 @@ export const Text = styled.div`
         }
     }
 `;
+
+export const Sliders = styled.div `
+    overflow: hidden;
+`;
+
+export const Cards = styled.div `
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-items: center;
+    gap: 50px 20px;
+    margin-bottom: 60px;
+
+    a {
+        padding: 10px;
+        background-color: var(--dark);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: rgba(0,0,0,1) 0px 10px 20px;
+        flex-direction: column;
+        width: 370px;
+    }
+
+    img {
+        width: 300px;
+        border-radius: 8px;
+        transition: 0.4s ease;
+        margin: 10px 0px;
+    }
+
+    h3, p {
+        color: var(--grey);
+        text-align: center;
+        padding: 8px;
+    }
+
+    a:hover {
+        img {
+            transform: scale(0.95);
+        }
+    }
+
+    
+    @media (max-width: 1670px) {
+        grid-template-columns: auto auto auto; 
+        
+        a {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 1260px) {
+        grid-template-columns: auto auto;
+    }
+
+    @media (max-width: 920px) {
+        grid-template-columns: auto;
+
+        a {
+            width: 70%;
+        }
+    }
+`;
+
