@@ -254,7 +254,7 @@ export const CardRecommended = styled.div `
     }
 
     @media (max-width: 920px) {
-        width: 70%;
+        width: 90%;
     }
 `;
 
