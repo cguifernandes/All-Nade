@@ -11,6 +11,7 @@ import { Icon } from "@/styles/mainStyles";
 import { errorAlert, successfullAlert } from "@/components/Utils/alert";
 import { parseCookies } from "nookies";
 import { Toaster } from "react-hot-toast";
+import Footer from "@/components/Footer/Footer";
 
 const Link = () => {
     const { id } = useRouter().query;
@@ -192,6 +193,7 @@ const Link = () => {
                 }
                 
             </Sliders>
+            <Footer />
         </>
     );
 }

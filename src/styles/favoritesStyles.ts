@@ -7,7 +7,7 @@ export const Bar = styled.div`
     position: fixed;
     right: 0;
     top: 80px;
-    z-index: 999;
+    z-index: 22;
     animation: favoritesAnimationOut forwards 0.6s ease;
     overflow-y: auto;
 
