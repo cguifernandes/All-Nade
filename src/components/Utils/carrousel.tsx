@@ -11,8 +11,8 @@ const RecommendedMovies = ({recommendedMovies} : any) => {
     return (
         recommendedMovies.map((similar : typeMovies) => {
             return (
-                <CardRecommended>
-                    <Link href={`${similar.id}`} key={similar.runtime}>
+                <CardRecommended key={similar.runtime}>
+                    <Link href={`${similar.id}`}>
                         <h3>{similar.title}</h3>
                         <img src={urlImg + similar.poster_path}></img>
                         <p className="vote">Média de votos: <span>{similar.vote_average}</span></p>
