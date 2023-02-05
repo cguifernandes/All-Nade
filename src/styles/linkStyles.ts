@@ -191,29 +191,30 @@ export const Cards = styled.div `
     gap: 50px 20px;
     margin-bottom: 60px;
 
-    a {
-        padding: 10px;
-        background-color: var(--dark);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: rgba(0,0,0,1) 0px 10px 20px;
-        flex-direction: column;
-        width: 370px;
-    }
 
     img {
         width: 300px;
         border-radius: 8px;
         transition: 0.4s ease;
-        margin: 10px 0px;
+        display: block;
+        margin: 10px auto;
+    }
+
+    span {
+        font-weight: normal;
     }
 
     h3, p {
         color: var(--grey);
         text-align: center;
         padding: 8px;
+        word-wrap: break-word;
+    }
+
+    .vote {
+        color: var(--grey);
+        padding: 0;
+        font-weight: bold;
     }
 
     a:hover {
@@ -225,10 +226,6 @@ export const Cards = styled.div `
     
     @media (max-width: 1670px) {
         grid-template-columns: auto auto auto; 
-        
-        a {
-            width: 90%;
-        }
     }
 
     @media (max-width: 1260px) {
@@ -237,10 +234,27 @@ export const Cards = styled.div `
 
     @media (max-width: 920px) {
         grid-template-columns: auto;
+    }
+`;
 
-        a {
-            width: 70%;
-        }
+export const CardRecommended = styled.div `
+    padding: 10px;
+    background-color: var(--dark);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0,0,0,1) 0px 10px 20px;
+    flex-direction: column;
+    width: 370px;
+    position: relative;
+
+    @media (max-width: 1670px) {
+        width: 90%;
+    }
+
+    @media (max-width: 920px) {
+        width: 70%;
     }
 `;
 

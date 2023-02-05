@@ -76,8 +76,6 @@ export const Icon = styled.div`
 export const Text = styled.div`
     padding-bottom: 10px;
 
-    
-
     p {
         word-wrap: break-word;
         color: var(--grey);

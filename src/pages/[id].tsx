@@ -1,23 +1,30 @@
-import { api } from "@/services/api";
+import { api, db } from "@/services/api";
 import Head from 'next/head';
 import { Card, Img, Text, Header, Input, DropDown, DropDowns, Sliders, Container, Cards } from "@/styles/linkStyles";
 import { typeCompanies, typeGenres, typeMovies } from "@/types/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Back from "@/components/Utils/back";
-import { CaretLeft } from "phosphor-react";
-import SimilarMovie from "@/components/Utils/carrousel";
+import { CaretLeft, Star } from "phosphor-react";
+import RecommendedMovies from "@/components/Utils/carrousel";
+import { Icon } from "@/styles/mainStyles";
+import { errorAlert, successfullAlert } from "@/components/Utils/alert";
+import { parseCookies } from "nookies";
+import { Toaster } from "react-hot-toast";
 
 const Link = () => {
     const { id } = useRouter().query;
     const [movies, setMovies] = useState<typeMovies[]>([]);
     const [genres, setGenres] = useState<typeGenres[]>([]);
-    const [similarMovies, setSimilarMovies] = useState<typeMovies[]>([]);
+    const [recommendedMovies, setRecommendedMovies] = useState<typeMovies[]>([]);
+    const [verifyFavorite, setVerifyFavorite] = useState(false);
     const [companies, setCompanies] = useState<typeCompanies[]>([]);
     const [activeGenres, setActiveGenres] = useState(false);
     const [activeCompanies, setActiveCompanies] = useState(false);
     const key = process.env.NEXT_PUBLIC_API_KEY;
     const urlImg = process.env.NEXT_PUBLIC_API_IMG;
+    const ID_Client = parseCookies();
+    const _id = ID_Client["ID_CLIENT"];
     var movieCard : any = [];
     var genresCard : any = [];
     var production_companiesCard : any = [];
@@ -39,14 +46,45 @@ const Link = () => {
                 }
             })();
 
+            
             (async () => {
                 const {data} = await api.get(`/movie/${id}/recommendations?api_key=${key}&language=pt-BR`)
-                setSimilarMovies(data.results)
+                setRecommendedMovies(data.results)
             })();
             
             verify = false;
         }
     }, [movies]);
+
+    const handlerClickFavorite = async (index : any) => {
+        const idMovie = movies[index].id;
+        var favoritesCard : any = [];
+
+        if (verifyFavorite) {
+            const {data} = await db.post('/favorites/getFavorites', {_id});
+            favoritesCard.push(data.data.idMovie);
+            
+            if (favoritesCard[0].includes(idMovie)) {
+                await db.post(`/favorites/deleteFavorites`, {idMovie, _id});
+                errorAlert('Favorito foi removido da sua lista.');
+            }
+
+            else {
+                await db.post(`/favorites/${_id}`, {idMovie});
+                successfullAlert('Favorito foi adicionado na sua lista.');
+            }
+        }
+
+        else {
+            errorAlert('Por favor, faça login para adicionar um favorito.');
+        }
+    }
+
+    useEffect(() => {
+        if (ID_Client["ID_CLIENT"]) {
+            setVerifyFavorite(true);
+        }  
+    }, [ID_Client["ID_CLIENT"]]);
 
     return (  
         <>
@@ -57,6 +95,7 @@ const Link = () => {
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
                 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
             </Head>
+            <div><Toaster/></div>
             <Header>
                 <Back />
                 <h2 style={{letterSpacing: '4px'}}>ALL NADE</h2>
@@ -66,6 +105,9 @@ const Link = () => {
                         movies.map((movie, index) => {
                             return (
                                 <Card key={index}>
+                                    <Icon onClick={() => handlerClickFavorite(index)} style={{cursor: 'pointer'}}>
+                                        <Star weight="fill" className="icon" />
+                                    </Icon>
                                     <Img>
                                         <img src={urlImg + movie.poster_path} />
                                     </Img>
@@ -140,9 +182,15 @@ const Link = () => {
                 </Container>
             <Sliders>
                 <h2 style={{margin: '20px 0px', textAlign: 'center'}}>Filmes Recomendados</h2>
-                <Cards>
-                    <SimilarMovie similarMovies={similarMovies}  />
-                </Cards>
+                {
+                    recommendedMovies.length == 0 ?
+                    <p>Sem filmes recomendados.</p>
+                    :
+                    <Cards>
+                        <RecommendedMovies recommendedMovies={recommendedMovies} />
+                    </Cards>
+                }
+                
             </Sliders>
         </>
     );
