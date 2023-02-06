@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import 'react-loading-skeleton/dist/skeleton.css'
-import { errorAlert } from "../Utils/alert";
-import { Bar, CardF, ContainerF, ImgF, Title } from "../../styles/favoritesStyles";
+import { errorAlert, successfullAlert } from "../Utils/alert";
+import { Bar, CardFavorite, ContainerFavorite, ImgFavorite, Title } from "../../styles/favoritesStyles";
 import Loading from "../Loading/loading";
 
 const Main = ({favorites, setActiveLogin} : any) => {
@@ -52,10 +52,12 @@ const Main = ({favorites, setActiveLogin} : any) => {
             
             if (favoritesCard[0].includes(idMovie)) {
                 await db.post(`/favorites/deleteFavorites`, {idMovie, _id});
+                errorAlert('Favorito foi removido da sua lista.');
             }
 
             else {
                 await db.post(`/favorites/${_id}`, {idMovie});
+                successfullAlert('Favorito foi adicionado na sua lista.');
             }
         }
 
@@ -88,6 +90,17 @@ const Main = ({favorites, setActiveLogin} : any) => {
             .then(res => {
                 setMovies(res.data.results);
             });
+        }
+    }
+
+    const handlerRemoveFavorite = async (index : any) => {
+        const idMovie = favoritesCard[index].id;
+
+        try {
+            await db.post(`/favorites/deleteFavorites`, {idMovie, _id});
+            errorAlert('Favorito foi removido da sua lista.');
+        } catch (error) {   
+            console.log(error);
         }
     }
 
@@ -163,27 +176,30 @@ const Main = ({favorites, setActiveLogin} : any) => {
                     </div>
                 }
                 <Bar className={favorites ? "active" : ""}>
-                    <ContainerF>
+                    <ContainerFavorite>
                         {
                             favoritesCard.length > 0 ?
                             favoritesCard.map((movie, index) => {
                                 return (
-                                    <CardF key={index}>
+                                    <CardFavorite key={index}>
+                                        <Icon onClick={() => handlerRemoveFavorite(index)}>
+                                            <Star weight="fill" className="icon" />
+                                        </Icon>
                                         <Link href={`${movie.id}`} >
-                                            <ImgF>
+                                            <ImgFavorite>
                                                 <img src={urlImg + movie.poster_path}></img>
-                                            </ImgF>
+                                            </ImgFavorite>
                                             <Title>
                                                 <h3>{movie.title}</h3>
                                             </Title>
                                         </Link>
-                                    </CardF>
+                                    </CardFavorite>
                                 )
                             })
                             :
                             <p>Sem favoritos 😪!</p>
                         }
-                    </ContainerF>
+                    </ContainerFavorite>
                 </Bar>
         </>
     );

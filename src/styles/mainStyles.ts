@@ -58,6 +58,7 @@ export const Icon = styled.div`
     padding: 10px;
     border-radius: 50%;
     transition: 0.4s ease-in-out;
+    cursor: pointer;
 
     &:hover {
         background-color: var(--dark-grey);

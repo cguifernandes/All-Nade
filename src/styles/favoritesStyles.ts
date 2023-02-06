@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Bar = styled.div`
     background-color: var(--dark);
     width: 350px;
-    height: 91.7%;
+    height: 91.8%;
     position: fixed;
     right: 0;
     top: 80px;
@@ -16,7 +16,7 @@ export const Bar = styled.div`
     }
 `;
 
-export const ContainerF = styled.div`
+export const ContainerFavorite = styled.div`
     p {
         color: var(--grey);
         text-align: center;
@@ -24,17 +24,19 @@ export const ContainerF = styled.div`
     }
 `;
 
-export const CardF = styled.div`
+export const CardFavorite = styled.div`
     padding: 10px 0px;
     transition: 0.4s all;
     cursor: pointer;
-
+    position: relative;
+    padding: 20px 0px;
+    
     &:hover {
         background-color: var(--dark-grey);
     }
 `;
 
-export const ImgF = styled.div`
+export const ImgFavorite = styled.div`
     img {
         width: 200px;
         display: block;

@@ -211,6 +211,10 @@ export const Cards = styled.div `
         word-wrap: break-word;
     }
 
+    h3 {
+        padding-top: 35px;
+    }
+
     .vote {
         color: var(--grey);
         padding: 0;
