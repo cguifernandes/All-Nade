@@ -185,7 +185,7 @@ const Link = () => {
                 <h2 style={{margin: '20px 0px', textAlign: 'center'}}>Filmes Recomendados</h2>
                 {
                     recommendedMovies.length == 0 ?
-                    <p>Sem filmes recomendados.</p>
+                    <p style={{textAlign: 'center'}}>Sem filmes recomendados.</p>
                     :
                     <Cards>
                         <RecommendedMovies recommendedMovies={recommendedMovies} />
