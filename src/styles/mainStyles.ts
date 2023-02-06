@@ -98,7 +98,7 @@ export const Text = styled.div`
 export const Img = styled.div`
     padding-top: 25px;
 
-    h3{
+    h3 { 
         color: var(--grey);
         text-align: center;
     }
