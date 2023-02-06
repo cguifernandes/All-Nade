@@ -57,7 +57,7 @@ export const Icon = styled.div`
     height: 38px;
     padding: 10px;
     border-radius: 50%;
-    transition: 0.4s ease-in-out;
+    transition: 0.2s ease-in-out;
     cursor: pointer;
 
     &:hover {
