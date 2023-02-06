@@ -49,5 +49,6 @@ export const Title = styled.div`
     h3 {
         color: var(--grey);
         text-align: center;
+        padding: 0px 15px;
     }
 `;
