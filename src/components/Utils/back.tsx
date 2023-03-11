@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { ArrowCounterClockwise } from "phosphor-react";
+import { ArrowArcLeft } from "phosphor-react";
 
 const Back = () => {
     return (  
         <Link href='/'>
-            <ArrowCounterClockwise className="icon" />
+            <ArrowArcLeft className="icon" />
         </Link>
     );
 }

@@ -122,10 +122,15 @@ const Link = () => {
                                             <DropDowns>
                                                 <Input onClick={() => setActiveGenres(!activeGenres)}>
                                                     <p>Gêneros</p>
-                                                    <CaretLeft style={activeGenres ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
+                                                    <CaretLeft 
+                                                    style={activeGenres ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
                                                     {
-                                                        activeGenres && 
-                                                        <DropDown>
+                                                        <DropDown
+                                                        animate={activeGenres ? "open" : "closed"} 
+                                                        transition={{type: 'spring', duration: 0.5}}  
+                                                        initial={false}
+                                                        variants={{ closed: { opacity: 1, display: 'inline' }, 
+                                                        open: { opacity: 0, translateY: '20px', display: 'none' } }}>
                                                             {
                                                                 genres.length == 0 ?
                                                                 <div className="hover">
@@ -147,8 +152,12 @@ const Link = () => {
                                                     <p>Produção</p>
                                                     <CaretLeft style={activeCompanies ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
                                                     {
-                                                        activeCompanies && 
-                                                        <DropDown>
+                                                        <DropDown
+                                                        animate={activeCompanies ? "open" : "closed"} 
+                                                        transition={{type: 'spring', duration: 0.5}}  
+                                                        initial={false}
+                                                        variants={{ closed: { opacity: 1, display: 'inline' }, 
+                                                        open: { opacity: 0, translateY: '20px', display: 'none' } }}>
                                                             {
                                                                 companies.length == 0 ?
                                                                 <div className="hover">
@@ -182,7 +191,7 @@ const Link = () => {
                     }
                 </Container>
             <Sliders>
-                <h2 style={{margin: '20px 0px', textAlign: 'center'}}>Filmes Recomendados</h2>
+                <h2 style={{margin: '20px 0px', textAlign: 'center', color: '#ebebeb'}}>Filmes Recomendados</h2>
                 {
                     recommendedMovies.length == 0 ?
                     <p style={{textAlign: 'center', paddingBottom: '54px'}}>Sem filmes recomendados.</p>

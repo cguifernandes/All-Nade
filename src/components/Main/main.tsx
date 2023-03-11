@@ -172,7 +172,7 @@ const Main = ({favorites, setActiveLogin} : any) => {
                 {
                     result &&
                     <div style={{height: '62.3vh'}}>
-                        <p style={{color: '#090909', textAlign: 'center', fontSize: '19px'}}>Desculpe, nenhum filme encontrado 😓.</p>
+                        <p style={{color: '#ebebeb', textAlign: 'center', fontSize: '19px'}}>Desculpe, nenhum filme encontrado 😓.</p>
                     </div>
                 }
                 <Bar className={favorites ? "active" : ""}>

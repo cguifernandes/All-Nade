@@ -1,5 +1,5 @@
 :root {
-  --dark: #090909;
+  --dark: #141414;
   --dark-grey: #292929;
   --red: #df1106;
   --yellow: #EE881B;
@@ -16,7 +16,7 @@
 html, body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: #ebebeb;
+  background-color: #363636;
 }
 
 @keyframes rotate-spinner {

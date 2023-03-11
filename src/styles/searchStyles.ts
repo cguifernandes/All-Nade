@@ -14,12 +14,13 @@ export const Input = styled.div`
         outline: none;
         padding: 10px;
         border: none;
-        border: 1px solid var(--dark);
+        border: 1px solid var(--grey);
         background-color: transparent;
         width: 100%;
         font-size: 14px;
         font-family: 'Poppins', sans-serif;
         border-radius: 5px;
+        color: var(--grey);
     }
 
     .icon {
@@ -30,12 +31,17 @@ export const Input = styled.div`
         align-items: center;
         justify-content: center;
         right: 0px;
-        border-left: 1px solid var(--dark);
+        border-left: 1px solid var(--grey);
         transition: 0.3s all;
 
         svg {
+            color: var(--grey);
             width: 22px;
             height: 22px;
         }
+    }
+
+    input::placeholder {
+        color: var(--grey);
     }
 `;

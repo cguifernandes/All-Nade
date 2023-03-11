@@ -1,9 +1,10 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
     height: auto;
-    margin-top: 50px;
+    padding-top: 130px;
     
 `;
 
@@ -12,12 +13,15 @@ export const Header = styled.div`
   height: 80px;
   display: flex;
   align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
 
   h2 {
     color: var(--grey);
-    letter-spacing: 4px;
-    display: block;
-    margin: 0 auto;
+    transform: translate(-50%, 0);
+    left: 50%;
+    position: absolute;
   }
 
   .icon {
@@ -39,13 +43,12 @@ export const Header = styled.div`
   }
 `;
 
-export const Card = styled.div`
+export const Card = styled(motion.div)`
     width: 95%;
     display: flex;
     align-items: center;
     border-radius: 10px;
     background-color: var(--dark);
-    z-index: 99;
     position: relative;
     transform: translate(-50%, 0);
     left: 50%;
@@ -88,7 +91,7 @@ export const Input = styled.div `
     .icon {
         color: var(--grey);
         font-size: 22px;
-        transition: 0.2s ease-in-out;
+        transition: 0.1s ease-in-out;
     }
 
     &:hover {
@@ -109,9 +112,10 @@ export const DropDowns = styled.div `
     }
 `;
 
-export const DropDown = styled.div `
+export const DropDown = styled(motion.div) `
     background-color: var(--dark-grey);
     position: absolute;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     top: 50px;
     width: 100%;
     left: 0px;

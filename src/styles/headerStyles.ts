@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.header`
   background-color: var(--dark);
   height: 80px;
+  padding: 0px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,7 +15,6 @@ export const Container = styled.header`
 `;
 
 export const Favoritos = styled.div`
-  margin-right: 20px;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -38,25 +38,22 @@ export const Favoritos = styled.div`
 `;
 
 export const Logo = styled.div`
-  margin-right: 5%;
+  position: absolute;
+  transform: translate(-50%, 0);
+  left: 50%;
 
   h2 {
     color: var(--grey);
     letter-spacing: 4px;
   }
 
-  @media (max-width: 650px) {
-    margin-right: 0px;
-  }
-
-  @media (max-width: 490px) {
+  @media (max-width: 740px) {
     display: none
   }
 `;
 
 export const Button = styled.div`
   width: auto;
-  margin-left: 20px;
 
   button {
     outline: none;
@@ -88,7 +85,6 @@ export const Button = styled.div`
 
 export const Account = styled.div`
   width: auto;
-  margin-left: 20px;
 `;
 
 export const UserAccount = styled.div`

@@ -10,7 +10,7 @@ export const Container = styled.div`
     .loader {
         width: 68px;
         height: 68px;
-        border: 5px solid var(--dark);
+        border: 5px solid var(--grey);
         border-bottom-color: transparent;
         border-radius: 50%;
         position: absolute;

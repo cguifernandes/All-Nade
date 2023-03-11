@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 750px;
   height: 530px;
-  position: fixed;
+  position: absolute;
   transform: translate(-50%, 0);
   left: 50%;
-  top: 120px;
+  top: 150px;
   background-color: var(--dark);
   animation: overlayAnimation 0.2s ease;
   border-radius: 10px;
