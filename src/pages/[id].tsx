@@ -128,7 +128,7 @@ const Link = () => {
                                                         <DropDown
                                                         animate={activeGenres ? "open" : "closed"} 
                                                         transition={{type: 'spring', duration: 0.5}}  
-                                                        initial={false}
+                                                        initial={true}
                                                         variants={{ closed: { opacity: 1, display: 'inline' }, 
                                                         open: { opacity: 0, translateY: '20px', display: 'none' } }}>
                                                             {
@@ -155,7 +155,7 @@ const Link = () => {
                                                         <DropDown
                                                         animate={activeCompanies ? "open" : "closed"} 
                                                         transition={{type: 'spring', duration: 0.5}}  
-                                                        initial={false}
+                                                        initial={true}
                                                         variants={{ closed: { opacity: 1, display: 'inline' }, 
                                                         open: { opacity: 0, translateY: '20px', display: 'none' } }}>
                                                             {
