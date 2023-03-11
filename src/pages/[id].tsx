@@ -126,9 +126,8 @@ const Link = () => {
                                                     style={activeGenres ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
                                                     {
                                                         <DropDown
-                                                        animate={activeGenres ? "open" : "closed"} 
+                                                        animate={activeGenres ? "closed" : "open"} 
                                                         transition={{type: 'spring', duration: 0.5}}  
-                                                        initial={true}
                                                         variants={{ closed: { opacity: 1, display: 'inline' }, 
                                                         open: { opacity: 0, translateY: '20px', display: 'none' } }}>
                                                             {
@@ -153,9 +152,8 @@ const Link = () => {
                                                     <CaretLeft style={activeCompanies ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}} className="icon" />
                                                     {
                                                         <DropDown
-                                                        animate={activeCompanies ? "open" : "closed"} 
+                                                        animate={activeCompanies ? "closed" : "open"} 
                                                         transition={{type: 'spring', duration: 0.5}}  
-                                                        initial={true}
                                                         variants={{ closed: { opacity: 1, display: 'inline' }, 
                                                         open: { opacity: 0, translateY: '20px', display: 'none' } }}>
                                                             {
